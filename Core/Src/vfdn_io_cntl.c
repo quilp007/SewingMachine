@@ -242,12 +242,41 @@ void outTest(void)
     }
 }
 
+uint16_t GPIO_PIN_DEF[8] = {
+    GPIO_PIN_0, 
+    GPIO_PIN_1, 
+    GPIO_PIN_3, 
+    GPIO_PIN_4, 
+    GPIO_PIN_5, 
+    GPIO_PIN_13, 
+    GPIO_PIN_7, 
+    GPIO_PIN_8, 
+}
+
+static unsigned int readSignal(unsigned char ch)
+{
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_DEF[ch], RESET); // input [ch] enable low
+    DWT_Delay_us(READ_US_DLY);
+
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, SET); // input clock high
+    DWT_Delay_us(READ_US_DLY);
+    
+	buf = GPIOE->IDR;	// GPIO input array
+
+    DWT_Delay_us(READ_US_DLY);
+    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,RESET); // input clock low
+
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_DEF[ch], SET); // input [ch] enable high
+    
+	return	(buf&0x00ff);
+}
 
 /**
   * @brief read signal function
   * @param channel(IN_CLK1,IN_CLK2,IN_CLK3,IN_CLK4,IN_CLK5,IN_CLK6,IN_CLK7,IN_CLK8)
   * @retval input signal(16bit) or error
   */
+/*
 static unsigned int readSignal(unsigned char ch)
 {
 	unsigned int buf=0;
@@ -341,6 +370,7 @@ static unsigned int readSignal(unsigned char ch)
 
 	return	(buf&0x00ff);
 }
+*/
 
 /**
   * @brief output signal function
@@ -440,6 +470,40 @@ void outSignal(unsigned char ch, unsigned int sdata)
 	}
 }
 
+struct typedef PORT_DEF{
+   uint8_t bit0:1; // LSB
+   uint8_t bit1:1;
+   uint8_t bit2:1;
+   uint8_t bit3:1;
+   uint8_t bit4:1;
+   uint8_t bit5:1;
+   uint8_t bit6:1;
+   uint8_t bit7:1; //MSB
+}PORT_DATA[8];
+
+//uint8_t PORT_DATA[8];
+void readSignalProcess(void)
+{
+    uint8_t buf=0;
+
+    buf = readSignal(inCh);	// select channel signal read
+
+    buf &= 0x00ff;
+
+    PORT_DATA[inCh] = buf;
+
+    if(inCh == IN_CH_MAX)
+    {
+        scFg = 1;
+        inCh = 0;
+
+        if(sysStartFg == 0) sysStartFg = 1;
+    }
+    else
+        inCh++;
+}
+
+#if 0
 /**
   * @brief output signal function
   * @param channel(OUT_CLK1,OUT_CLK2,OUT_CLK3,OUT_CLK4,OUT_CLK5,OUT_CLK6,OUT_CLK7,OUT_CLK8), send data
@@ -883,6 +947,7 @@ if(stSENPrev != stSENin)
 		//rsFg = READ_SIG_TSTART;
 	//}
 }
+#endif
 
 #if 0
 /**
