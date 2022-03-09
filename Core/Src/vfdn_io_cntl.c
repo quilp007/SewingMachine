@@ -243,40 +243,42 @@ void outTest(void)
 }
 
 uint16_t GPIO_PIN_DEF[8] = {
-    GPIO_PIN_0, 
-    GPIO_PIN_1, 
-    GPIO_PIN_3, 
-    GPIO_PIN_4, 
-    GPIO_PIN_5, 
-    GPIO_PIN_13, 
-    GPIO_PIN_7, 
-    GPIO_PIN_8, 
-}
+    GPIO_PIN_0,
+    GPIO_PIN_1,
+    GPIO_PIN_3,
+    GPIO_PIN_4,
+    GPIO_PIN_5,
+    GPIO_PIN_13,
+    GPIO_PIN_7,
+    GPIO_PIN_8,
+};
 
 static unsigned int readSignal(unsigned char ch)
 {
+	uint32_t buf;
+
 	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_DEF[ch], RESET); // input [ch] enable low
     DWT_Delay_us(READ_US_DLY);
 
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, SET); // input clock high
     DWT_Delay_us(READ_US_DLY);
-    
+
 	buf = GPIOE->IDR;	// GPIO input array
 
     DWT_Delay_us(READ_US_DLY);
     HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,RESET); // input clock low
 
 	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_DEF[ch], SET); // input [ch] enable high
-    
+
 	return	(buf&0x00ff);
 }
 
+#if 0
 /**
   * @brief read signal function
   * @param channel(IN_CLK1,IN_CLK2,IN_CLK3,IN_CLK4,IN_CLK5,IN_CLK6,IN_CLK7,IN_CLK8)
   * @retval input signal(16bit) or error
   */
-/*
 static unsigned int readSignal(unsigned char ch)
 {
 	unsigned int buf=0;
@@ -370,7 +372,7 @@ static unsigned int readSignal(unsigned char ch)
 
 	return	(buf&0x00ff);
 }
-*/
+#endif
 
 /**
   * @brief output signal function
@@ -470,27 +472,34 @@ void outSignal(unsigned char ch, unsigned int sdata)
 	}
 }
 
-struct typedef PORT_DEF{
-   uint8_t bit0:1; // LSB
-   uint8_t bit1:1;
-   uint8_t bit2:1;
-   uint8_t bit3:1;
-   uint8_t bit4:1;
-   uint8_t bit5:1;
-   uint8_t bit6:1;
-   uint8_t bit7:1; //MSB
-}PORT_DATA[8];
+struct PORT_DEF {
+	union {
+		struct {
+			uint8_t bit0:1; // LSB
+			uint8_t bit1:1;
+			uint8_t bit2:1;
+			uint8_t bit3:1;
+			uint8_t bit4:1;
+			uint8_t bit5:1;
+			uint8_t bit6:1;
+			uint8_t bit7:1; //MSB
+		};
+		uint8_t data;
+	};
+} PORT_DATA[8];
 
 //uint8_t PORT_DATA[8];
 void readSignalProcess(void)
 {
-    uint8_t buf=0;
+    uint8_t read_port_data = 0;
 
-    buf = readSignal(inCh);	// select channel signal read
+    read_port_data = (uint8_t) readSignal(inCh);	// select channel signal read
 
-    buf &= 0x00ff;
+    //buf &= 0x00ff;
 
-    PORT_DATA[inCh] = buf;
+    PORT_DATA[inCh].data = read_port_data;
+
+    //PORT_DATA[inCh].bit0 = 1;
 
     if(inCh == IN_CH_MAX)
     {
