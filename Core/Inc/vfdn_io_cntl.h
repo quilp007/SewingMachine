@@ -140,6 +140,22 @@ extern "C" {
 #define	ST_ZERO_SPD						0x08		// SERVO ZERO SPEED
 #define	ST_T_POS						0x10		// SERVO TERMINATE POSITION
 
+struct OUT_PORT_DEF {
+	union {
+		struct {
+			uint8_t bit0:1; // LSB
+			uint8_t bit1:1;
+			uint8_t bit2:1;
+			uint8_t bit3:1;
+			uint8_t bit4:1;
+			uint8_t bit5:1;
+			uint8_t bit6:1;
+			uint8_t bit7:1; //MSB
+		};
+		uint8_t data;
+	};
+} OUT_PORT_DATA[8];
+
 // AC SERVO OUTPUT BIT DEFINE
 #define	ST_SV_ON						0x01		// SERVO ON
 #define	ST_ALRM_RST						0x02		// SERVO ALARM RESET

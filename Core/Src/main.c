@@ -1153,6 +1153,18 @@ static void initVariables(void)
     HAL_GPIO_WritePin(GPIOC,GPIO_PIN_7,SET); // input en7 high
     HAL_GPIO_WritePin(GPIOC,GPIO_PIN_8,SET); // input en8 high
 
+    /*
+    void servo_OnOff(uint8_t CH, uint8_t OnOff) // On: 1, Off: 0
+    {
+        if(OnOff != 0)  // On
+            stOut[CH] &= ~ST_SV_ON;
+        else            // Off
+            stOut[CH] |= ST_SV_ON;
+
+        outSignal(CH, stOut[CH]);
+    }
+    */
+
     stOut[0] |= 0x01; //servo1 off
     stOut[0] |= 0x02; //servo1 alarm reset no action
     stOut[0] &= ~0x04; //servo1 EMG stop no action
