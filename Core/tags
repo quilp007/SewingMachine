@@ -1,0 +1,879 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ADC_CNT_MAX	Inc/vfdn_adc.h	/^#define	ADC_CNT_MAX	/;"	d
+ADC_SCAN_NOW	Inc/vfdn_adc.h	/^#define	ADC_SCAN_NOW	/;"	d
+ADC_SCAN_TCNT	Inc/vfdn_adc.h	/^#define	ADC_SCAN_TCNT	/;"	d
+ADC_SCAN_TSTART	Inc/vfdn_adc.h	/^#define	ADC_SCAN_TSTART	/;"	d
+AHBPrescTable	Src/system_stm32f4xx.c	/^const uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};$/;"	v
+ALRM_RST	Inc/main.h	/^#define	ALRM_RST	/;"	d
+APBPrescTable	Src/system_stm32f4xx.c	/^const uint8_t APBPrescTable[8]  = {0, 0, 0, 0, 1, 2, 3, 4};$/;"	v
+AP_CNT_MAX	Inc/vfdn_spi.h	/^#define	AP_CNT_MAX	/;"	d
+AP_KPA_MAX	Inc/vfdn_sub.h	/^#define AP_KPA_MAX /;"	d
+AP_KPA_MIN	Inc/vfdn_sub.h	/^#define AP_KPA_MIN /;"	d
+AP_SCAN_NOW	Inc/vfdn_spi.h	/^#define	AP_SCAN_NOW	/;"	d
+AP_SCAN_TCNT	Inc/vfdn_spi.h	/^#define	AP_SCAN_TCNT	/;"	d
+AP_SCAN_TSTART	Inc/vfdn_spi.h	/^#define	AP_SCAN_TSTART	/;"	d
+BAND_CUT_HEAT	Inc/main.h	/^#define	BAND_CUT_HEAT	/;"	d
+BusFault_Handler	Src/stm32f4xx_it.c	/^void BusFault_Handler(void)$/;"	f
+CCW_LIM	Inc/main.h	/^#define	CCW_LIM	/;"	d
+CLAMP1_CNT	Inc/main.h	/^#define	CLAMP1_CNT	/;"	d
+CLAMP2_CNT	Inc/main.h	/^#define	CLAMP2_CNT	/;"	d
+CLAMP3_CNT	Inc/main.h	/^#define	CLAMP3_CNT	/;"	d
+CLAMP4_CNT	Inc/main.h	/^#define	CLAMP4_CNT	/;"	d
+CLAMP_CLOSE	Inc/vfdn_sub.h	/^#define	CLAMP_CLOSE	/;"	d
+CLAMP_OPEN	Inc/vfdn_sub.h	/^#define	CLAMP_OPEN	/;"	d
+CNT_CLR	Inc/main.h	/^#define	CNT_CLR	/;"	d
+COM_BUF_MAX	Inc/vfdn_com.h	/^#define	COM_BUF_MAX	/;"	d
+COM_DATA	Inc/vfdn_com.h	/^#define	COM_DATA	/;"	d
+COM_ERROR_CODE	Inc/vfdn_com.h	/^#define	COM_ERROR_CODE	/;"	d
+COM_ETX1	Inc/vfdn_com.h	/^#define	COM_ETX1	/;"	d
+COM_ETX2	Inc/vfdn_com.h	/^#define	COM_ETX2	/;"	d
+COM_ID	Inc/vfdn_com.h	/^#define	COM_ID	/;"	d
+COM_METERIAL_LEN	Inc/vfdn_com.h	/^#define	COM_METERIAL_LEN	/;"	d
+COM_PACKET_CYCLE	Inc/vfdn_com.h	/^#define	COM_PACKET_CYCLE	/;"	d
+COM_PACKET_TIM_ERROR	Inc/vfdn_com.h	/^#define	COM_PACKET_TIM_ERROR	/;"	d
+COM_PACKET_TIM_OCCUR	Inc/vfdn_com.h	/^#define	COM_PACKET_TIM_OCCUR	/;"	d
+COM_PACKET_TIM_START	Inc/vfdn_com.h	/^#define	COM_PACKET_TIM_START	/;"	d
+COM_PACKET_TIM_STOP	Inc/vfdn_com.h	/^#define	COM_PACKET_TIM_STOP	/;"	d
+COM_SOFT_STOP	Inc/vfdn_com.h	/^#define	COM_SOFT_STOP	/;"	d
+COM_STEP_DATA	Inc/vfdn_com.h	/^#define	COM_STEP_DATA	/;"	d
+COM_STEP_ETX1	Inc/vfdn_com.h	/^#define	COM_STEP_ETX1	/;"	d
+COM_STEP_ETX2	Inc/vfdn_com.h	/^#define	COM_STEP_ETX2	/;"	d
+COM_STEP_STX1	Inc/vfdn_com.h	/^#define	COM_STEP_STX1	/;"	d
+COM_STEP_STX2	Inc/vfdn_com.h	/^#define	COM_STEP_STX2	/;"	d
+COM_STX1	Inc/vfdn_com.h	/^#define	COM_STX1	/;"	d
+COM_STX2	Inc/vfdn_com.h	/^#define	COM_STX2	/;"	d
+CW_LIM	Inc/main.h	/^#define	CW_LIM	/;"	d
+CopyDataInit	Startup/startup_stm32f407vetx.s	/^CopyDataInit:$/;"	l
+DATA_CACHE_ENABLE	Inc/stm32f4xx_hal_conf.h	/^#define  DATA_CACHE_ENABLE /;"	d
+DP83848_PHY_ADDRESS	Inc/stm32f4xx_hal_conf.h	/^#define DP83848_PHY_ADDRESS /;"	d
+DWT_Delay_Init	Src/dwt_stm32_delay.c	/^uint32_t DWT_Delay_Init(void) {$/;"	f
+DWT_Delay_us	Inc/dwt_stm32_delay.h	/^__STATIC_INLINE void DWT_Delay_us(volatile uint32_t microseconds)$/;"	f
+DWT_STM32_DELAY_H	Inc/dwt_stm32_delay.h	/^#define DWT_STM32_DELAY_H$/;"	d
+DebugMon_Handler	Src/stm32f4xx_it.c	/^void DebugMon_Handler(void)$/;"	f
+Default_Handler	Startup/startup_stm32f407vetx.s	/^Default_Handler:$/;"	l
+EEP_PROTECT	Inc/main.h	/^#define	EEP_PROTECT	/;"	d
+EEP_WP	Inc/main.h	/^#define EEP_WP	/;"	d
+EEP_WRITE	Inc/main.h	/^#define	EEP_WRITE	/;"	d
+EMG_STOP	Inc/main.h	/^#define	EMG_STOP	/;"	d
+ETH_RXBUFNB	Inc/stm32f4xx_hal_conf.h	/^#define ETH_RXBUFNB /;"	d
+ETH_RX_BUF_SIZE	Inc/stm32f4xx_hal_conf.h	/^#define ETH_RX_BUF_SIZE /;"	d
+ETH_TXBUFNB	Inc/stm32f4xx_hal_conf.h	/^#define ETH_TXBUFNB /;"	d
+ETH_TX_BUF_SIZE	Inc/stm32f4xx_hal_conf.h	/^#define ETH_TX_BUF_SIZE /;"	d
+EXTERNAL_CLOCK_VALUE	Inc/stm32f4xx_hal_conf.h	/^  #define EXTERNAL_CLOCK_VALUE /;"	d
+EXTI0_IRQHandler	Src/stm32f4xx_it.c	/^void EXTI0_IRQHandler(void)$/;"	f
+EXTI1_IRQHandler	Src/stm32f4xx_it.c	/^void EXTI1_IRQHandler(void)$/;"	f
+EXTI2_IRQHandler	Src/stm32f4xx_it.c	/^void EXTI2_IRQHandler(void)$/;"	f
+EXTI3_IRQHandler	Src/stm32f4xx_it.c	/^void EXTI3_IRQHandler(void)$/;"	f
+EXTI9_5_IRQHandler	Src/stm32f4xx_it.c	/^void EXTI9_5_IRQHandler(void)$/;"	f
+Error_Handler	Src/main.c	/^void Error_Handler(void)$/;"	f
+FAST_SEWING	Inc/vfdn_servo.h	/^#define	FAST_SEWING	/;"	d
+FRQ_100Hz	Inc/vfdn_servo.h	/^#define	FRQ_100Hz	/;"	d
+FRQ_10KHz	Inc/vfdn_servo.h	/^#define	FRQ_10KHz	/;"	d
+FRQ_15KHz	Inc/vfdn_servo.h	/^#define	FRQ_15KHz	/;"	d
+FRQ_1KHz	Inc/vfdn_servo.h	/^#define	FRQ_1KHz	/;"	d
+FRQ_200Hz	Inc/vfdn_servo.h	/^#define	FRQ_200Hz	/;"	d
+FRQ_20KHz	Inc/vfdn_servo.h	/^#define	FRQ_20KHz	/;"	d
+FRQ_25KHz	Inc/vfdn_servo.h	/^#define	FRQ_25KHz	/;"	d
+FRQ_2KHz	Inc/vfdn_servo.h	/^#define	FRQ_2KHz	/;"	d
+FRQ_4KHz	Inc/vfdn_servo.h	/^#define	FRQ_4KHz	/;"	d
+FRQ_500Hz	Inc/vfdn_servo.h	/^#define	FRQ_500Hz	/;"	d
+FRQ_5KHz	Inc/vfdn_servo.h	/^#define	FRQ_5KHz	/;"	d
+FRQ_62Hz	Inc/vfdn_servo.h	/^#define	FRQ_62Hz	/;"	d
+FRQ_8KHz	Inc/vfdn_servo.h	/^#define	FRQ_8KHz	/;"	d
+FRQ_AC_SV_NOR_OP	Inc/vfdn_servo.h	/^#define	FRQ_AC_SV_NOR_OP /;"	d
+FRQ_AC_SV_TEST_OP	Inc/vfdn_servo.h	/^#define FRQ_AC_SV_TEST_OP /;"	d
+FRQ_RC_SV	Inc/vfdn_servo.h	/^#define	FRQ_RC_SV /;"	d
+FillZerobss	Startup/startup_stm32f407vetx.s	/^FillZerobss:$/;"	l
+GPIO_PIN_DEF	Src/vfdn_io_cntl.c	/^uint16_t GPIO_PIN_DEF[8] = {$/;"	v
+HAL_ADC_MODULE_ENABLED	Inc/stm32f4xx_hal_conf.h	/^  #define HAL_ADC_MODULE_ENABLED$/;"	d
+HAL_ADC_MspDeInit	Src/stm32f4xx_hal_msp.c	/^void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)$/;"	f
+HAL_ADC_MspInit	Src/stm32f4xx_hal_msp.c	/^void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)$/;"	f
+HAL_CORTEX_MODULE_ENABLED	Inc/stm32f4xx_hal_conf.h	/^#define HAL_CORTEX_MODULE_ENABLED$/;"	d
+HAL_DMA_MODULE_ENABLED	Inc/stm32f4xx_hal_conf.h	/^#define HAL_DMA_MODULE_ENABLED$/;"	d
+HAL_EXTI_MODULE_ENABLED	Inc/stm32f4xx_hal_conf.h	/^#define HAL_EXTI_MODULE_ENABLED$/;"	d
+HAL_FLASH_MODULE_ENABLED	Inc/stm32f4xx_hal_conf.h	/^#define HAL_FLASH_MODULE_ENABLED$/;"	d
+HAL_GPIO_MODULE_ENABLED	Inc/stm32f4xx_hal_conf.h	/^#define HAL_GPIO_MODULE_ENABLED$/;"	d
+HAL_I2C_MODULE_ENABLED	Inc/stm32f4xx_hal_conf.h	/^#define HAL_I2C_MODULE_ENABLED$/;"	d
+HAL_I2C_MspDeInit	Src/stm32f4xx_hal_msp.c	/^void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)$/;"	f
+HAL_I2C_MspInit	Src/stm32f4xx_hal_msp.c	/^void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)$/;"	f
+HAL_MODULE_ENABLED	Inc/stm32f4xx_hal_conf.h	/^#define HAL_MODULE_ENABLED$/;"	d
+HAL_MspInit	Src/stm32f4xx_hal_msp.c	/^void HAL_MspInit(void)$/;"	f
+HAL_PWR_MODULE_ENABLED	Inc/stm32f4xx_hal_conf.h	/^#define HAL_PWR_MODULE_ENABLED$/;"	d
+HAL_RCC_MODULE_ENABLED	Inc/stm32f4xx_hal_conf.h	/^#define HAL_RCC_MODULE_ENABLED$/;"	d
+HAL_RTC_MODULE_ENABLED	Inc/stm32f4xx_hal_conf.h	/^#define HAL_RTC_MODULE_ENABLED$/;"	d
+HAL_RTC_MspDeInit	Src/stm32f4xx_hal_msp.c	/^void HAL_RTC_MspDeInit(RTC_HandleTypeDef* hrtc)$/;"	f
+HAL_RTC_MspInit	Src/stm32f4xx_hal_msp.c	/^void HAL_RTC_MspInit(RTC_HandleTypeDef* hrtc)$/;"	f
+HAL_SPI_MODULE_ENABLED	Inc/stm32f4xx_hal_conf.h	/^#define HAL_SPI_MODULE_ENABLED$/;"	d
+HAL_SPI_MspDeInit	Src/stm32f4xx_hal_msp.c	/^void HAL_SPI_MspDeInit(SPI_HandleTypeDef* hspi)$/;"	f
+HAL_SPI_MspInit	Src/stm32f4xx_hal_msp.c	/^void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)$/;"	f
+HAL_TIM_Base_MspDeInit	Src/stm32f4xx_hal_msp.c	/^void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* htim_base)$/;"	f
+HAL_TIM_Base_MspInit	Src/stm32f4xx_hal_msp.c	/^void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)$/;"	f
+HAL_TIM_MODULE_ENABLED	Inc/stm32f4xx_hal_conf.h	/^#define HAL_TIM_MODULE_ENABLED$/;"	d
+HAL_TIM_MspPostInit	Src/stm32f4xx_hal_msp.c	/^void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)$/;"	f
+HAL_UART_MODULE_ENABLED	Inc/stm32f4xx_hal_conf.h	/^#define HAL_UART_MODULE_ENABLED$/;"	d
+HAL_UART_MspDeInit	Src/stm32f4xx_hal_msp.c	/^void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)$/;"	f
+HAL_UART_MspInit	Src/stm32f4xx_hal_msp.c	/^void HAL_UART_MspInit(UART_HandleTypeDef* huart)$/;"	f
+HEATER_CURR_MAX	Inc/vfdn_sub.h	/^#define HEATER_CURR_MAX /;"	d
+HEATER_CURR_MIN	Inc/vfdn_sub.h	/^#define HEATER_CURR_MIN /;"	d
+HSE_STARTUP_TIMEOUT	Inc/stm32f4xx_hal_conf.h	/^  #define HSE_STARTUP_TIMEOUT /;"	d
+HSE_VALUE	Inc/stm32f4xx_hal_conf.h	/^  #define HSE_VALUE /;"	d
+HSE_VALUE	Src/system_stm32f4xx.c	/^  #define HSE_VALUE /;"	d	file:
+HSI_VALUE	Inc/stm32f4xx_hal_conf.h	/^  #define HSI_VALUE /;"	d
+HSI_VALUE	Src/system_stm32f4xx.c	/^  #define HSI_VALUE /;"	d	file:
+HardFault_Handler	Src/stm32f4xx_it.c	/^void HardFault_Handler(void)$/;"	f
+ID_D0	Inc/main.h	/^#define ID_D0	/;"	d
+ID_D1	Inc/main.h	/^#define ID_D1	/;"	d
+ID_D2	Inc/main.h	/^#define ID_D2	/;"	d
+ID_D3	Inc/main.h	/^#define ID_D3	/;"	d
+IN0	Inc/main.h	/^#define IN0	/;"	d
+IN1	Inc/main.h	/^#define IN1 /;"	d
+IN2	Inc/main.h	/^#define IN2 /;"	d
+IN3	Inc/main.h	/^#define IN3 /;"	d
+IN4	Inc/main.h	/^#define IN4 /;"	d
+IN5	Inc/main.h	/^#define IN5 /;"	d
+IN6	Inc/main.h	/^#define IN6 /;"	d
+IN7	Inc/main.h	/^#define IN7 /;"	d
+INIT_STEP_CLAMP	Inc/vfdn_sub.h	/^#define	INIT_STEP_CLAMP /;"	d
+INIT_STEP_LIFTING	Inc/vfdn_sub.h	/^#define	INIT_STEP_LIFTING	/;"	d
+INIT_STEP_LOOPER	Inc/vfdn_sub.h	/^#define	INIT_STEP_LOOPER	/;"	d
+INIT_STEP_MOVING	Inc/vfdn_sub.h	/^#define	INIT_STEP_MOVING	/;"	d
+INIT_STEP_NEEDLE	Inc/vfdn_sub.h	/^#define	INIT_STEP_NEEDLE	/;"	d
+INIT_TCNT	Inc/vfdn_sub.h	/^#define	INIT_TCNT	/;"	d
+INIT_TOVER	Inc/vfdn_sub.h	/^#define	INIT_TOVER	/;"	d
+INIT_TSTART	Inc/vfdn_sub.h	/^#define	INIT_TSTART	/;"	d
+INPUT1	Inc/main.h	/^#define	INPUT1	/;"	d
+INPUT10	Inc/main.h	/^#define	INPUT10	/;"	d
+INPUT11	Inc/main.h	/^#define	INPUT11	/;"	d
+INPUT12	Inc/main.h	/^#define	INPUT12	/;"	d
+INPUT13	Inc/main.h	/^#define	INPUT13	/;"	d
+INPUT14	Inc/main.h	/^#define	INPUT14	/;"	d
+INPUT15	Inc/main.h	/^#define	INPUT15	/;"	d
+INPUT16	Inc/main.h	/^#define	INPUT16	/;"	d
+INPUT17	Inc/main.h	/^#define	INPUT17	/;"	d
+INPUT18	Inc/main.h	/^#define	INPUT18	/;"	d
+INPUT19	Inc/main.h	/^#define	INPUT19	/;"	d
+INPUT2	Inc/main.h	/^#define	INPUT2	/;"	d
+INPUT20	Inc/main.h	/^#define	INPUT20	/;"	d
+INPUT21	Inc/main.h	/^#define	INPUT21	/;"	d
+INPUT22	Inc/main.h	/^#define	INPUT22	/;"	d
+INPUT23	Inc/main.h	/^#define	INPUT23	/;"	d
+INPUT24	Inc/main.h	/^#define	INPUT24	/;"	d
+INPUT25	Inc/main.h	/^#define	INPUT25	/;"	d
+INPUT26	Inc/main.h	/^#define	INPUT26	/;"	d
+INPUT27	Inc/main.h	/^#define	INPUT27	/;"	d
+INPUT28	Inc/main.h	/^#define	INPUT28	/;"	d
+INPUT29	Inc/main.h	/^#define	INPUT29	/;"	d
+INPUT3	Inc/main.h	/^#define	INPUT3	/;"	d
+INPUT30	Inc/main.h	/^#define	INPUT30	/;"	d
+INPUT31	Inc/main.h	/^#define	INPUT31	/;"	d
+INPUT32	Inc/main.h	/^#define	INPUT32	/;"	d
+INPUT4	Inc/main.h	/^#define	INPUT4	/;"	d
+INPUT5	Inc/main.h	/^#define	INPUT5	/;"	d
+INPUT6	Inc/main.h	/^#define	INPUT6	/;"	d
+INPUT7	Inc/main.h	/^#define	INPUT7	/;"	d
+INPUT8	Inc/main.h	/^#define	INPUT8	/;"	d
+INPUT9	Inc/main.h	/^#define	INPUT9	/;"	d
+INSTRUCTION_CACHE_ENABLE	Inc/stm32f4xx_hal_conf.h	/^#define  INSTRUCTION_CACHE_ENABLE /;"	d
+IN_CH1	Inc/vfdn_io_cntl.h	/^#define	IN_CH1	/;"	d
+IN_CH2	Inc/vfdn_io_cntl.h	/^#define	IN_CH2	/;"	d
+IN_CH3	Inc/vfdn_io_cntl.h	/^#define	IN_CH3	/;"	d
+IN_CH4	Inc/vfdn_io_cntl.h	/^#define	IN_CH4	/;"	d
+IN_CH5	Inc/vfdn_io_cntl.h	/^#define	IN_CH5	/;"	d
+IN_CH6	Inc/vfdn_io_cntl.h	/^#define	IN_CH6	/;"	d
+IN_CH7	Inc/vfdn_io_cntl.h	/^#define	IN_CH7	/;"	d
+IN_CH8	Inc/vfdn_io_cntl.h	/^#define	IN_CH8	/;"	d
+IN_CH_MAX	Inc/vfdn_io_cntl.h	/^#define	IN_CH_MAX	/;"	d
+IN_CLK	Inc/main.h	/^#define IN_CLK /;"	d
+IN_CLK_HIGH	Inc/main.h	/^#define	IN_CLK_HIGH /;"	d
+IN_CLK_LOW	Inc/main.h	/^#define	IN_CLK_LOW /;"	d
+IN_EN1	Inc/main.h	/^#define IN_EN1	/;"	d
+IN_EN1_HIGH	Inc/main.h	/^#define	IN_EN1_HIGH /;"	d
+IN_EN1_LOW	Inc/main.h	/^#define	IN_EN1_LOW	/;"	d
+IN_EN2	Inc/main.h	/^#define IN_EN2	/;"	d
+IN_EN2_HIGH	Inc/main.h	/^#define	IN_EN2_HIGH /;"	d
+IN_EN2_LOW	Inc/main.h	/^#define	IN_EN2_LOW	/;"	d
+IN_EN3	Inc/main.h	/^#define IN_EN3	/;"	d
+IN_EN3_HIGH	Inc/main.h	/^#define	IN_EN3_HIGH /;"	d
+IN_EN3_LOW	Inc/main.h	/^#define	IN_EN3_LOW	/;"	d
+IN_EN4	Inc/main.h	/^#define IN_EN4	/;"	d
+IN_EN4_HIGH	Inc/main.h	/^#define	IN_EN4_HIGH /;"	d
+IN_EN4_LOW	Inc/main.h	/^#define	IN_EN4_LOW	/;"	d
+IN_EN5	Inc/main.h	/^#define IN_EN5	/;"	d
+IN_EN5_HIGH	Inc/main.h	/^#define	IN_EN5_HIGH /;"	d
+IN_EN5_LOW	Inc/main.h	/^#define	IN_EN5_LOW	/;"	d
+IN_EN6	Inc/main.h	/^#define	IN_EN6	/;"	d
+IN_EN6_HIGH	Inc/main.h	/^#define	IN_EN6_HIGH /;"	d
+IN_EN6_LOW	Inc/main.h	/^#define	IN_EN6_LOW	/;"	d
+IN_EN7	Inc/main.h	/^#define IN_EN7	/;"	d
+IN_EN7_HIGH	Inc/main.h	/^#define	IN_EN7_HIGH /;"	d
+IN_EN7_LOW	Inc/main.h	/^#define	IN_EN7_LOW	/;"	d
+IN_EN8	Inc/main.h	/^#define IN_EN8	/;"	d
+IN_EN8_HIGH	Inc/main.h	/^#define	IN_EN8_HIGH /;"	d
+IN_EN8_LOW	Inc/main.h	/^#define	IN_EN8_LOW	/;"	d
+Infinite_Loop	Startup/startup_stm32f407vetx.s	/^Infinite_Loop:$/;"	l
+LED_RUN_OFF	Inc/main.h	/^#define	LED_RUN_OFF	/;"	d
+LED_RUN_ON	Inc/main.h	/^#define	LED_RUN_ON	/;"	d
+LED_RUN_TOG	Inc/main.h	/^#define	LED_RUN_TOG	/;"	d
+LSE_STARTUP_TIMEOUT	Inc/stm32f4xx_hal_conf.h	/^  #define LSE_STARTUP_TIMEOUT /;"	d
+LSE_VALUE	Inc/stm32f4xx_hal_conf.h	/^ #define LSE_VALUE /;"	d
+LSI_VALUE	Inc/stm32f4xx_hal_conf.h	/^ #define LSI_VALUE /;"	d
+LoopCopyDataInit	Startup/startup_stm32f407vetx.s	/^LoopCopyDataInit:$/;"	l
+LoopFillZerobss	Startup/startup_stm32f407vetx.s	/^LoopFillZerobss:$/;"	l
+MAC_ADDR0	Inc/stm32f4xx_hal_conf.h	/^#define MAC_ADDR0 /;"	d
+MAC_ADDR1	Inc/stm32f4xx_hal_conf.h	/^#define MAC_ADDR1 /;"	d
+MAC_ADDR2	Inc/stm32f4xx_hal_conf.h	/^#define MAC_ADDR2 /;"	d
+MAC_ADDR3	Inc/stm32f4xx_hal_conf.h	/^#define MAC_ADDR3 /;"	d
+MAC_ADDR4	Inc/stm32f4xx_hal_conf.h	/^#define MAC_ADDR4 /;"	d
+MAC_ADDR5	Inc/stm32f4xx_hal_conf.h	/^#define MAC_ADDR5 /;"	d
+METERIAL_LEN_MAX	Inc/vfdn_sub.h	/^#define	METERIAL_LEN_MAX	/;"	d
+METERIAL_LEN_MIN	Inc/vfdn_sub.h	/^#define	METERIAL_LEN_MIN	/;"	d
+MODE_AUTO	Inc/vfdn_io_cntl.h	/^#define	MODE_AUTO	/;"	d
+MODE_EMS	Inc/vfdn_io_cntl.h	/^#define	MODE_EMS	/;"	d
+MODE_MANUAL	Inc/vfdn_io_cntl.h	/^#define	MODE_MANUAL	/;"	d
+MODE_MTEST	Inc/vfdn_io_cntl.h	/^#define	MODE_MTEST	/;"	d
+MODE_SEL0	Inc/main.h	/^#define	MODE_SEL0	/;"	d
+MODE_SEL1	Inc/main.h	/^#define	MODE_SEL1	/;"	d
+MODE_SEWING	Inc/vfdn_sub.h	/^#define	MODE_SEWING	/;"	d
+MODE_TEST	Inc/vfdn_sub.h	/^#define	MODE_TEST	/;"	d
+MOV_1000MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_1000MM_CLOCK	/;"	d
+MOV_100MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_100MM_CLOCK	/;"	d
+MOV_10MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_10MM_CLOCK	/;"	d
+MOV_1200MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_1200MM_CLOCK	/;"	d
+MOV_1500MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_1500MM_CLOCK	/;"	d
+MOV_150MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_150MM_CLOCK	/;"	d
+MOV_1CYCLE_PULSE	Inc/vfdn_acsv.h	/^#define	MOV_1CYCLE_PULSE	/;"	d
+MOV_1MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_1MM_CLOCK	/;"	d
+MOV_2000MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_2000MM_CLOCK	/;"	d
+MOV_200MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_200MM_CLOCK	/;"	d
+MOV_2500MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_2500MM_CLOCK	/;"	d
+MOV_250MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_250MM_CLOCK	/;"	d
+MOV_2600MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_2600MM_CLOCK	/;"	d
+MOV_2700MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_2700MM_CLOCK	/;"	d
+MOV_2800MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_2800MM_CLOCK	/;"	d
+MOV_300MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_300MM_CLOCK	/;"	d
+MOV_350MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_350MM_CLOCK	/;"	d
+MOV_400MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_400MM_CLOCK	/;"	d
+MOV_450MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_450MM_CLOCK	/;"	d
+MOV_500MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_500MM_CLOCK	/;"	d
+MOV_5MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_5MM_CLOCK	/;"	d
+MOV_6MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_6MM_CLOCK	/;"	d
+MOV_7MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_7MM_CLOCK	/;"	d
+MOV_8MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_8MM_CLOCK	/;"	d
+MOV_9MM_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_9MM_CLOCK	/;"	d
+MOV_MAX_PULSE	Inc/vfdn_acsv.h	/^#define	MOV_MAX_PULSE	/;"	d
+MOV_MOTOR_1CYCLE_CLOCK	Inc/vfdn_acsv.h	/^#define	MOV_MOTOR_1CYCLE_CLOCK	/;"	d
+MOV_ROE_MAX_PULSE	Inc/vfdn_acsv.h	/^#define MOV_ROE_MAX_PULSE /;"	d
+MX_ADC1_Init	Src/main.c	/^static void MX_ADC1_Init(void)$/;"	f	file:
+MX_GPIO_Init	Src/main.c	/^static void MX_GPIO_Init(void)$/;"	f	file:
+MX_I2C1_Init	Src/main.c	/^static void MX_I2C1_Init(void)$/;"	f	file:
+MX_RTC_Init	Src/main.c	/^static void MX_RTC_Init(void)$/;"	f	file:
+MX_SPI2_Init	Src/main.c	/^static void MX_SPI2_Init(void)$/;"	f	file:
+MX_SPI3_Init	Src/main.c	/^static void MX_SPI3_Init(void)$/;"	f	file:
+MX_TIM2_Init	Src/main.c	/^static void MX_TIM2_Init(void)$/;"	f	file:
+MX_TIM3_Init	Src/main.c	/^static void MX_TIM3_Init(void)$/;"	f	file:
+MX_TIM4_Init	Src/main.c	/^static void MX_TIM4_Init(void)$/;"	f	file:
+MX_TIM8_Init	Src/main.c	/^static void MX_TIM8_Init(void)$/;"	f	file:
+MX_UART4_Init	Src/main.c	/^static void MX_UART4_Init(void)$/;"	f	file:
+MX_USART1_UART_Init	Src/main.c	/^static void MX_USART1_UART_Init(void)$/;"	f	file:
+MX_USART2_UART_Init	Src/main.c	/^static void MX_USART2_UART_Init(void)$/;"	f	file:
+MX_USART3_UART_Init	Src/main.c	/^static void MX_USART3_UART_Init(void)$/;"	f	file:
+MemManage_Handler	Src/stm32f4xx_it.c	/^void MemManage_Handler(void)$/;"	f
+NL_1MM_CLOCK	Inc/vfdn_acsv.h	/^#define NL_1MM_CLOCK /;"	d
+NMI_Handler	Src/stm32f4xx_it.c	/^void NMI_Handler(void)$/;"	f
+ONE_PULSE_LF	Inc/vfdn_acsv.h	/^#define	ONE_PULSE_LF	/;"	d
+ONE_PULSE_MV	Inc/vfdn_acsv.h	/^#define	ONE_PULSE_MV /;"	d
+ONE_PULSE_NL	Inc/vfdn_acsv.h	/^#define	ONE_PULSE_NL /;"	d
+OUT0	Inc/main.h	/^#define OUT0 /;"	d
+OUT1	Inc/main.h	/^#define OUT1 /;"	d
+OUT2	Inc/main.h	/^#define OUT2 /;"	d
+OUT3	Inc/main.h	/^#define OUT3 /;"	d
+OUT4	Inc/main.h	/^#define OUT4 /;"	d
+OUT5	Inc/main.h	/^#define OUT5 /;"	d
+OUT6	Inc/main.h	/^#define OUT6 /;"	d
+OUT7	Inc/main.h	/^#define OUT7 /;"	d
+OUTPUT1	Inc/main.h	/^#define	OUTPUT1	/;"	d
+OUTPUT10	Inc/main.h	/^#define	OUTPUT10	/;"	d
+OUTPUT11	Inc/main.h	/^#define	OUTPUT11	/;"	d
+OUTPUT12	Inc/main.h	/^#define	OUTPUT12	/;"	d
+OUTPUT13	Inc/main.h	/^#define	OUTPUT13	/;"	d
+OUTPUT14	Inc/main.h	/^#define	OUTPUT14	/;"	d
+OUTPUT15	Inc/main.h	/^#define	OUTPUT15	/;"	d
+OUTPUT16	Inc/main.h	/^#define	OUTPUT16	/;"	d
+OUTPUT17	Inc/main.h	/^#define	OUTPUT17	/;"	d
+OUTPUT18	Inc/main.h	/^#define	OUTPUT18	/;"	d
+OUTPUT19	Inc/main.h	/^#define	OUTPUT19	/;"	d
+OUTPUT2	Inc/main.h	/^#define	OUTPUT2	/;"	d
+OUTPUT20	Inc/main.h	/^#define	OUTPUT20	/;"	d
+OUTPUT21	Inc/main.h	/^#define	OUTPUT21	/;"	d
+OUTPUT22	Inc/main.h	/^#define	OUTPUT22	/;"	d
+OUTPUT23	Inc/main.h	/^#define	OUTPUT23	/;"	d
+OUTPUT24	Inc/main.h	/^#define	OUTPUT24	/;"	d
+OUTPUT25	Inc/main.h	/^#define	OUTPUT25	/;"	d
+OUTPUT26	Inc/main.h	/^#define	OUTPUT26	/;"	d
+OUTPUT3	Inc/main.h	/^#define	OUTPUT3	/;"	d
+OUTPUT4	Inc/main.h	/^#define	OUTPUT4	/;"	d
+OUTPUT5	Inc/main.h	/^#define	OUTPUT5	/;"	d
+OUTPUT6	Inc/main.h	/^#define	OUTPUT6	/;"	d
+OUTPUT7	Inc/main.h	/^#define	OUTPUT7	/;"	d
+OUTPUT8	Inc/main.h	/^#define	OUTPUT8	/;"	d
+OUTPUT9	Inc/main.h	/^#define	OUTPUT9	/;"	d
+OUT_CH1	Inc/vfdn_io_cntl.h	/^#define	OUT_CH1	/;"	d
+OUT_CH2	Inc/vfdn_io_cntl.h	/^#define	OUT_CH2	/;"	d
+OUT_CH3	Inc/vfdn_io_cntl.h	/^#define	OUT_CH3	/;"	d
+OUT_CH4	Inc/vfdn_io_cntl.h	/^#define	OUT_CH4	/;"	d
+OUT_CH5	Inc/vfdn_io_cntl.h	/^#define	OUT_CH5	/;"	d
+OUT_CH6	Inc/vfdn_io_cntl.h	/^#define	OUT_CH6	/;"	d
+OUT_CH7	Inc/vfdn_io_cntl.h	/^#define	OUT_CH7	/;"	d
+OUT_CH8	Inc/vfdn_io_cntl.h	/^#define	OUT_CH8	/;"	d
+OUT_CLAMP1_CNTL	Inc/vfdn_io_cntl.h	/^#define	OUT_CLAMP1_CNTL	/;"	d
+OUT_CLAMP2_CNTL	Inc/vfdn_io_cntl.h	/^#define	OUT_CLAMP2_CNTL	/;"	d
+OUT_CLAMP3_CNTL	Inc/vfdn_io_cntl.h	/^#define	OUT_CLAMP3_CNTL	/;"	d
+OUT_CLAMP4_CNTL	Inc/vfdn_io_cntl.h	/^#define	OUT_CLAMP4_CNTL	/;"	d
+OUT_CLK1	Inc/main.h	/^#define OUT_CLK1	/;"	d
+OUT_CLK1_HIGH	Inc/main.h	/^#define	OUT_CLK1_HIGH	/;"	d
+OUT_CLK1_LOW	Inc/main.h	/^#define	OUT_CLK1_LOW	/;"	d
+OUT_CLK2	Inc/main.h	/^#define OUT_CLK2	/;"	d
+OUT_CLK2_HIGH	Inc/main.h	/^#define	OUT_CLK2_HIGH	/;"	d
+OUT_CLK2_LOW	Inc/main.h	/^#define	OUT_CLK2_LOW	/;"	d
+OUT_CLK3	Inc/main.h	/^#define OUT_CLK3	/;"	d
+OUT_CLK3_HIGH	Inc/main.h	/^#define	OUT_CLK3_HIGH	/;"	d
+OUT_CLK3_LOW	Inc/main.h	/^#define	OUT_CLK3_LOW	/;"	d
+OUT_CLK4	Inc/main.h	/^#define OUT_CLK4	/;"	d
+OUT_CLK4_HIGH	Inc/main.h	/^#define	OUT_CLK4_HIGH	/;"	d
+OUT_CLK4_LOW	Inc/main.h	/^#define	OUT_CLK4_LOW	/;"	d
+OUT_CLK5	Inc/main.h	/^#define OUT_CLK5	/;"	d
+OUT_CLK5_HIGH	Inc/main.h	/^#define	OUT_CLK5_HIGH	/;"	d
+OUT_CLK5_LOW	Inc/main.h	/^#define	OUT_CLK5_LOW	/;"	d
+OUT_CLK6	Inc/main.h	/^#define OUT_CLK6	/;"	d
+OUT_CLK6_HIGH	Inc/main.h	/^#define	OUT_CLK6_HIGH	/;"	d
+OUT_CLK6_LOW	Inc/main.h	/^#define	OUT_CLK6_LOW	/;"	d
+OUT_CLK7	Inc/main.h	/^#define OUT_CLK7	/;"	d
+OUT_CLK7_HIGH	Inc/main.h	/^#define	OUT_CLK7_HIGH	/;"	d
+OUT_CLK7_LOW	Inc/main.h	/^#define	OUT_CLK7_LOW	/;"	d
+OUT_CLK8	Inc/main.h	/^#define OUT_CLK8	/;"	d
+OUT_CLK8_HIGH	Inc/main.h	/^#define	OUT_CLK8_HIGH	/;"	d
+OUT_CLK8_LOW	Inc/main.h	/^#define	OUT_CLK8_LOW	/;"	d
+OUT_HEAT_CNTL	Inc/vfdn_io_cntl.h	/^#define	OUT_HEAT_CNTL	/;"	d
+OUT_PORT_DATA	Inc/vfdn_io_cntl.h	/^} OUT_PORT_DATA[8];$/;"	v	typeref:struct:OUT_PORT_DEF
+OUT_PORT_DEF	Inc/vfdn_io_cntl.h	/^struct OUT_PORT_DEF {$/;"	s
+OUT_TL_G_CNTL	Inc/vfdn_io_cntl.h	/^#define	OUT_TL_G_CNTL	/;"	d
+OUT_TL_R_CNTL	Inc/vfdn_io_cntl.h	/^#define	OUT_TL_R_CNTL	/;"	d
+OUT_TL_Y_CNTL	Inc/vfdn_io_cntl.h	/^#define	OUT_TL_Y_CNTL	/;"	d
+OUT_VACCUM_CNTL	Inc/vfdn_io_cntl.h	/^#define	OUT_VACCUM_CNTL /;"	d
+PHY_AUTONEGOTIATION	Inc/stm32f4xx_hal_conf.h	/^#define PHY_AUTONEGOTIATION /;"	d
+PHY_AUTONEGO_COMPLETE	Inc/stm32f4xx_hal_conf.h	/^#define PHY_AUTONEGO_COMPLETE /;"	d
+PHY_BCR	Inc/stm32f4xx_hal_conf.h	/^#define PHY_BCR /;"	d
+PHY_BSR	Inc/stm32f4xx_hal_conf.h	/^#define PHY_BSR /;"	d
+PHY_CONFIG_DELAY	Inc/stm32f4xx_hal_conf.h	/^#define PHY_CONFIG_DELAY /;"	d
+PHY_DUPLEX_STATUS	Inc/stm32f4xx_hal_conf.h	/^#define PHY_DUPLEX_STATUS /;"	d
+PHY_FULLDUPLEX_100M	Inc/stm32f4xx_hal_conf.h	/^#define PHY_FULLDUPLEX_100M /;"	d
+PHY_FULLDUPLEX_10M	Inc/stm32f4xx_hal_conf.h	/^#define PHY_FULLDUPLEX_10M /;"	d
+PHY_HALFDUPLEX_100M	Inc/stm32f4xx_hal_conf.h	/^#define PHY_HALFDUPLEX_100M /;"	d
+PHY_HALFDUPLEX_10M	Inc/stm32f4xx_hal_conf.h	/^#define PHY_HALFDUPLEX_10M /;"	d
+PHY_ISOLATE	Inc/stm32f4xx_hal_conf.h	/^#define PHY_ISOLATE /;"	d
+PHY_JABBER_DETECTION	Inc/stm32f4xx_hal_conf.h	/^#define PHY_JABBER_DETECTION /;"	d
+PHY_LINKED_STATUS	Inc/stm32f4xx_hal_conf.h	/^#define PHY_LINKED_STATUS /;"	d
+PHY_LOOPBACK	Inc/stm32f4xx_hal_conf.h	/^#define PHY_LOOPBACK /;"	d
+PHY_POWERDOWN	Inc/stm32f4xx_hal_conf.h	/^#define PHY_POWERDOWN /;"	d
+PHY_READ_TO	Inc/stm32f4xx_hal_conf.h	/^#define PHY_READ_TO /;"	d
+PHY_RESET	Inc/stm32f4xx_hal_conf.h	/^#define PHY_RESET /;"	d
+PHY_RESET_DELAY	Inc/stm32f4xx_hal_conf.h	/^#define PHY_RESET_DELAY /;"	d
+PHY_RESTART_AUTONEGOTIATION	Inc/stm32f4xx_hal_conf.h	/^#define PHY_RESTART_AUTONEGOTIATION /;"	d
+PHY_SPEED_STATUS	Inc/stm32f4xx_hal_conf.h	/^#define PHY_SPEED_STATUS /;"	d
+PHY_SR	Inc/stm32f4xx_hal_conf.h	/^#define PHY_SR /;"	d
+PHY_WRITE_TO	Inc/stm32f4xx_hal_conf.h	/^#define PHY_WRITE_TO /;"	d
+PORT_DATA	Src/vfdn_io_cntl.c	/^} PORT_DATA[8];$/;"	v	typeref:struct:PORT_DEF
+PORT_DEF	Src/vfdn_io_cntl.c	/^struct PORT_DEF {$/;"	s	file:
+PREFETCH_ENABLE	Inc/stm32f4xx_hal_conf.h	/^#define  PREFETCH_ENABLE /;"	d
+PendSV_Handler	Src/stm32f4xx_it.c	/^void PendSV_Handler(void)$/;"	f
+RC_DUTY_MAX	Inc/vfdn_sub.h	/^#define RC_DUTY_MAX /;"	d
+RC_DUTY_MIN	Inc/vfdn_sub.h	/^#define RC_DUTY_MIN /;"	d
+RC_DUTY_STEP	Inc/vfdn_sub.h	/^#define RC_DUTY_STEP /;"	d
+RC_GEN_NOW	Inc/vfdn_sub.h	/^#define	RC_GEN_NOW /;"	d
+RC_GEN_TCNT	Inc/vfdn_sub.h	/^#define	RC_GEN_TCNT	/;"	d
+RC_GEN_TSTART	Inc/vfdn_sub.h	/^#define	RC_GEN_TSTART	/;"	d
+RC_PULSE1	Inc/main.h	/^#define RC_PULSE1	/;"	d
+RC_PULSE2	Inc/main.h	/^#define RC_PULSE2	/;"	d
+RC_SV_A0	Inc/vfdn_servo.h	/^#define	RC_SV_A0	/;"	d
+RC_SV_AN45	Inc/vfdn_servo.h	/^#define	RC_SV_AN45	/;"	d
+RC_SV_AP45	Inc/vfdn_servo.h	/^#define	RC_SV_AP45	/;"	d
+RC_SV_PERIOD	Inc/vfdn_servo.h	/^#define	RC_SV_PERIOD	/;"	d
+READ_SIG_NOW	Inc/vfdn_io_cntl.h	/^#define	READ_SIG_NOW	/;"	d
+READ_SIG_TCNT	Inc/vfdn_io_cntl.h	/^#define	READ_SIG_TCNT	/;"	d
+READ_SIG_TSTART	Inc/vfdn_io_cntl.h	/^#define	READ_SIG_TSTART	/;"	d
+READ_US_DLY	Inc/vfdn_io_cntl.h	/^#define READ_US_DLY /;"	d
+RES_OUTPUT10	Inc/main.h	/^#define	RES_OUTPUT10	/;"	d
+RES_OUTPUT14	Inc/main.h	/^#define	RES_OUTPUT14	/;"	d
+RES_OUTPUT15	Inc/main.h	/^#define	RES_OUTPUT15	/;"	d
+RES_OUTPUT16	Inc/main.h	/^#define	RES_OUTPUT16	/;"	d
+RES_OUTPUT17	Inc/main.h	/^#define	RES_OUTPUT17	/;"	d
+RES_OUTPUT18	Inc/main.h	/^#define	RES_OUTPUT18	/;"	d
+RES_OUTPUT19	Inc/main.h	/^#define	RES_OUTPUT19	/;"	d
+RES_OUTPUT20	Inc/main.h	/^#define	RES_OUTPUT20	/;"	d
+RES_OUTPUT21	Inc/main.h	/^#define	RES_OUTPUT21	/;"	d
+RES_OUTPUT22	Inc/main.h	/^#define	RES_OUTPUT22	/;"	d
+RES_OUTPUT23	Inc/main.h	/^#define	RES_OUTPUT23	/;"	d
+RES_OUTPUT24	Inc/main.h	/^#define	RES_OUTPUT24	/;"	d
+RES_OUTPUT25	Inc/main.h	/^#define	RES_OUTPUT25	/;"	d
+RES_OUTPUT26	Inc/main.h	/^#define	RES_OUTPUT26	/;"	d
+RES_OUTPUT6	Inc/main.h	/^#define	RES_OUTPUT6	/;"	d
+RES_OUTPUT7	Inc/main.h	/^#define	RES_OUTPUT7	/;"	d
+RES_OUTPUT9	Inc/main.h	/^#define	RES_OUTPUT9	/;"	d
+ROE_A	Inc/main.h	/^#define ROE_A	/;"	d
+ROE_B	Inc/main.h	/^#define ROE_B	/;"	d
+ROE_CLK_REF_CNT	Inc/vfdn_roe.h	/^#define	ROE_CLK_REF_CNT	/;"	d
+ROE_CNT_MAX	Inc/vfdn_roe.h	/^#define	ROE_CNT_MAX	/;"	d
+R_OUTPUT1	Inc/main.h	/^#define	R_OUTPUT1	/;"	d
+R_OUTPUT2	Inc/main.h	/^#define	R_OUTPUT2	/;"	d
+R_OUTPUT3	Inc/main.h	/^#define	R_OUTPUT3	/;"	d
+R_OUTPUT4	Inc/main.h	/^#define	R_OUTPUT4	/;"	d
+R_OUTPUT5	Inc/main.h	/^#define	R_OUTPUT5	/;"	d
+R_OUTPUT6	Inc/main.h	/^#define	R_OUTPUT6	/;"	d
+Reset_Handler	Startup/startup_stm32f407vetx.s	/^Reset_Handler:  $/;"	l
+SEN_BAND_EMPTY1	Inc/main.h	/^#define	SEN_BAND_EMPTY1	/;"	d
+SEN_BAND_LOST1	Inc/main.h	/^#define	SEN_BAND_LOST1	/;"	d
+SEN_BAND_LOST2	Inc/main.h	/^#define	SEN_BAND_LOST2	/;"	d
+SEN_LIFTING_DN_LIM	Inc/main.h	/^#define	SEN_LIFTING_DN_LIM	/;"	d
+SEN_LIFTING_HOME	Inc/main.h	/^#define	SEN_LIFTING_HOME	/;"	d
+SEN_LIFTING_UP_LIM	Inc/main.h	/^#define	SEN_LIFTING_UP_LIM	/;"	d
+SEN_LOOPER_HOME	Inc/main.h	/^#define	SEN_LOOPER_HOME	/;"	d
+SEN_MOVING_HOME	Inc/main.h	/^#define	SEN_MOVING_HOME	/;"	d
+SEN_NEEDLE_HOME	Inc/main.h	/^#define	SEN_NEEDLE_HOME	/;"	d
+SEN_UPPER_THREAD_CUT_OFF	Inc/main.h	/^#define	SEN_UPPER_THREAD_CUT_OFF	/;"	d
+SEW_1CYCLE_PULSE	Inc/vfdn_acsv.h	/^#define	SEW_1CYCLE_PULSE /;"	d
+SEW_ACT_ALL	Inc/vfdn_sub.h	/^#define SEW_ACT_ALL /;"	d
+SEW_ACT_AS	Inc/vfdn_sub.h	/^#define SEW_ACT_AS /;"	d
+SEW_ACT_BR	Inc/vfdn_sub.h	/^#define SEW_ACT_BR /;"	d
+SEW_ACT_FIN	Inc/vfdn_sub.h	/^#define SEW_ACT_FIN /;"	d
+SEW_ACT_FR	Inc/vfdn_sub.h	/^#define SEW_ACT_FR /;"	d
+SEW_ACT_WAIT	Inc/vfdn_sub.h	/^#define SEW_ACT_WAIT /;"	d
+SEW_MOTOR_1CYCLE_CLOCK	Inc/vfdn_acsv.h	/^#define	SEW_MOTOR_1CYCLE_CLOCK	/;"	d
+SEW_OFF_FABRIC_PULSE	Inc/vfdn_acsv.h	/^#define	SEW_OFF_FABRIC_PULSE /;"	d
+SLOW_SEWING	Inc/vfdn_servo.h	/^#define	SLOW_SEWING	/;"	d
+ST_ALRM_RST	Inc/vfdn_io_cntl.h	/^#define	ST_ALRM_RST	/;"	d
+ST_CCW_LIM	Inc/vfdn_io_cntl.h	/^#define	ST_CCW_LIM	/;"	d
+ST_CNT_CLR	Inc/vfdn_io_cntl.h	/^#define	ST_CNT_CLR	/;"	d
+ST_CW_LIM	Inc/vfdn_io_cntl.h	/^#define	ST_CW_LIM	/;"	d
+ST_EMG_STOP	Inc/vfdn_io_cntl.h	/^#define	ST_EMG_STOP	/;"	d
+ST_MODE_SEL0	Inc/vfdn_io_cntl.h	/^#define	ST_MODE_SEL0	/;"	d
+ST_MODE_SEL1	Inc/vfdn_io_cntl.h	/^#define	ST_MODE_SEL1	/;"	d
+ST_SEN_BAND_EMPTY1	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_BAND_EMPTY1	/;"	d
+ST_SEN_BAND_EMPTY2	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_BAND_EMPTY2	/;"	d
+ST_SEN_BAND_INSERT1	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_BAND_INSERT1	/;"	d
+ST_SEN_BAND_INSERT2	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_BAND_INSERT2	/;"	d
+ST_SEN_BAND_LOST1	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_BAND_LOST1	/;"	d
+ST_SEN_BAND_LOST2	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_BAND_LOST2	/;"	d
+ST_SEN_CLAMP12_CLOSE	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_CLAMP12_CLOSE	/;"	d
+ST_SEN_CLAMP12_OPEN	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_CLAMP12_OPEN	/;"	d
+ST_SEN_CLAMP34_CLOSE	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_CLAMP34_CLOSE	/;"	d
+ST_SEN_CLAMP34_OPEN	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_CLAMP34_OPEN	/;"	d
+ST_SEN_FABRIC_DETECT1	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_FABRIC_DETECT1	/;"	d
+ST_SEN_FABRIC_DETECT2	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_FABRIC_DETECT2	/;"	d
+ST_SEN_LIFTING_DN_LIM	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_LIFTING_DN_LIM	/;"	d
+ST_SEN_LIFTING_HOME	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_LIFTING_HOME	/;"	d
+ST_SEN_LIFTING_UP_LIM	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_LIFTING_UP_LIM	/;"	d
+ST_SEN_LOOPER_HOME	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_LOOPER_HOME	/;"	d
+ST_SEN_MOVING_BACKWARD_LIM	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_MOVING_BACKWARD_LIM	/;"	d
+ST_SEN_MOVING_FORWARD_LIM	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_MOVING_FORWARD_LIM	/;"	d
+ST_SEN_MOVING_HOME	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_MOVING_HOME	/;"	d
+ST_SEN_NEEDLE_HOME	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_NEEDLE_HOME	/;"	d
+ST_SEN_UNDER_THREAD_CUT_OFF	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_UNDER_THREAD_CUT_OFF	/;"	d
+ST_SEN_UPPER_THREAD_CUT_OFF	Inc/vfdn_io_cntl.h	/^#define	ST_SEN_UPPER_THREAD_CUT_OFF	/;"	d
+ST_SV_ALRM	Inc/vfdn_io_cntl.h	/^#define	ST_SV_ALRM	/;"	d
+ST_SV_HOME	Inc/vfdn_io_cntl.h	/^#define	ST_SV_HOME	/;"	d
+ST_SV_ON	Inc/vfdn_io_cntl.h	/^#define	ST_SV_ON	/;"	d
+ST_SV_RDY	Inc/vfdn_io_cntl.h	/^#define	ST_SV_RDY	/;"	d
+ST_SW_AUTO_MANUAL	Inc/vfdn_io_cntl.h	/^#define	ST_SW_AUTO_MANUAL	/;"	d
+ST_SW_AUTO_RESET	Inc/vfdn_io_cntl.h	/^#define	ST_SW_AUTO_RESET	/;"	d
+ST_SW_AUTO_START	Inc/vfdn_io_cntl.h	/^#define	ST_SW_AUTO_START	/;"	d
+ST_SW_AUTO_STOP	Inc/vfdn_io_cntl.h	/^#define	ST_SW_AUTO_STOP	/;"	d
+ST_SW_BAND_CUT	Inc/vfdn_io_cntl.h	/^#define	ST_SW_BAND_CUT	/;"	d
+ST_SW_CLAMP1_OPEN_CLOSE	Inc/vfdn_io_cntl.h	/^#define	ST_SW_CLAMP1_OPEN_CLOSE	/;"	d
+ST_SW_CLAMP2_OPEN_CLOSE	Inc/vfdn_io_cntl.h	/^#define	ST_SW_CLAMP2_OPEN_CLOSE	/;"	d
+ST_SW_CLAMP3_OPEN_CLOSE	Inc/vfdn_io_cntl.h	/^#define	ST_SW_CLAMP3_OPEN_CLOSE	/;"	d
+ST_SW_CLAMP4_OPEN_CLOSE	Inc/vfdn_io_cntl.h	/^#define	ST_SW_CLAMP4_OPEN_CLOSE	/;"	d
+ST_SW_EMS	Inc/vfdn_io_cntl.h	/^#define	ST_SW_EMS	/;"	d
+ST_SW_LOOPER_HOME	Inc/vfdn_io_cntl.h	/^#define	ST_SW_LOOPER_HOME	/;"	d
+ST_SW_MOVING_FB	Inc/vfdn_io_cntl.h	/^#define	ST_SW_MOVING_FB	/;"	d
+ST_SW_MOVING_HOME	Inc/vfdn_io_cntl.h	/^#define	ST_SW_MOVING_HOME	/;"	d
+ST_SW_MOVING_UD	Inc/vfdn_io_cntl.h	/^#define	ST_SW_MOVING_UD	/;"	d
+ST_SW_NEEDLE_HOME	Inc/vfdn_io_cntl.h	/^#define	ST_SW_NEEDLE_HOME	/;"	d
+ST_SW_ROE_X	Inc/vfdn_io_cntl.h	/^#define	ST_SW_ROE_X /;"	d
+ST_SW_ROE_X1	Inc/vfdn_io_cntl.h	/^#define ST_SW_ROE_X1 /;"	d
+ST_SW_ROE_X10	Inc/vfdn_io_cntl.h	/^#define ST_SW_ROE_X10 /;"	d
+ST_SW_ROE_Y	Inc/vfdn_io_cntl.h	/^#define	ST_SW_ROE_Y /;"	d
+ST_SW_ROE_Z	Inc/vfdn_io_cntl.h	/^#define	ST_SW_ROE_Z /;"	d
+ST_SW_TEST_SEWING	Inc/vfdn_io_cntl.h	/^#define	ST_SW_TEST_SEWING	/;"	d
+ST_SW_UD_HOME	Inc/vfdn_io_cntl.h	/^#define	ST_SW_UD_HOME	/;"	d
+ST_SW_VACCUM_OPEN_CLOSE	Inc/vfdn_io_cntl.h	/^#define	ST_SW_VACCUM_OPEN_CLOSE	/;"	d
+ST_T_POS	Inc/vfdn_io_cntl.h	/^#define	ST_T_POS	/;"	d
+ST_ZERO_SPD	Inc/vfdn_io_cntl.h	/^#define	ST_ZERO_SPD	/;"	d
+SV1_DIR_CCW	Inc/main.h	/^#define	SV1_DIR_CCW	/;"	d
+SV1_DIR_CW	Inc/main.h	/^#define	SV1_DIR_CW	/;"	d
+SV2_DIR_CCW	Inc/main.h	/^#define	SV2_DIR_CCW	/;"	d
+SV2_DIR_CW	Inc/main.h	/^#define	SV2_DIR_CW	/;"	d
+SV3_DIR_CCW	Inc/main.h	/^#define	SV3_DIR_CCW	/;"	d
+SV3_DIR_CW	Inc/main.h	/^#define	SV3_DIR_CW	/;"	d
+SV4_DIR_CCW	Inc/main.h	/^#define	SV4_DIR_CCW	/;"	d
+SV4_DIR_CW	Inc/main.h	/^#define	SV4_DIR_CW	/;"	d
+SVC_Handler	Src/stm32f4xx_it.c	/^void SVC_Handler(void)$/;"	f
+SV_ALRM	Inc/main.h	/^#define	SV_ALRM	/;"	d
+SV_HOME	Inc/main.h	/^#define	SV_HOME	/;"	d
+SV_ON	Inc/main.h	/^#define	SV_ON	/;"	d
+SV_PULSE1	Inc/main.h	/^#define SV_PULSE1	/;"	d
+SV_PULSE1_IN	Inc/main.h	/^#define SV_PULSE1_IN	/;"	d
+SV_PULSE2	Inc/main.h	/^#define SV_PULSE2	/;"	d
+SV_PULSE2_IN	Inc/main.h	/^#define SV_PULSE2_IN	/;"	d
+SV_PULSE3	Inc/main.h	/^#define SV_PULSE3	/;"	d
+SV_PULSE3_IN	Inc/main.h	/^#define SV_PULSE3_IN	/;"	d
+SV_PULSE4	Inc/main.h	/^#define SV_PULSE4	/;"	d
+SV_PULSE4_IN	Inc/main.h	/^#define SV_PULSE4_IN	/;"	d
+SV_RDY	Inc/main.h	/^#define	SV_RDY	/;"	d
+SV_SIGN1	Inc/main.h	/^#define SV_SIGN1	/;"	d
+SV_SIGN2	Inc/main.h	/^#define SV_SIGN2	/;"	d
+SV_SIGN3	Inc/main.h	/^#define SV_SIGN3	/;"	d
+SV_SIGN4	Inc/main.h	/^#define SV_SIGN4	/;"	d
+SW_AUTO_MANUAL	Inc/main.h	/^#define	SW_AUTO_MANUAL	/;"	d
+SW_AUTO_RESET	Inc/main.h	/^#define	SW_AUTO_RESET	/;"	d
+SW_AUTO_START	Inc/main.h	/^#define	SW_AUTO_START	/;"	d
+SW_AUTO_STOP	Inc/main.h	/^#define	SW_AUTO_STOP	/;"	d
+SW_CLAMP1_OPEN_CLOSE	Inc/main.h	/^#define	SW_CLAMP1_OPEN_CLOSE	/;"	d
+SW_CLAMP2_OPEN_CLOSE	Inc/main.h	/^#define	SW_CLAMP2_OPEN_CLOSE	/;"	d
+SW_CLAMP3_OPEN_CLOSE	Inc/main.h	/^#define	SW_CLAMP3_OPEN_CLOSE	/;"	d
+SW_CLAMP4_OPEN_CLOSE	Inc/main.h	/^#define	SW_CLAMP4_OPEN_CLOSE	/;"	d
+SW_IN1	Inc/main.h	/^#define	SW_IN1	/;"	d
+SW_IN10	Inc/main.h	/^#define	SW_IN10	/;"	d
+SW_IN11	Inc/main.h	/^#define	SW_IN11	/;"	d
+SW_IN12	Inc/main.h	/^#define	SW_IN12	/;"	d
+SW_IN2	Inc/main.h	/^#define	SW_IN2	/;"	d
+SW_IN3	Inc/main.h	/^#define	SW_IN3	/;"	d
+SW_IN4	Inc/main.h	/^#define	SW_IN4	/;"	d
+SW_IN5	Inc/main.h	/^#define	SW_IN5	/;"	d
+SW_IN6	Inc/main.h	/^#define	SW_IN6	/;"	d
+SW_IN7	Inc/main.h	/^#define	SW_IN7	/;"	d
+SW_IN8	Inc/main.h	/^#define	SW_IN8	/;"	d
+SW_IN9	Inc/main.h	/^#define	SW_IN9	/;"	d
+SW_LOOPER_HOME	Inc/main.h	/^#define	SW_LOOPER_HOME	/;"	d
+SW_MOVING_HOME	Inc/main.h	/^#define	SW_MOVING_HOME	/;"	d
+SW_NEEDLE_HOME	Inc/main.h	/^#define	SW_NEEDLE_HOME	/;"	d
+SW_ROE_X	Inc/main.h	/^#define SW_ROE_X /;"	d
+SW_ROE_X1	Inc/main.h	/^#define SW_ROE_X1 /;"	d
+SW_ROE_X10	Inc/main.h	/^#define SW_ROE_X10 /;"	d
+SW_ROE_Y	Inc/main.h	/^#define SW_ROE_Y /;"	d
+SW_ROE_Z	Inc/main.h	/^#define SW_ROE_Z /;"	d
+SW_SCAN_NOW	Inc/vfdn_sub.h	/^#define	SW_SCAN_NOW /;"	d
+SW_SCAN_TCNT	Inc/vfdn_sub.h	/^#define	SW_SCAN_TCNT	/;"	d
+SW_SCAN_TSTART	Inc/vfdn_sub.h	/^#define	SW_SCAN_TSTART	/;"	d
+SW_TEST_SEWING	Inc/main.h	/^#define	SW_TEST_SEWING	/;"	d
+SW_UD_HOME	Inc/main.h	/^#define	SW_UD_HOME	/;"	d
+SW_VACCUM_OPEN_CLOSE	Inc/main.h	/^#define	SW_VACCUM_OPEN_CLOSE	/;"	d
+SYS_LED_TCNT	Inc/vfdn_sub.h	/^#define SYS_LED_TCNT /;"	d
+SYS_RUN	Inc/main.h	/^#define SYS_RUN	/;"	d
+SysTick_Handler	Src/stm32f4xx_it.c	/^void SysTick_Handler(void)$/;"	f
+SystemClock_Config	Src/main.c	/^void SystemClock_Config(void)$/;"	f
+SystemCoreClock	Src/system_stm32f4xx.c	/^uint32_t SystemCoreClock = 16000000;$/;"	v
+SystemCoreClockUpdate	Src/system_stm32f4xx.c	/^void SystemCoreClockUpdate(void)$/;"	f
+SystemInit	Src/system_stm32f4xx.c	/^void SystemInit(void)$/;"	f
+SystemInit_ExtMemCtl	Src/system_stm32f4xx.c	/^void SystemInit_ExtMemCtl(void)$/;"	f
+TICK_INT_PRIORITY	Inc/stm32f4xx_hal_conf.h	/^#define  TICK_INT_PRIORITY /;"	d
+TIM2_IRQHandler	Src/stm32f4xx_it.c	/^void TIM2_IRQHandler(void)$/;"	f
+TLAMP_1000MSEC_TCNT	Inc/vfdn_sub.h	/^#define TLAMP_1000MSEC_TCNT /;"	d
+TLAMP_10MSEC_TCNT	Inc/vfdn_sub.h	/^#define TLAMP_10MSEC_TCNT /;"	d
+TLAMP_200MSEC_TCNT	Inc/vfdn_sub.h	/^#define TLAMP_200MSEC_TCNT /;"	d
+TLAMP_500MSEC_TCNT	Inc/vfdn_sub.h	/^#define TLAMP_500MSEC_TCNT /;"	d
+TLAMP_RUN_NOW	Inc/vfdn_sub.h	/^#define TLAMP_RUN_NOW /;"	d
+TLAMP_RUN_TSTART	Inc/vfdn_sub.h	/^#define TLAMP_RUN_TSTART /;"	d
+TL_G	Inc/main.h	/^#define	TL_G	/;"	d
+TL_R	Inc/main.h	/^#define	TL_R	/;"	d
+TL_Y	Inc/main.h	/^#define	TL_Y	/;"	d
+T_POS	Inc/main.h	/^#define	T_POS	/;"	d
+UART1_READ	Inc/main.h	/^#define	UART1_READ	/;"	d
+UART1_RW	Inc/main.h	/^#define UART1_RW	/;"	d
+UART1_WRITE	Inc/main.h	/^#define	UART1_WRITE	/;"	d
+UART2_READ	Inc/main.h	/^#define	UART2_READ	/;"	d
+UART2_RW	Inc/main.h	/^#define UART2_RW	/;"	d
+UART2_WRITE	Inc/main.h	/^#define	UART2_WRITE	/;"	d
+UART4_IRQHandler	Src/stm32f4xx_it.c	/^void UART4_IRQHandler(void)$/;"	f
+USART1_IRQHandler	Src/stm32f4xx_it.c	/^void USART1_IRQHandler(void)$/;"	f
+USART2_IRQHandler	Src/stm32f4xx_it.c	/^void USART2_IRQHandler(void)$/;"	f
+USART3_IRQHandler	Src/stm32f4xx_it.c	/^void USART3_IRQHandler(void)$/;"	f
+USE_HAL_ADC_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_ADC_REGISTER_CALLBACKS /;"	d
+USE_HAL_CAN_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_CAN_REGISTER_CALLBACKS /;"	d
+USE_HAL_CEC_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_CEC_REGISTER_CALLBACKS /;"	d
+USE_HAL_CRYP_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_CRYP_REGISTER_CALLBACKS /;"	d
+USE_HAL_DAC_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_DAC_REGISTER_CALLBACKS /;"	d
+USE_HAL_DCMI_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_DCMI_REGISTER_CALLBACKS /;"	d
+USE_HAL_DFSDM_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_DFSDM_REGISTER_CALLBACKS /;"	d
+USE_HAL_DMA2D_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_DMA2D_REGISTER_CALLBACKS /;"	d
+USE_HAL_DSI_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_DSI_REGISTER_CALLBACKS /;"	d
+USE_HAL_ETH_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_ETH_REGISTER_CALLBACKS /;"	d
+USE_HAL_FMPI2C_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_FMPI2C_REGISTER_CALLBACKS /;"	d
+USE_HAL_FMPSMBUS_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_FMPSMBUS_REGISTER_CALLBACKS /;"	d
+USE_HAL_HASH_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_HASH_REGISTER_CALLBACKS /;"	d
+USE_HAL_HCD_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_HCD_REGISTER_CALLBACKS /;"	d
+USE_HAL_I2C_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_I2C_REGISTER_CALLBACKS /;"	d
+USE_HAL_I2S_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_I2S_REGISTER_CALLBACKS /;"	d
+USE_HAL_IRDA_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_IRDA_REGISTER_CALLBACKS /;"	d
+USE_HAL_LPTIM_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_LPTIM_REGISTER_CALLBACKS /;"	d
+USE_HAL_LTDC_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_LTDC_REGISTER_CALLBACKS /;"	d
+USE_HAL_MMC_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_MMC_REGISTER_CALLBACKS /;"	d
+USE_HAL_NAND_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_NAND_REGISTER_CALLBACKS /;"	d
+USE_HAL_NOR_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_NOR_REGISTER_CALLBACKS /;"	d
+USE_HAL_PCCARD_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_PCCARD_REGISTER_CALLBACKS /;"	d
+USE_HAL_PCD_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_PCD_REGISTER_CALLBACKS /;"	d
+USE_HAL_QSPI_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_QSPI_REGISTER_CALLBACKS /;"	d
+USE_HAL_RNG_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_RNG_REGISTER_CALLBACKS /;"	d
+USE_HAL_RTC_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_RTC_REGISTER_CALLBACKS /;"	d
+USE_HAL_SAI_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_SAI_REGISTER_CALLBACKS /;"	d
+USE_HAL_SDRAM_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_SDRAM_REGISTER_CALLBACKS /;"	d
+USE_HAL_SD_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_SD_REGISTER_CALLBACKS /;"	d
+USE_HAL_SMARTCARD_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_SMARTCARD_REGISTER_CALLBACKS /;"	d
+USE_HAL_SMBUS_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_SMBUS_REGISTER_CALLBACKS /;"	d
+USE_HAL_SPDIFRX_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_SPDIFRX_REGISTER_CALLBACKS /;"	d
+USE_HAL_SPI_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_SPI_REGISTER_CALLBACKS /;"	d
+USE_HAL_SRAM_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_SRAM_REGISTER_CALLBACKS /;"	d
+USE_HAL_TIM_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_TIM_REGISTER_CALLBACKS /;"	d
+USE_HAL_UART_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_UART_REGISTER_CALLBACKS /;"	d
+USE_HAL_USART_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_USART_REGISTER_CALLBACKS /;"	d
+USE_HAL_WWDG_REGISTER_CALLBACKS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_HAL_WWDG_REGISTER_CALLBACKS /;"	d
+USE_RTOS	Inc/stm32f4xx_hal_conf.h	/^#define  USE_RTOS /;"	d
+USE_SPI_CRC	Inc/stm32f4xx_hal_conf.h	/^#define USE_SPI_CRC /;"	d
+UsageFault_Handler	Src/stm32f4xx_it.c	/^void UsageFault_Handler(void)$/;"	f
+VACCUM_CLOSE	Inc/vfdn_sub.h	/^#define	VACCUM_CLOSE	/;"	d
+VACCUM_CNT	Inc/main.h	/^#define	VACCUM_CNT	/;"	d
+VACCUM_OPEN	Inc/vfdn_sub.h	/^#define	VACCUM_OPEN	/;"	d
+VDD_VALUE	Inc/stm32f4xx_hal_conf.h	/^#define  VDD_VALUE	/;"	d
+VECT_TAB_BASE_ADDRESS	Src/system_stm32f4xx.c	/^#define VECT_TAB_BASE_ADDRESS /;"	d	file:
+VECT_TAB_OFFSET	Src/system_stm32f4xx.c	/^#define VECT_TAB_OFFSET /;"	d	file:
+VFAST_SEWING	Inc/vfdn_servo.h	/^#define	VFAST_SEWING	/;"	d
+VSLOW_SEWING	Inc/vfdn_servo.h	/^#define	VSLOW_SEWING	/;"	d
+ZERO_SPD	Inc/main.h	/^#define	ZERO_SPD	/;"	d
+__DEBUG_ROE__	Inc/vfdn_roe.h	/^#define	__DEBUG_ROE__$/;"	d
+__DEBUG_RTC__	Inc/vfdn_rtc.h	/^#define	__DEBUG_RTC__$/;"	d
+__DEBUG_SUB__	Inc/vfdn_sub.h	/^#define	__DEBUG_SUB__$/;"	d
+__DEBUG__	Inc/main.h	/^#define __DEBUG__$/;"	d
+__MAIN_H	Inc/main.h	/^#define __MAIN_H$/;"	d
+__STM32F4xx_HAL_CONF_H	Inc/stm32f4xx_hal_conf.h	/^#define __STM32F4xx_HAL_CONF_H$/;"	d
+__STM32F4xx_IT_H	Inc/stm32f4xx_it.h	/^#define __STM32F4xx_IT_H$/;"	d
+__VFDN_ACSV_H	Inc/vfdn_acsv.h	/^#define __VFDN_ACSV_H$/;"	d
+__VFDN_ADC_H	Inc/vfdn_adc.h	/^#define __VFDN_ADC_H$/;"	d
+__VFDN_COM_H	Inc/vfdn_com.h	/^#define __VFDN_COM_H$/;"	d
+__VFDN_IO_CNTL_H	Inc/vfdn_io_cntl.h	/^#define __VFDN_IO_CNTL_H$/;"	d
+__VFDN_ROE_H	Inc/vfdn_roe.h	/^#define __VFDN_ROE_H$/;"	d
+__VFDN_RTC_H	Inc/vfdn_rtc.h	/^#define __VFDN_RTC_H$/;"	d
+__VFDN_SERVO_H	Inc/vfdn_servo.h	/^#define __VFDN_SERVO_H$/;"	d
+__VFDN_SPI_H	Inc/vfdn_spi.h	/^#define __VFDN_SPI_H$/;"	d
+__VFDN_SUB_H	Inc/vfdn_sub.h	/^#define __VFDN_SUB_H$/;"	d
+__env	Src/syscalls.c	/^char *__env[1] = { 0 };$/;"	v
+__sbrk_heap_end	Src/sysmem.c	/^static uint8_t *__sbrk_heap_end = NULL;$/;"	v	file:
+_close	Src/syscalls.c	/^int _close(int file)$/;"	f
+_execve	Src/syscalls.c	/^int _execve(char *name, char **argv, char **env)$/;"	f
+_exit	Src/syscalls.c	/^void _exit (int status)$/;"	f
+_fork	Src/syscalls.c	/^int _fork(void)$/;"	f
+_fstat	Src/syscalls.c	/^int _fstat(int file, struct stat *st)$/;"	f
+_getpid	Src/syscalls.c	/^int _getpid(void)$/;"	f
+_isatty	Src/syscalls.c	/^int _isatty(int file)$/;"	f
+_kill	Src/syscalls.c	/^int _kill(int pid, int sig)$/;"	f
+_link	Src/syscalls.c	/^int _link(char *old, char *new)$/;"	f
+_lseek	Src/syscalls.c	/^int _lseek(int file, int ptr, int dir)$/;"	f
+_open	Src/syscalls.c	/^int _open(char *path, int flags, ...)$/;"	f
+_read	Src/syscalls.c	/^__attribute__((weak)) int _read(int file, char *ptr, int len)$/;"	f
+_sbrk	Src/sysmem.c	/^void *_sbrk(ptrdiff_t incr)$/;"	f
+_stat	Src/syscalls.c	/^int _stat(char *file, struct stat *st)$/;"	f
+_times	Src/syscalls.c	/^int _times(struct tms *buf)$/;"	f
+_unlink	Src/syscalls.c	/^int _unlink(char *name)$/;"	f
+_wait	Src/syscalls.c	/^int _wait(int *status)$/;"	f
+_write	Src/syscalls.c	/^__attribute__((weak)) int _write(int file, char *ptr, int len)$/;"	f
+adcBuf	Src/vfdn_adc.c	/^unsigned int	adcBuf[ADC_CNT_MAX];	\/\/ adc buffer$/;"	v
+adcBufCnt	Src/vfdn_adc.c	/^unsigned char	adcBufCnt = 0;	\/\/ adc buffer counter$/;"	v
+adcCheck	Src/vfdn_adc.c	/^void adcCheck(void)$/;"	f
+adcCnt	Src/vfdn_adc.c	/^unsigned int	adcCnt = 0;	\/\/ adc timer counter$/;"	v
+adcFg	Src/vfdn_adc.c	/^unsigned char	adcFg = 0;	\/\/ adc timer flag$/;"	v
+apBuf	Src/vfdn_spi.c	/^unsigned int	apBuf[AP_CNT_MAX];	\/\/ adc buffer$/;"	v
+apBufCnt	Src/vfdn_spi.c	/^unsigned char	apBufCnt = 0;	\/\/ Air pressure adc data buffer counter$/;"	v
+apCheck	Src/vfdn_spi.c	/^void apCheck(void)$/;"	f
+apCnt	Src/vfdn_spi.c	/^unsigned int	apCnt = AP_SCAN_TCNT;	\/\/ Air Pressure adc timer counter$/;"	v
+apFg	Src/vfdn_spi.c	/^unsigned char	apFg = AP_SCAN_TSTART;	\/\/ Air Pressure adc timer flag$/;"	v
+apkPa	Src/vfdn_spi.c	/^unsigned int	apkPa = 0;	\/\/ result$/;"	v
+assert_failed	Src/main.c	/^void assert_failed(uint8_t *file, uint32_t line)$/;"	f
+assert_param	Inc/stm32f4xx_hal_conf.h	/^  #define assert_param(/;"	d
+autoMode	Src/vfdn_sub.c	/^void autoMode(void)$/;"	f
+bcCnt	Src/vfdn_sub.c	/^unsigned int    bcCnt = 0; \/\/ band cut timer counter$/;"	v
+bcFg	Src/vfdn_sub.c	/^unsigned char   bcFg = 0; \/\/ band cut timer flag$/;"	v
+bcStep	Src/vfdn_sub.c	/^unsigned char   bcStep = 0; \/\/ band cut operation step flag$/;"	v
+bdID	Src/vfdn_sub.c	/^unsigned char	bdID = 0;	\/\/ Board ID$/;"	v
+bit0	Inc/vfdn_io_cntl.h	/^			uint8_t bit0:1; \/\/ LSB$/;"	m	struct:OUT_PORT_DEF::__anon1::__anon2
+bit0	Src/vfdn_io_cntl.c	/^			uint8_t bit0:1; \/\/ LSB$/;"	m	struct:PORT_DEF::__anon3::__anon4	file:
+bit1	Inc/vfdn_io_cntl.h	/^			uint8_t bit1:1;$/;"	m	struct:OUT_PORT_DEF::__anon1::__anon2
+bit1	Src/vfdn_io_cntl.c	/^			uint8_t bit1:1;$/;"	m	struct:PORT_DEF::__anon3::__anon4	file:
+bit2	Inc/vfdn_io_cntl.h	/^			uint8_t bit2:1;$/;"	m	struct:OUT_PORT_DEF::__anon1::__anon2
+bit2	Src/vfdn_io_cntl.c	/^			uint8_t bit2:1;$/;"	m	struct:PORT_DEF::__anon3::__anon4	file:
+bit3	Inc/vfdn_io_cntl.h	/^			uint8_t bit3:1;$/;"	m	struct:OUT_PORT_DEF::__anon1::__anon2
+bit3	Src/vfdn_io_cntl.c	/^			uint8_t bit3:1;$/;"	m	struct:PORT_DEF::__anon3::__anon4	file:
+bit4	Inc/vfdn_io_cntl.h	/^			uint8_t bit4:1;$/;"	m	struct:OUT_PORT_DEF::__anon1::__anon2
+bit4	Src/vfdn_io_cntl.c	/^			uint8_t bit4:1;$/;"	m	struct:PORT_DEF::__anon3::__anon4	file:
+bit5	Inc/vfdn_io_cntl.h	/^			uint8_t bit5:1;$/;"	m	struct:OUT_PORT_DEF::__anon1::__anon2
+bit5	Src/vfdn_io_cntl.c	/^			uint8_t bit5:1;$/;"	m	struct:PORT_DEF::__anon3::__anon4	file:
+bit6	Inc/vfdn_io_cntl.h	/^			uint8_t bit6:1;$/;"	m	struct:OUT_PORT_DEF::__anon1::__anon2
+bit6	Src/vfdn_io_cntl.c	/^			uint8_t bit6:1;$/;"	m	struct:PORT_DEF::__anon3::__anon4	file:
+bit7	Inc/vfdn_io_cntl.h	/^			uint8_t bit7:1; \/\/MSB$/;"	m	struct:OUT_PORT_DEF::__anon1::__anon2
+bit7	Src/vfdn_io_cntl.c	/^			uint8_t bit7:1; \/\/MSB$/;"	m	struct:PORT_DEF::__anon3::__anon4	file:
+buff	Src/vfdn_io_cntl.c	/^unsigned int   buff=0;$/;"	v
+chan	Src/vfdn_io_cntl.c	/^unsigned char   chan=0;$/;"	v
+changeFRQ	Src/vfdn_sub.c	/^void changeFRQ(unsigned char mode)$/;"	f
+changeModeFg	Src/vfdn_sub.c	/^unsigned char	changeModeFg = 0;$/;"	v
+chkError	Src/vfdn_io_cntl.c	/^void chkError(void)$/;"	f
+cntlBandCut	Src/vfdn_sub.c	/^void cntlBandCut(void)$/;"	f
+cntlClamp	Src/vfdn_sub.c	/^void cntlClamp(unsigned char sel, unsigned char mode)$/;"	f
+cntlRoeRun	Src/vfdn_sub.c	/^void cntlRoeRun(void)$/;"	f
+cntlTLamp	Src/vfdn_sub.c	/^void cntlTLamp(void)$/;"	f
+cntlVaccum	Src/vfdn_sub.c	/^void cntlVaccum(unsigned char mode)$/;"	f
+comAnalysis	Src/vfdn_com.c	/^void comAnalysis(void)$/;"	f
+comBuf	Src/vfdn_com.c	/^unsigned char	comBuf[COM_BUF_MAX];$/;"	v
+comBufCnt	Src/vfdn_com.c	/^unsigned char	comBufCnt = 0;	\/\/ communication buffer counter$/;"	v
+comCheck	Src/vfdn_com.c	/^void comCheck(void)$/;"	f
+comCycleCnt	Src/vfdn_com.c	/^unsigned int	comCycleCnt = 0;	\/\/ communication cycle counter for timer$/;"	v
+comCycleFg	Src/vfdn_com.c	/^unsigned char	comCycleFg = 0;	\/\/ communication cycle flag for timer$/;"	v
+comDataBuf	Src/vfdn_com.c	/^unsigned char	comDataBuf[COM_DATA];	\/\/ receive data buffer$/;"	v
+comDataCnt	Src/vfdn_com.c	/^unsigned char	comDataCnt = 0;	\/\/ data buffer counter$/;"	v
+comDataSort	Src/vfdn_com.c	/^static void comDataSort(void)$/;"	f	file:
+comEndFg	Src/vfdn_com.c	/^unsigned char	comEndFg = 0;	\/\/ communication 1packet end flag$/;"	v
+comIntCnt	Src/vfdn_com.c	/^unsigned char	comIntCnt = 0;	\/\/ communication interrupt buffer counter$/;"	v
+comOKFg	Src/vfdn_com.c	/^unsigned char	comOKFg = 0;	\/\/ communication ok flag$/;"	v
+comSoftStop	Src/vfdn_com.c	/^unsigned char	comSoftStop = 0;	\/\/ software stop from communication$/;"	v
+comStep	Src/vfdn_com.c	/^unsigned char	comStep = COM_STEP_STX1;	\/\/ communication$/;"	v
+data	Inc/vfdn_io_cntl.h	/^		uint8_t data;$/;"	m	union:OUT_PORT_DEF::__anon1
+data	Src/vfdn_io_cntl.c	/^		uint8_t data;$/;"	m	union:PORT_DEF::__anon3	file:
+environ	Src/syscalls.c	/^char **environ = __env;$/;"	v
+errorCode	Src/vfdn_sub.c	/^unsigned char	errorCode[4];  \/\/ error code$/;"	v
+frqBuf	Src/vfdn_sub.c	/^unsigned long	frqBuf = 0;$/;"	v
+g_pfnVectors	Startup/startup_stm32f407vetx.s	/^g_pfnVectors:$/;"	l
+getRTCTime	Src/vfdn_rtc.c	/^void getRTCTime(void)$/;"	f
+hadc1	Src/main.c	/^ADC_HandleTypeDef hadc1;$/;"	v
+heatCurr	Src/vfdn_sub.c	/^unsigned char	heatCurr = 0;	\/\/Heater current 0 ~ 255(10배 데이터)$/;"	v
+heatOnFg	Src/vfdn_sub.c	/^unsigned char   heatOnFg = 0; \/\/ heater on flag$/;"	v
+hi2c1	Src/main.c	/^I2C_HandleTypeDef hi2c1;$/;"	v
+hrtc	Src/main.c	/^RTC_HandleTypeDef hrtc;$/;"	v
+hspi2	Src/main.c	/^SPI_HandleTypeDef hspi2;$/;"	v
+hspi3	Src/main.c	/^SPI_HandleTypeDef hspi3;$/;"	v
+htim2	Src/main.c	/^TIM_HandleTypeDef htim2;$/;"	v
+htim3	Src/main.c	/^TIM_HandleTypeDef htim3;$/;"	v
+htim4	Src/main.c	/^TIM_HandleTypeDef htim4;$/;"	v
+htim8	Src/main.c	/^TIM_HandleTypeDef htim8;$/;"	v
+huart1	Src/main.c	/^UART_HandleTypeDef huart1;$/;"	v
+huart2	Src/main.c	/^UART_HandleTypeDef huart2;$/;"	v
+huart3	Src/main.c	/^UART_HandleTypeDef huart3;$/;"	v
+huart4	Src/main.c	/^UART_HandleTypeDef huart4;$/;"	v
+inCh	Src/vfdn_io_cntl.c	/^unsigned char	inCh = 0;	\/\/ input channel$/;"	v
+initClamp	Src/vfdn_sub.c	/^void initClamp(unsigned char sel, unsigned char mode)$/;"	f
+initCnt	Src/vfdn_sub.c	/^unsigned int	initCnt[5]; \/\/ init timer counter, [0] -> lifting, [1] -> needle, [2] -> looper, [3] -> moving, [4] -> Clamp$/;"	v
+initFg	Src/vfdn_sub.c	/^unsigned char	initFg[5]; \/\/ init timer flag, [0] -> lifting, [1] -> needle, [2] -> looper, [3] -> moving, [4] -> Clamp$/;"	v
+initFin	Src/vfdn_sub.c	/^unsigned char   initFin = 0; \/\/ location initial flag$/;"	v
+initLifting	Src/vfdn_sub.c	/^void initLifting(unsigned char mode)$/;"	f
+initLooper	Src/vfdn_sub.c	/^void initLooper(void)$/;"	f
+initMachine	Src/vfdn_sub.c	/^void initMachine(void)$/;"	f
+initMode	Src/vfdn_sub.c	/^unsigned char   initMode = 0;   \/\/ Initalize mode$/;"	v
+initMoving	Src/vfdn_sub.c	/^void initMoving(unsigned char mode)$/;"	f
+initNeedle	Src/vfdn_sub.c	/^void initNeedle(void)$/;"	f
+initStep	Src/vfdn_sub.c	/^unsigned char	initStep[5]; \/\/ initialization step status$/;"	v
+initVariables	Src/main.c	/^static void initVariables(void)$/;"	f	file:
+initialise_monitor_handles	Src/syscalls.c	/^void initialise_monitor_handles()$/;"	f
+lfCLK	Src/vfdn_sub.c	/^unsigned int	lfCLK = 0;$/;"	v
+lfCnt	Src/vfdn_sub.c	/^unsigned int	lfCnt = 0;$/;"	v
+lfFg	Src/vfdn_sub.c	/^unsigned char	lfFg = 0;$/;"	v
+liftCnt	Src/vfdn_sub.c	/^unsigned int	liftCnt = 0;$/;"	v
+liftStep	Src/vfdn_sub.c	/^unsigned char	liftStep = 0;$/;"	v
+looperCnt	Src/vfdn_sub.c	/^unsigned int	looperCnt = 0;$/;"	v
+looperFg	Src/vfdn_sub.c	/^unsigned char	looperFg = 0;$/;"	v
+mTestMode	Src/vfdn_sub.c	/^void mTestMode(void)$/;"	f
+main	Src/main.c	/^int main(void)$/;"	f
+manualMode	Src/vfdn_sub.c	/^void manualMode(void)$/;"	f
+metLen	Src/vfdn_sub.c	/^unsigned int	metLen = 0;	\/\/ fabric length$/;"	v
+movCLK	Src/vfdn_sub.c	/^unsigned long	movCLK = 0;$/;"	v
+movCnt	Src/vfdn_sub.c	/^unsigned long	movCnt = 0;$/;"	v
+movFg	Src/vfdn_sub.c	/^unsigned char	movFg = 0;$/;"	v
+outSignal	Src/vfdn_io_cntl.c	/^void outSignal(unsigned char ch, unsigned int sdata)$/;"	f
+outTest	Src/vfdn_io_cntl.c	/^void outTest(void)$/;"	f
+putChar	Src/vfdn_com.c	/^void putChar(UART_HandleTypeDef * selport, unsigned char sdata)$/;"	f
+putStr	Src/vfdn_com.c	/^void putStr(UART_HandleTypeDef * selport, const unsigned char *str)$/;"	f
+rDate	Src/vfdn_rtc.c	/^unsigned char	rDate = 1;	\/\/ date data$/;"	v
+rHour	Src/vfdn_rtc.c	/^unsigned char	rHour = 0;	\/\/ hour data$/;"	v
+rMinute	Src/vfdn_rtc.c	/^unsigned char	rMinute = 0;	\/\/ minute data$/;"	v
+rMonth	Src/vfdn_rtc.c	/^unsigned char	rMonth = 12;	\/\/ month data$/;"	v
+rSecond	Src/vfdn_rtc.c	/^unsigned char	rSecond = 0;	\/\/ second data$/;"	v
+rWeekDay	Src/vfdn_rtc.c	/^unsigned char	rWeekDay = RTC_WEEKDAY_WEDNESDAY;$/;"	v
+rYear	Src/vfdn_rtc.c	/^unsigned char	rYear = 21;	\/\/ year data$/;"	v
+rcDuty	Src/vfdn_sub.c	/^unsigned int    rcDuty[2]; \/\/ rc duty$/;"	v
+rcInDc	Src/vfdn_sub.c	/^unsigned char   rcInDc = 0; \/\/ rc servo increse and decrese$/;"	v
+readID	Src/vfdn_io_cntl.c	/^void readID(void)$/;"	f
+readSignal	Src/vfdn_io_cntl.c	/^static unsigned int readSignal(unsigned char ch)$/;"	f	file:
+readSignalProcess	Src/vfdn_io_cntl.c	/^void readSignalProcess(void)$/;"	f
+roeDirFg	Src/vfdn_roe.c	/^unsigned char	roeDirFg = 0;$/;"	v
+roeEvent	Src/vfdn_roe.c	/^unsigned char	roeEvent = 0;	\/\/ rotary encoder cw\/ccw now event flag$/;"	v
+roeMode	Src/vfdn_sub.c	/^unsigned char   roeMode = 0;    \/\/ Rotay encoder mode$/;"	v
+roeNowCnt	Src/vfdn_roe.c	/^signed long		roeNowCnt = 0;$/;"	v
+roePrevCnt	Src/vfdn_roe.c	/^signed long		roePrevCnt = 0;$/;"	v
+roeRunFg	Src/vfdn_sub.c	/^unsigned char   roeRunFg = 0; \/\/ moving\/lifting switch flag$/;"	v
+rsCnt	Src/vfdn_io_cntl.c	/^unsigned int	rsCnt = 0;	\/\/ read signal timer counter$/;"	v
+rsFg	Src/vfdn_io_cntl.c	/^unsigned char	rsFg = 0;	\/\/ read signal timer flag$/;"	v
+runningProcess	Src/vfdn_sub.c	/^void runningProcess(void)$/;"	f
+sDate	Inc/vfdn_rtc.h	/^RTC_DateTypeDef sDate;$/;"	v
+sTime	Inc/vfdn_rtc.h	/^RTC_TimeTypeDef sTime;$/;"	v
+scFg	Src/vfdn_io_cntl.c	/^unsigned char	scFg = 0;	\/\/ input scan complete flag$/;"	v
+scanSw	Src/vfdn_sub.c	/^void scanSw(void)$/;"	f
+setRTCTime	Src/vfdn_rtc.c	/^void setRTCTime(void)$/;"	f
+sewAct	Src/vfdn_sub.c	/^unsigned char	sewAct = SEW_ACT_WAIT;	\/\/ sewing machine status$/;"	v
+sewMovCnt	Src/vfdn_sub.c	/^unsigned long   sewMovCnt = 0; \/\/ sewing machine moving counter$/;"	v
+sewMovFg	Src/vfdn_sub.c	/^unsigned char   sewMovFg = 0; \/\/ sewing machine moving flag$/;"	v
+sewMovMaxCnt	Src/vfdn_sub.c	/^unsigned long   sewMovMaxCnt = 0; \/\/ sewing machine moving max counter$/;"	v
+sewMovMaxPulse	Src/vfdn_sub.c	/^unsigned long   sewMovMaxPulse = 0; \/\/ 통신으로 받은 전체 미싱 길이 연산 결과 값$/;"	v
+sewRunCnt	Src/vfdn_sub.c	/^unsigned long   sewRunCnt = 0; \/\/ sewing machine run counter$/;"	v
+sewRunFg	Src/vfdn_sub.c	/^unsigned char   sewRunFg = 0; \/\/ sewing machine run flag$/;"	v
+stCkCnt	Src/vfdn_sub.c	/^unsigned int	stCkCnt = 0; \/\/ status check timer counter$/;"	v
+stCkFg	Src/vfdn_sub.c	/^unsigned char	stCkFg = 0; \/\/ status check timer flag$/;"	v
+stOut	Src/vfdn_io_cntl.c	/^unsigned char	stOut[8];	\/\/ Servo motor output status1~4 and out signal$/;"	v
+stPrevStep	Src/vfdn_sub.c	/^unsigned char   stPrevStep = 0;$/;"	v
+stSENPrev	Src/vfdn_io_cntl.c	/^unsigned long   stSENPrev = 255;$/;"	v
+stSENin	Src/vfdn_io_cntl.c	/^unsigned long	stSENin = 0;$/;"	v
+stSVPrev	Src/vfdn_io_cntl.c	/^unsigned char   stSVPrev[4];$/;"	v
+stSVin	Src/vfdn_io_cntl.c	/^unsigned char	stSVin[4];	\/\/ Servo motor input status1~4$/;"	v
+stSWPrev	Src/vfdn_io_cntl.c	/^unsigned long   stSWPrev = 255;$/;"	v
+stSWin	Src/vfdn_io_cntl.c	/^unsigned long	stSWin = 0;$/;"	v
+stStep	Src/vfdn_sub.c	/^unsigned char	stStep = 0;$/;"	v
+svEtiCnt	Src/vfdn_acsv.c	/^unsigned long   svEtiCnt = 0; \/\/ moving servo pulse count for external interrupt$/;"	v
+svMovDLP	Src/vfdn_acsv.c	/^unsigned int    svMovDLP = 0; \/\/ servo pulse count for ddam length$/;"	v
+svMovLenCaluate	Src/vfdn_acsv.c	/^void svMovLenCaluate(void)$/;"	f
+svMovMLP	Src/vfdn_acsv.c	/^unsigned long   svMovMLP = 0; \/\/ servo pulse count for meterial length$/;"	v
+svRdy	Src/vfdn_sub.c	/^unsigned char   svRdy = 0; \/\/ 0x01: servo1 ready, 0x02: servo2 ready, 0x04: servo3 ready, 0x08: servo4 ready$/;"	v
+svRoeCnt	Src/vfdn_acsv.c	/^unsigned long   svRoeCnt = 0; \/\/ moving servo pulse count ROE for external interrupt$/;"	v
+svSewEtiCnt	Src/vfdn_acsv.c	/^unsigned int    svSewEtiCnt = 0; \/\/ upper & under sewing servo pulse count for external interrupt$/;"	v
+swChkFg	Src/vfdn_sub.c	/^unsigned char   swChkFg = 0; \/\/ switch scan check flag$/;"	v
+swCnt	Src/vfdn_sub.c	/^unsigned int	swCnt = 0; \/\/ switch scan timer counter$/;"	v
+swCur	Src/vfdn_sub.c	/^unsigned long	swCur = 0; \/\/ current switch status$/;"	v
+swFg	Src/vfdn_sub.c	/^unsigned char	swFg = 0; \/\/ switch scan timer flag$/;"	v
+swPrev	Src/vfdn_sub.c	/^unsigned long	swPrev = 0;	\/\/ previous switch status$/;"	v
+swStFg	Src/vfdn_sub.c	/^unsigned long   swStFg = 0; \/\/ switch toggle status flag   $/;"	v
+sysLedCnt	Src/vfdn_sub.c	/^unsigned int	sysLedCnt = SYS_LED_TCNT;$/;"	v
+sysMode	Src/vfdn_sub.c	/^unsigned char	sysMode = 0;	\/\/ AUTO-MANUAL mode and EMS상태...0x01:EMS, 1:$/;"	v
+sysStartFg	Src/vfdn_sub.c	/^unsigned char	sysStartFg = 0;	\/\/ system start flag...$/;"	v
+tMovCnt	Src/vfdn_sub.c	/^unsigned int	tMovCnt = 0;$/;"	v
+tMovFg	Src/vfdn_sub.c	/^unsigned char	tMovFg = 0;$/;"	v
+tMovMaxCnt	Src/vfdn_sub.c	/^unsigned int	tMovMaxCnt = 0;$/;"	v
+tSewCnt	Src/vfdn_sub.c	/^unsigned int	tSewCnt = 0;$/;"	v
+tSewRunFg	Src/vfdn_sub.c	/^unsigned char	tSewRunFg = 0;$/;"	v
+testCnt	Src/vfdn_sub.c	/^unsigned int    testCnt = 0;$/;"	v
+testFg	Src/vfdn_sub.c	/^unsigned char   testFg = 0;$/;"	v
+testROE	Src/vfdn_sub.c	/^void testROE(void)$/;"	f
+testROECnt	Src/vfdn_sub.c	/^unsigned int    testROECnt = 0;$/;"	v
+testROEData	Src/vfdn_sub.c	/^unsigned long	testROEData = 0;$/;"	v
+testROEPrev	Src/vfdn_sub.c	/^unsigned int    testROEPrev = 0;$/;"	v
+testSV	Src/vfdn_sub.c	/^void testSV(TIM_HandleTypeDef *htim, uint32_t Channel, uint16_t ttime)$/;"	f
+tlCnt	Src/vfdn_sub.c	/^unsigned int    tlCnt = 0; \/\/ tower lamp timer counter$/;"	v
+tlFg	Src/vfdn_sub.c	/^unsigned char   tlFg = 0; \/\/ tower lamp timer flag$/;"	v
+tlRGYFg	Src/vfdn_sub.c	/^unsigned char   tlRGYFg = 0; \/\/ tower lamp control flag$/;"	v
+togFg	Src/vfdn_sub.c	/^unsigned char   togFg[2]; \/\/ [0]:clamp1,clamp2,clamp3,clamp4, [1]:vaccum$/;"	v
