@@ -486,7 +486,7 @@ struct PORT_DEF {
 		};
 		uint8_t data;
 	};
-} PORT_DATA[8];
+} IN_PORT_DATA[8];
 
 //uint8_t PORT_DATA[8];
 void readSignalProcess(void)
