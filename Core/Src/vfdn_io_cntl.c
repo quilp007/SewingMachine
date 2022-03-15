@@ -497,8 +497,11 @@ void readSignalProcess(void)
 
     //buf &= 0x00ff;
 
-    PORT_DATA[inCh].data = read_port_data;
-
+	if (read_port_data != IN_PORT_DATA[inCh]){
+		IN_PORT_DATA[inCh].data = read_port_data;
+		putStr(&huart4,(const unsigned char *)"CH[%d] data: 0x%02x\n", inCh, read_port_data);
+	}
+	
     //PORT_DATA[inCh].bit0 = 1;
 
     if(inCh == IN_CH_MAX)
