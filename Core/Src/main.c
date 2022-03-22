@@ -29,7 +29,7 @@
 
 #include <stdio.h>
 
-int _write(int file, char* p, int len)
+void _write(int file, uint8_t* p, int len)
 {
 	HAL_UART_Transmit(&huart4, p, len, 500);
 }

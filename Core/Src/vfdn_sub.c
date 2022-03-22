@@ -1508,7 +1508,7 @@ void scanSw(void)
 						{
 							sysMode &= ~MODE_EMS;
 							
-							if(swCur & ST_SW_AUTO_MANUAL)
+							if(SW_AUTO_MANUAL)
 							{
 								sysMode |= MODE_MANUAL;	// manual mode
 								sysMode &= ~MODE_AUTO;	// auto mode
@@ -2181,19 +2181,19 @@ putStr(&huart4,(const unsigned char *)"MTS end\n");
   */	
 void manualMode(void)
 {
-	if(swStFg & ST_SW_CLAMP1_OPEN_CLOSE)	cntlClamp(OUT_CLAMP1_CNTL,CLAMP_CLOSE); // clamp1 close
+	if(SW_CLAMP1_OPEN_CLOSE)	cntlClamp(OUT_CLAMP1_CNTL,CLAMP_CLOSE); // clamp1 close
 	else									cntlClamp(OUT_CLAMP1_CNTL,CLAMP_OPEN); // clamp1 open
 	    
-	if(swStFg & ST_SW_CLAMP2_OPEN_CLOSE)	cntlClamp(OUT_CLAMP2_CNTL,CLAMP_CLOSE); // clamp1 close
+	if(SW_CLAMP2_OPEN_CLOSE)	cntlClamp(OUT_CLAMP2_CNTL,CLAMP_CLOSE); // clamp1 close
 	else									cntlClamp(OUT_CLAMP2_CNTL,CLAMP_OPEN); // clamp1 open
 
-	if(swStFg & ST_SW_CLAMP3_OPEN_CLOSE)	cntlClamp(OUT_CLAMP3_CNTL,CLAMP_CLOSE); // clamp1 close
+	if(SW_CLAMP3_OPEN_CLOSE)	cntlClamp(OUT_CLAMP3_CNTL,CLAMP_CLOSE); // clamp1 close
 	else									cntlClamp(OUT_CLAMP3_CNTL,CLAMP_OPEN); // clamp1 open
 
-	if(swStFg & ST_SW_CLAMP4_OPEN_CLOSE)	cntlClamp(OUT_CLAMP4_CNTL,CLAMP_CLOSE); // clamp1 close
+	if(SW_CLAMP4_OPEN_CLOSE)	cntlClamp(OUT_CLAMP4_CNTL,CLAMP_CLOSE); // clamp1 close
 	else									cntlClamp(OUT_CLAMP4_CNTL,CLAMP_OPEN); // clamp1 open
 	            
-	if(swStFg & ST_SW_VACCUM_OPEN_CLOSE)	cntlVaccum(VACCUM_OPEN); // vaccum open
+	if(SW_VACCUM_OPEN_CLOSE)	cntlVaccum(VACCUM_OPEN); // vaccum open
 	else									cntlVaccum(VACCUM_CLOSE); // vaccum close
 
 	if(roeMode & 0x1f)
