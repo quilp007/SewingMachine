@@ -1,150 +1,76 @@
 
-Core/Core_backup/Core (2).zip
-Core/Core_backup/Core (3).zip
-Core/Core_backup/Core.zip
-Core/Core_backup/Core_0102.zip
-Core/Core_backup/Core_211221_1.zip
-Core/Core_backup/Core_211221_2.zip
-Core/Core_backup/Core_211221_3.zip
-Core/Core_backup/Core_211221_4.zip
-Core/Core_backup/Core_211221_5.zip
-Core/Core_backup/Core_211221_6.zip
-Core/Core_backup/Core_211222_1.zip
-Core/Core_backup/Core_211222_10.zip
-Core/Core_backup/Core_211222_11.zip
-Core/Core_backup/Core_211222_12.zip
-Core/Core_backup/Core_211222_13.zip
-Core/Core_backup/Core_211222_14.zip
-Core/Core_backup/Core_211222_15.zip
-Core/Core_backup/Core_211222_16.zip
-Core/Core_backup/Core_211222_17.zip
-Core/Core_backup/Core_211222_18.zip
-Core/Core_backup/Core_211222_19.zip
-Core/Core_backup/Core_211222_2.zip
-Core/Core_backup/Core_211222_3.zip
-Core/Core_backup/Core_211222_4.zip
-Core/Core_backup/Core_211222_5.zip
-Core/Core_backup/Core_211222_6.zip
-Core/Core_backup/Core_211222_7.zip
-Core/Core_backup/Core_211222_8.zip
-Core/Core_backup/Core_211222_9.zip
-Core/Core_backup/Core_211223_1.zip
-Core/Core_backup/Core_211223_10.zip
-Core/Core_backup/Core_211223_11.zip
-Core/Core_backup/Core_211223_12.zip
-Core/Core_backup/Core_211223_13.zip
-Core/Core_backup/Core_211223_14.zip
-Core/Core_backup/Core_211223_2.zip
-Core/Core_backup/Core_211223_3.zip
-Core/Core_backup/Core_211223_4.zip
-Core/Core_backup/Core_211223_5.zip
-Core/Core_backup/Core_211223_6.zip
-Core/Core_backup/Core_211223_7.zip
-Core/Core_backup/Core_211223_8.zip
-Core/Core_backup/Core_211223_9.zip
-Core/Core_backup/Core_211224_1.zip
-Core/Core_backup/Core_211224_2.zip
-Core/Core_backup/Core_211226_1.zip
-Core/Core_backup/Core_211226_2.zip
-Core/Core_backup/Core_211226_3.zip
-Core/Core_backup/Core_211226_4.zip
-Core/Core_backup/Core_211226_5.zip
-Core/Core_backup/Core_211227_1.zip
-Core/Core_backup/Core_211227_10.zip
-Core/Core_backup/Core_211227_11.zip
-Core/Core_backup/Core_211227_12_모터슬립.zip
-Core/Core_backup/Core_211227_13.zip
-Core/Core_backup/Core_211227_14.zip
-Core/Core_backup/Core_211227_15.zip
-Core/Core_backup/Core_211227_2.zip
-Core/Core_backup/Core_211227_3.zip
-Core/Core_backup/Core_211227_4.zip
-Core/Core_backup/Core_211227_5.zip
-Core/Core_backup/Core_211227_6.zip
-Core/Core_backup/Core_211227_7.zip
-Core/Core_backup/Core_211227_8.zip
-Core/Core_backup/Core_211227_9.zip
-Core/Core_backup/Core_211229_1.zip
-Core/Core_backup/Core_211229_2_x.zip
-Core/Core_backup/Core_211229_3.zip
-Core/Core_backup/Core_211229_성주처럼미싱만하는것.zip
-Core/Core_backup/Core_211230_1.zip
-Core/Core_backup/Core_211230_2.zip
-Core/Core_backup/Core_211230_3.zip
-Core/Core_backup/Core_211230_4.zip
-Core/Core_backup/Core_211231_1.zip
-Core/Core_backup/Core_220103_1.zip
-Core/Core_backup/Core_220103_2.zip
-Core/Core_backup/Core_220104_1.zip
-Core/Core_backup/Core_220104_2.zip
-Core/Core_backup/Core_220104_인터럽트테스트.zip
-Core/Core_backup/Core_220105_2.zip
-Core/Core_backup/Core_220106_1_mTestMode_테스트완료.zip
-Core/Core_backup/Core_220106_2_autoMode_테스트.zip
-Core/Core_backup/Core_220106_3_autoMode_테스트2.zip
-Core/Core_backup/Core_220106_4_autoMode_테스트3.zip
-Core/Core_backup/Core_220106_5_autoMode_테스트4.zip
-Core/Core_backup/Core_220106_6_autoMode_테스트_OK.zip
-Core/Core_backup/Core_220107.zip
-Core/Core_backup/Core_220111_1.zip
-Core/Core_backup/Core_220112_1.zip
-Core/Core_backup/Core_220112_2.zip
-Core/Core_backup/Core_220113_1_오토테스트_진행중.zip
-Core/Core_backup/Core_220113_2.zip
-Core/Core_backup/Core_220113_3_오토테스트_일단완료된듯.zip
-Debug/Core/Core_0102/Core/Src/dwt_stm32_delay.d
-Debug/Core/Core_0102/Core/Src/dwt_stm32_delay.o
-Debug/Core/Core_0102/Core/Src/dwt_stm32_delay.su
-Debug/Core/Core_0102/Core/Src/main.d
-Debug/Core/Core_0102/Core/Src/main.o
-Debug/Core/Core_0102/Core/Src/main.su
-Debug/Core/Core_0102/Core/Src/stm32f4xx_hal_msp.d
-Debug/Core/Core_0102/Core/Src/stm32f4xx_hal_msp.o
-Debug/Core/Core_0102/Core/Src/stm32f4xx_hal_msp.su
-Debug/Core/Core_0102/Core/Src/stm32f4xx_it.d
-Debug/Core/Core_0102/Core/Src/stm32f4xx_it.su
-Debug/Core/Core_0102/Core/Src/subdir.mk
-Debug/Core/Core_0102/Core/Src/syscalls.d
-Debug/Core/Core_0102/Core/Src/syscalls.o
-Debug/Core/Core_0102/Core/Src/syscalls.su
-Debug/Core/Core_0102/Core/Src/sysmem.d
-Debug/Core/Core_0102/Core/Src/sysmem.o
-Debug/Core/Core_0102/Core/Src/sysmem.su
-Debug/Core/Core_0102/Core/Src/system_stm32f4xx.d
-Debug/Core/Core_0102/Core/Src/system_stm32f4xx.o
-Debug/Core/Core_0102/Core/Src/system_stm32f4xx.su
-Debug/Core/Core_0102/Core/Src/vfdn_acsv.d
-Debug/Core/Core_0102/Core/Src/vfdn_acsv.o
-Debug/Core/Core_0102/Core/Src/vfdn_acsv.su
-Debug/Core/Core_0102/Core/Src/vfdn_adc.d
-Debug/Core/Core_0102/Core/Src/vfdn_adc.o
-Debug/Core/Core_0102/Core/Src/vfdn_adc.su
-Debug/Core/Core_0102/Core/Src/vfdn_com.d
-Debug/Core/Core_0102/Core/Src/vfdn_com.o
-Debug/Core/Core_0102/Core/Src/vfdn_com.su
-Debug/Core/Core_0102/Core/Src/vfdn_io_cntl.d
-Debug/Core/Core_0102/Core/Src/vfdn_io_cntl.o
-Debug/Core/Core_0102/Core/Src/vfdn_io_cntl.su
-Debug/Core/Core_0102/Core/Src/vfdn_roe.d
-Debug/Core/Core_0102/Core/Src/vfdn_roe.o
-Debug/Core/Core_0102/Core/Src/vfdn_roe.su
-Debug/Core/Core_0102/Core/Src/vfdn_rtc.d
-Debug/Core/Core_0102/Core/Src/vfdn_rtc.o
-Debug/Core/Core_0102/Core/Src/vfdn_rtc.su
-Debug/Core/Core_0102/Core/Src/vfdn_spi.d
-Debug/Core/Core_0102/Core/Src/vfdn_spi.o
-Debug/Core/Core_0102/Core/Src/vfdn_spi.su
-Debug/Core/Core_0102/Core/Src/vfdn_sub.d
-Debug/Core/Core_0102/Core/Src/vfdn_sub.su
+.metadata/.ide.log
+.metadata/.lock
+.metadata/.log
+.metadata/.log4j.xml
+.metadata/.plugins/com.st.stm32cube.ide.mcu.informationcenter/2.0.100.202111091238
+.metadata/.plugins/org.eclipse.cdt.core/.log
+.metadata/.plugins/org.eclipse.cdt.make.core/specs.c
+.metadata/.plugins/org.eclipse.cdt.make.core/specs.cpp
+.metadata/.plugins/org.eclipse.cdt.make.ui/dialog_settings.xml
+.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/history.version
+.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.version
+.metadata/.plugins/org.eclipse.core.resources/.root/1.tree
+.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources
+.metadata/.plugins/org.eclipse.core.runtime/.settings/com.st.stm32cube.ide.mcu.ide.oss.prefs
+.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.debug.core.prefs
+.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.ui.prefs
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_adc.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_adc_ex.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_cortex.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_def.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_dma.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_dma_ex.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_exti.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_flash.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_flash_ex.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_flash_ramfunc.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_gpio.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_gpio_ex.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_i2c.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_i2c_ex.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_pwr.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_pwr_ex.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_rcc.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_rcc_ex.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_rtc.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_rtc_ex.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_spi.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_tim.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_tim_ex.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_uart.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_ll_adc.h.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_adc.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_adc_ex.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_cortex.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_dma.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_dma_ex.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_exti.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_flash.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_flash_ex.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_flash_ramfunc.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_gpio.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_i2c.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_i2c_ex.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_pwr.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_pwr_ex.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_rcc.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_rcc_ex.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_rtc.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_rtc_ex.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_spi.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_tim.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_tim_ex.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_uart.c.sisc
+Core/Untitled Project11.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_ll_adc.c.sisc
 Debug/Core/Src/dwt_stm32_delay.d
 Debug/Core/Src/dwt_stm32_delay.o
 Debug/Core/Src/dwt_stm32_delay.su
 Debug/Core/Src/main.d
 Debug/Core/Src/main.o
 Debug/Core/Src/main.su
-Debug/Core/Src/main2112310149.d
-Debug/Core/Src/main2112310149.o
-Debug/Core/Src/main2112310149.su
 Debug/Core/Src/stm32f4xx_hal_msp.d
 Debug/Core/Src/stm32f4xx_hal_msp.o
 Debug/Core/Src/stm32f4xx_hal_msp.su
@@ -265,156 +191,60 @@ Debug/makefile
 Debug/objects.list
 Debug/objects.mk
 Debug/sources.mk
-Debug/vfdn_autopp_controller.bin
-Debug/vfdn_autopp_controller.elf
-Debug/vfdn_autopp_controller.list
 Debug/vfdn_autopp_controller.map
-Install/en.st-stm32cubeide_1.8.0_11526_20211126_0815_x86_64.exe_v1.8.0.zip
-Install/en.stm32cubemx-win_v6.4.0.zip
-New2020/ARTWORK/2022-02-07_17-47-13/2022-02-07_17-47-13.lib
-New2020/ARTWORK/2022-02-07_17-47-13/footprints.pretty/PA1A-05V.kicad_mod
-New2020/ARTWORK/2022-02-07_17-47-13/footprints.pretty/PA1A-12V.kicad_mod
-New2020/ARTWORK/ARTWORK.PNG
-New2020/ARTWORK/ARTWORK2.PNG
-New2020/GPIO_INOUT_DEFINE.xlsx
-New2020/GPIO_INOUT_DEFINE_220219.xlsx
-New2020/MCU_BOARD.dwg
-New2020/MCU_BOARD.dwl
-New2020/MCU_BOARD.dwl2
-New2020/PC_semi_eng_he1a_aqv25_g3a.pdf
-New2020/REF_DOC/cd74hc573.pdf
-New2020/REF_DOC/STM32-144P.pdf
-New2020/REF_DOC/STM32_F4VE_SCHEMATIC (4).PDF
-Si/aaa.si4project/aaa.bookmarks.xml
-Si/aaa.si4project/aaa.SearchResults
-Si/aaa.si4project/aaa.sip_sym
-Si/aaa.si4project/aaa.sip_xab
-Si/aaa.si4project/aaa.sip_xad
-Si/aaa.si4project/aaa.sip_xc
-Si/aaa.si4project/aaa.sip_xf
-Si/aaa.si4project/aaa.sip_xm
-Si/aaa.si4project/aaa.sip_xr
-Si/aaa.si4project/aaa.sip_xsb
-Si/aaa.si4project/aaa.sip_xsd
-Si/aaa.si4project/aaa.siproj
-Si/aaa.si4project/aaa.siproj_settings.xml
-Si/aaa.si4project/aaa.siwork
-Si/aaa.si4project/aaa.snippets.xml
-Si/aaa.si4project/Backup/main(8000).c
-Si/aaa.si4project/Backup/stm32f4xx_it(1198).c
-Si/aaa.si4project/Backup/stm32f4xx_it(1512).c
-Si/aaa.si4project/Backup/stm32f4xx_it(5887).c
-Si/aaa.si4project/Backup/vfdn_io_cntl(5561).c
-Si/aaa.si4project/Backup/vfdn_io_cntl(6138).c
-Si/aaa.si4project/Backup/vfdn_io_cntl(6823).c
-Si/aaa.si4project/Backup/vfdn_sub(1528).c
-Si/aaa.si4project/Backup/vfdn_sub(2613).c
-Si/aaa.si4project/Backup/vfdn_sub(3308).c
-Si/aaa.si4project/cache/parse/.._Core_Inc_dwt_stm32_delay.h.sisc
-Si/aaa.si4project/cache/parse/.._Core_Inc_main.h.sisc
-Si/aaa.si4project/cache/parse/.._Core_Inc_stm32f4xx_hal_conf.h.sisc
-Si/aaa.si4project/cache/parse/.._Core_Inc_stm32f4xx_it.h.sisc
-Si/aaa.si4project/cache/parse/.._Core_Inc_vfdn_acsv.h.sisc
-Si/aaa.si4project/cache/parse/.._Core_Inc_vfdn_adc.h.sisc
-Si/aaa.si4project/cache/parse/.._Core_Inc_vfdn_com.h.sisc
-Si/aaa.si4project/cache/parse/.._Core_Inc_vfdn_io_cntl.h.sisc
-Si/aaa.si4project/cache/parse/.._Core_Inc_vfdn_roe.h.sisc
-Si/aaa.si4project/cache/parse/.._Core_Inc_vfdn_rtc.h.sisc
-Si/aaa.si4project/cache/parse/.._Core_Inc_vfdn_servo.h.sisc
-Si/aaa.si4project/cache/parse/.._Core_Inc_vfdn_spi.h.sisc
-Si/aaa.si4project/cache/parse/.._Core_Inc_vfdn_sub.h.sisc
-Si/aaa.si4project/cache/parse/.._Core_Src_dwt_stm32_delay.c.sisc
-Si/aaa.si4project/cache/parse/.._Core_Src_main.c.sisc
-Si/aaa.si4project/cache/parse/.._Core_Src_stm32f4xx_hal_msp.c.sisc
-Si/aaa.si4project/cache/parse/.._Core_Src_stm32f4xx_it.c.sisc
-Si/aaa.si4project/cache/parse/.._Core_Src_syscalls.c.sisc
-Si/aaa.si4project/cache/parse/.._Core_Src_sysmem.c.sisc
-Si/aaa.si4project/cache/parse/.._Core_Src_system_stm32f4xx.c.sisc
-Si/aaa.si4project/cache/parse/.._Core_Src_vfdn_acsv.c.sisc
-Si/aaa.si4project/cache/parse/.._Core_Src_vfdn_adc.c.sisc
-Si/aaa.si4project/cache/parse/.._Core_Src_vfdn_com.c.sisc
-Si/aaa.si4project/cache/parse/.._Core_Src_vfdn_io_cntl.c.sisc
-Si/aaa.si4project/cache/parse/.._Core_Src_vfdn_roe.c.sisc
-Si/aaa.si4project/cache/parse/.._Core_Src_vfdn_rtc.c.sisc
-Si/aaa.si4project/cache/parse/.._Core_Src_vfdn_spi.c.sisc
-Si/aaa.si4project/cache/parse/.._Core_Src_vfdn_sub.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Device_ST_STM32F4xx_Include_stm32f407xx.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Device_ST_STM32F4xx_Include_stm32f4xx.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Device_ST_STM32F4xx_Include_system_stm32f4xx.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_cmsis_armcc.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_cmsis_armclang.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_cmsis_compiler.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_cmsis_gcc.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_cmsis_iccarm.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_cmsis_version.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_core_armv8mbl.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_core_armv8mml.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_core_cm0.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_core_cm0plus.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_core_cm1.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_core_cm23.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_core_cm3.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_core_cm33.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_core_cm4.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_core_cm7.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_core_sc000.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_core_sc300.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_mpu_armv7.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_mpu_armv8.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_CMSIS_Include_tz_context.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_Legacy_stm32_hal_legacy.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_adc.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_adc_ex.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_cortex.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_def.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_dma.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_dma_ex.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_exti.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_flash.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_flash_ex.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_flash_ramfunc.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_gpio.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_gpio_ex.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_i2c.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_i2c_ex.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_pwr.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_pwr_ex.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_rcc.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_rcc_ex.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_rtc.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_rtc_ex.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_spi.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_tim.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_tim_ex.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_hal_uart.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Inc_stm32f4xx_ll_adc.h.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_adc.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_adc_ex.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_cortex.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_dma.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_dma_ex.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_exti.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_flash.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_flash_ex.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_flash_ramfunc.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_gpio.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_i2c.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_i2c_ex.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_pwr.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_pwr_ex.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_rcc.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_rcc_ex.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_rtc.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_rtc_ex.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_spi.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_tim.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_tim_ex.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_hal_uart.c.sisc
-Si/aaa.si4project/cache/parse/.._Drivers_STM32F4xx_HAL_Driver_Src_stm32f4xx_ll_adc.c.sisc
-Core/Src/Src220103_1644.zip
-Core/Core220113.zip
-SewingMachine_211230.zip
-V2_211230_전달.zip
-V2_220113.zip
+Debug/vfdn_autopp_controller.list
+Debug/vfdn_autopp_controller.elf
+Debug/vfdn_autopp_controller.bin
+Core/Untitled Project11.si4project/Untitled Project11.sip_xr
+Core/Untitled Project11.si4project/Untitled Project11.sip_xm
+Core/Untitled Project11.si4project/Untitled Project11.sip_xf
+Core/Untitled Project11.si4project/Untitled Project11.sip_xc
+Core/Untitled Project11.si4project/Untitled Project11.sip_xad
+Core/Untitled Project11.si4project/Untitled Project11.sip_xab
+Core/Untitled Project11.si4project/Untitled Project11.sip_sym
+Core/Untitled Project11.si4project/Untitled Project11.SearchResults
+Core/Untitled Project11.si4project/cache/parse/Src_vfdn_sub.c.sisc
+Core/Untitled Project11.si4project/cache/parse/Src_vfdn_spi.c.sisc
+Core/Untitled Project11.si4project/cache/parse/Src_vfdn_rtc.c.sisc
+Core/Untitled Project11.si4project/cache/parse/Src_vfdn_roe.c.sisc
+Core/Untitled Project11.si4project/cache/parse/Src_vfdn_io_cntl.c.sisc
+Core/Untitled Project11.si4project/cache/parse/Src_vfdn_com.c.sisc
+Core/Untitled Project11.si4project/cache/parse/Src_vfdn_adc.c.sisc
+.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.core.resources.prefs
+.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.debug.core.prefs
+.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.debug.ui.prefs
+.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.ide.prefs
+.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.navigator.prefs
+.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.prefs
+.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.workbench.prefs
+.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.urischeme.prefs
+.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
+.metadata/.plugins/org.eclipse.ui.ide/dialog_settings.xml
+.metadata/.plugins/org.eclipse.ui.workbench/dialog_settings.xml
+.metadata/.plugins/org.eclipse.ui.workbench/workingsets.xml
+.metadata/version.ini
+.settings/language.settings.xml
+.settings/language.settings.xml
+.settings/language.settings.xml
+Core/Src/aa.si4project/aa.siproj_settings.xml
+Core/Src/sewing.si4project/sewing.siproj_settings.xml
+Core/Src/Untitled Project.si4project/Untitled Project.siproj_settings.xml
+Core/Untitled Project11.si4project/cache/parse/Inc_dwt_stm32_delay.h.sisc
+Core/Untitled Project11.si4project/cache/parse/Inc_main.h.sisc
+Core/Untitled Project11.si4project/cache/parse/Inc_stm32f4xx_hal_conf.h.sisc
+Core/Untitled Project11.si4project/cache/parse/Inc_stm32f4xx_it.h.sisc
+Core/Untitled Project11.si4project/cache/parse/Inc_vfdn_acsv.h.sisc
+Core/Untitled Project11.si4project/cache/parse/Inc_vfdn_adc.h.sisc
+Core/Untitled Project11.si4project/cache/parse/Inc_vfdn_com.h.sisc
+Core/Untitled Project11.si4project/cache/parse/Inc_vfdn_io_cntl.h.sisc
+Core/Untitled Project11.si4project/cache/parse/Inc_vfdn_roe.h.sisc
+Core/Untitled Project11.si4project/cache/parse/Inc_vfdn_rtc.h.sisc
+Core/Untitled Project11.si4project/cache/parse/Inc_vfdn_servo.h.sisc
+Core/Untitled Project11.si4project/cache/parse/Inc_vfdn_spi.h.sisc
+Core/Untitled Project11.si4project/cache/parse/Inc_vfdn_sub.h.sisc
+Core/Untitled Project11.si4project/cache/parse/Src_dwt_stm32_delay.c.sisc
+Core/Untitled Project11.si4project/cache/parse/Src_main.c.sisc
+Core/Untitled Project11.si4project/cache/parse/Src_stm32f4xx_hal_msp.c.sisc
+Core/Untitled Project11.si4project/cache/parse/Src_stm32f4xx_it.c.sisc
+Core/Untitled Project11.si4project/cache/parse/Src_syscalls.c.sisc
+Core/Untitled Project11.si4project/cache/parse/Src_sysmem.c.sisc
