@@ -27,6 +27,12 @@
 #include "vfdn_servo.h"
 #include "dwt_stm32_delay.h"
 
+#include <stdio.h>
+
+int _write(int file, char* p, int len)
+{
+	HAL_UART_Transmit(&huart4, p, len, 500);
+}
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -145,7 +151,8 @@ int main(void)
 
     //putChar(&huart4,'%');
     DWT_Delay_us(3000000);
-    putStr(&huart4,(const unsigned char *)"System Start!\n");
+    putStr(&huart4,(const unsigned char *)"NEW_System Start!\n");
+	printf("TEST!!!!!!!!!!!!!!!!\n");
     initVariables();
 	readID();
 
@@ -176,13 +183,14 @@ int main(void)
 		//autoMode();
 		
 		readSignalProcess();
-		chkError();
+        DWT_Delay_us(10000);
+		//chkError();
 		scanSw();
-		runningProcess();
+		//runningProcess();
 		
 		
 		//adcCheck();
-		apCheck();
+		//apCheck();
 		//comCheck();
 		//comAnalysis();
 		//cntlTLamp();

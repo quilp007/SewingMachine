@@ -484,6 +484,22 @@ void Error_Handler(void);
 #define SW_ROE_X10                  SW_IN12 // ROE SELECT SWITCH2 1 : ROE 1pulse/len = 10mm, 0 : OFF or another
 
 
+struct PORT_DEF {
+	union {
+		struct {
+			uint8_t bit0:1; // LSB
+			uint8_t bit1:1;
+			uint8_t bit2:1;
+			uint8_t bit3:1;
+			uint8_t bit4:1;
+			uint8_t bit5:1;
+			uint8_t bit6:1;
+			uint8_t bit7:1; //MSB
+		};
+		uint8_t data;
+	};
+} IN_PORT_DATA[8];
+
 
 // -------------------------------------------------------------------------------------------------------------
 // INPUT CH 1
