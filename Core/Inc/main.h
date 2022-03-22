@@ -449,6 +449,7 @@ void Error_Handler(void);
 #define	RES_INPUT4					SW_IN12
 #endif
 
+#if 0
 #define	SEN_LIFTING_DN_LIM			INPUT1	// SENSOR  1 : LIFTING DOWN LIMITE SENSOR ON, 0 : LIFTING DOWN LIMITE SENSOR OFF
 #define	SEN_LIFTING_HOME			INPUT2	// SENSOR  1 : LIFTING HOME SENSOR ON, 0 : LIFTING HOME SENSOR OFF
 #define	SEN_BAND_EMPTY1				INPUT3	// SENSOR  1 : BAND1 EMPTY SENSOR ON(������), 0 : BAND1 EMPTY SENSOR OFF(��峲��)
@@ -482,46 +483,74 @@ void Error_Handler(void);
 #define SW_ROE_Z                    SW_IN10 // ROE SELECT SWITCH1 1 : NEEDLE? and LOOPER?, 0 : OFF or another
 #define SW_ROE_X1                   SW_IN11 // ROE SELECT SWITCH2 1 : ROE 1pulse/len = 1mm, 0 : OFF or another
 #define SW_ROE_X10                  SW_IN12 // ROE SELECT SWITCH2 1 : ROE 1pulse/len = 10mm, 0 : OFF or another
+#endif
 
+struct PORT_DEF {
+	union {
+		struct {
+			uint8_t bit0:1; // LSB
+			uint8_t bit1:1;
+			uint8_t bit2:1;
+			uint8_t bit3:1;
+			uint8_t bit4:1;
+			uint8_t bit5:1;
+			uint8_t bit6:1;
+			uint8_t bit7:1; //MSB
+		};
+		uint8_t data;
+	};
+} IN_PORT_DATA[8];
 
 
 // -------------------------------------------------------------------------------------------------------------
-// INPUT CH 1
-#define new_SW_VACCUM_OPEN_CLOSE        IN_PORT_DATA[IN_CH1].bit5   // vaccum select(open/close) switch(manual mode)
+// INPUT CH 0
+#define SW_VACCUM_OPEN_CLOSE        IN_PORT_DATA[IN_CH0].bit5   // vaccum select(open/close) switch(manual mode)
 
-// INPUT CH 2
+// INPUT CH 1
 //
+// INPUT CH 2
+#define SW_ROE_X                    IN_PORT_DATA[IN_CH2].bit6   // [SWITCH] 1: FB, 0: OFF or another
+#define SW_ROE_Y                    IN_PORT_DATA[IN_CH2].bit7   // [SWITCH] 1: UD, 0: OFF or another
+
 // INPUT CH 3
-#define new_SW_ROE_X                    IN_PORT_DATA[IN_CH3].bit6   // [SWITCH] 1: FB, 0: OFF or another
-#define new_SW_ROE_Y                    IN_PORT_DATA[IN_CH3].bit7   // [SWITCH] 1: UD, 0: OFF or another
+#define SW_ROE_Z                    IN_PORT_DATA[IN_CH3].bit5   // [SWITCH] 1: NEEDLE? and LOOPER?,     0 : OFF or another
+#define SW_ROE_X1                   IN_PORT_DATA[IN_CH3].bit6   // [SWITCH] 1: ROE 1pulse/len = 1mm,    0 : OFF or another
+#define SW_ROE_X10                  IN_PORT_DATA[IN_CH3].bit7   // [SWITCH] 1: ROE 1pulse/len = 10mm,   0 : OFF or another
 
 // INPUT CH 4
-#define new_SW_ROE_Z                    IN_PORT_DATA[IN_CH4].bit5   // [SWITCH] 1: NEEDLE? and LOOPER?,     0 : OFF or another
-#define new_SW_ROE_X1                   IN_PORT_DATA[IN_CH4].bit6   // [SWITCH] 1: ROE 1pulse/len = 1mm,    0 : OFF or another
-#define new_SW_ROE_X10                  IN_PORT_DATA[IN_CH4].bit7   // [SWITCH] 1: ROE 1pulse/len = 10mm,   0 : OFF or another
+#define SEN_LIFTING_DN_LIM          IN_PORT_DATA[IN_CH4].bit0   // [SENSOR] LIFTING DOWN LIMITE         1: ON, 0: OFF
+#define SEN_LIFTING_HOME            IN_PORT_DATA[IN_CH4].bit1   // [SENSOR] LIFTING HOME                1: ON, 0: OFF
+#define SEN_BAND_EMPTY1             IN_PORT_DATA[IN_CH4].bit2   // [SENSOR] BAND1 EMPTY                 1: ON, 0: OFF
+#define SEN_MOVING_HOME             IN_PORT_DATA[IN_CH4].bit3   // [SENSOR] MOVING HOME                 1: ON, 0: OFF
+#define SEN_BAND_LOST1              IN_PORT_DATA[IN_CH4].bit4   // [SENSOR] BAND1 LOST                  1: ON, 0: OFF
+#define SEN_BAND_LOST2              IN_PORT_DATA[IN_CH4].bit5   // [SENSOR] BAND2 LOST                  1: ON, 0: OFF
 
 // INPUT CH 5
-#define new_SEN_LIFTING_DN_LIM          IN_PORT_DATA[IN_CH5].bit0   // [SENSOR] LIFTING DOWN LIMITE         1: ON, 0: OFF
-#define new_SEN_LIFTING_HOME            IN_PORT_DATA[IN_CH5].bit1   // [SENSOR] LIFTING HOME                1: ON, 0: OFF
-#define new_SEN_BAND_EMPTY1             IN_PORT_DATA[IN_CH5].bit2   // [SENSOR] BAND1 EMPTY                 1: ON, 0: OFF
-#define new_SEN_MOVING_HOME             IN_PORT_DATA[IN_CH5].bit3   // [SENSOR] MOVING HOME                 1: ON, 0: OFF
-#define new_SEN_BAND_LOST1              IN_PORT_DATA[IN_CH5].bit4   // [SENSOR] BAND1 LOST                  1: ON, 0: OFF
-#define new_SEN_BAND_LOST2              IN_PORT_DATA[IN_CH5].bit5   // [SENSOR] BAND2 LOST                  1: ON, 0: OFF
+#define SEN_UPPER_THREAD_CUT_OFF    IN_PORT_DATA[IN_CH5].bit6   // [SENSOR] UPPER SEWING THREAD         1: CUT OFF DETECT, 0: NORMAL
+#define SEN_LOOPER_HOME             IN_PORT_DATA[IN_CH5].bit0   // [SENSOR] LOOPER HOME                 1: ON, 0: OFF
 
 // INPUT CH 6
-#define new_SEN_UPPER_THREAD_CUT_OFF    IN_PORT_DATA[IN_CH6].bit6   // [SENSOR] UPPER SEWING THREAD         1: CUT OFF DETECT, 0: NORMAL
-#define new_SEN_LOOPER_HOME             IN_PORT_DATA[IN_CH6].bit0   // [SENSOR] LOOPER HOME                 1: ON, 0: OFF
+#define SW_AUTO_MANUAL              IN_PORT_DATA[IN_CH6].bit3   // [SWITCH] Mode select  1: MANUAL MODE, 0: AUTO MODE
+#define SW_AUTO_START               IN_PORT_DATA[IN_CH6].bit4   // [PUSH BT] 1: AUTO MODE START
+#define SW_AUTO_STOP                IN_PORT_DATA[IN_CH6].bit5   // [PUSH BT] 1: AUTO MODE STOP
+#define SW_AUTO_RESET               IN_PORT_DATA[IN_CH6].bit6   // [PUSH BT] 1: AUTO MODE RESET
+#define SW_TEST_SEWING              IN_PORT_DATA[IN_CH6].bit7   // [PUSH BT] 1: TEST SEWING
+#define SEN_LIFTING_UP_LIM          IN_PORT_DATA[IN_CH6].bit1   // [SENSOR] LIFTING UP LIMITE           1: ON, 0: OFF
+#define SEN_NEEDLE_HOME             IN_PORT_DATA[IN_CH6].bit0   // [SENSOR] NEEDLE HOME                 1: ON, 0: OFF
 
 // INPUT CH 7
-#define new_SW_AUTO_MANUAL              IN_PORT_DATA[IN_CH7].bit3   // [SWITCH] Mode select  1: MANUAL MODE, 0: AUTO MODE
-#define new_SW_AUTO_START               IN_PORT_DATA[IN_CH7].bit4   // [PUSH BT] 1: AUTO MODE START
-#define new_SW_AUTO_STOP                IN_PORT_DATA[IN_CH7].bit5   // [PUSH BT] 1: AUTO MODE STOP
-#define new_SW_AUTO_RESET               IN_PORT_DATA[IN_CH7].bit6   // [PUSH BT] 1: AUTO MODE RESET
-#define new_SW_TEST_SEWING              IN_PORT_DATA[IN_CH7].bit7   // [PUSH BT] 1: TEST SEWING
-#define new_SEN_LIFTING_UP_LIM          IN_PORT_DATA[IN_CH7].bit1   // [SENSOR] LIFTING UP LIMITE           1: ON, 0: OFF
-#define new_SEN_NEEDLE_HOME             IN_PORT_DATA[IN_CH7].bit0   // [SENSOR] NEEDLE HOME                 1: ON, 0: OFF
+//#define SEN_NEEDLE_HOME             IN_PORT_DATA[IN_CH7].bit0   // [SENSOR] NEEDLE HOME                 1: ON, 0: OFF
+//#define SEN_LIFTING_UP_LIM          IN_PORT_DATA[IN_CH7].bit1   // [SENSOR] LIFTING UP LIMITE           1: ON, 0: OFF
+//#define SEN_LIFTING_UP_LIM          IN_PORT_DATA[IN_CH7].bit2   // [SENSOR] LIFTING UP LIMITE           1: ON, 0: OFF
+//#define SW_AUTO_MANUAL              IN_PORT_DATA[IN_CH7].bit3   // [SWITCH] Mode select  1: MANUAL MODE, 0: AUTO MODE
+#define SW_CLAMP1_OPEN_CLOSE        IN_PORT_DATA[IN_CH7].bit4   // 
+#define SW_CLAMP2_OPEN_CLOSE        IN_PORT_DATA[IN_CH7].bit5   // [PUSH BT] 1: AUTO MODE STOP
+#define SW_CLAMP3_OPEN_CLOSE        IN_PORT_DATA[IN_CH7].bit6   // [PUSH BT] 1: AUTO MODE RESET
+#define SW_CLAMP4_OPEN_CLOSE        IN_PORT_DATA[IN_CH7].bit7   // [PUSH BT] 1: AUTO MODE RESET
 
-// INPUT CH 8
+//#define SW_TEST_SEWING              IN_PORT_DATA[IN_CH7].bit7   // [PUSH BT] 1: TEST SEWING
+
+
 
 
 // -------------------------------------------------------------------------------------------------------------

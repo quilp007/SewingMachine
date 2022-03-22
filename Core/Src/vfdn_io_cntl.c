@@ -265,6 +265,11 @@ static unsigned int readSignal(unsigned char ch)
 
 	buf = GPIOE->IDR;	// GPIO input array
 
+	//buf = 0b1010101010101010;
+
+	SW_CLAMP1_OPEN_CLOSE;	// CH0, bit4
+	SW_AUTO_MANUAL;			// CH7, bit3
+
     DWT_Delay_us(READ_US_DLY);
     HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,RESET); // input clock low
 
@@ -472,6 +477,7 @@ void outSignal(unsigned char ch, unsigned int sdata)
 	}
 }
 
+/*
 struct PORT_DEF {
 	union {
 		struct {
@@ -486,7 +492,8 @@ struct PORT_DEF {
 		};
 		uint8_t data;
 	};
-} PORT_DATA[8];
+} IN_PORT_DATA[8];
+*/
 
 //uint8_t PORT_DATA[8];
 void readSignalProcess(void)
@@ -495,10 +502,17 @@ void readSignalProcess(void)
 
     read_port_data = (uint8_t) readSignal(inCh);	// select channel signal read
 
+	//printf("CH[%d]: 0x%2x\n", inCh, read_port_data);
     //buf &= 0x00ff;
 
-    PORT_DATA[inCh].data = read_port_data;
+	if (read_port_data != IN_PORT_DATA[inCh].data){
+		printf("pre Data -> CH[%d]: 0x%2x\n", inCh, IN_PORT_DATA[inCh]);
+		printf("cur Data -> CH[%d]: 0x%2x\n", inCh, read_port_data);
+		IN_PORT_DATA[inCh].data = read_port_data;
 
+		//putStr(&huart4,(const unsigned char *)"CH[%d] data: 0x%02x\n", inCh, read_port_data);
+	}
+	
     //PORT_DATA[inCh].bit0 = 1;
 
     if(inCh == IN_CH_MAX)
