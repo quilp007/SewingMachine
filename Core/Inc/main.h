@@ -553,6 +553,236 @@ struct PORT_DEF {
 
 
 
+//jw0829 add
+#define	ONE_PULSE_MV                (float)0.016421367
+#define	ONE_PULSE_LF				(float)0.00625
+#define	ONE_PULSE_NL                (float)0.007657632
+
+#define	SEW_1CYCLE_PULSE            1600//1600
+#define	SEW_OFF_FABRIC_PULSE        1250// 1400 short needle, 1200 long needle
+
+
+#define	MOV_1MM_CLOCK				60
+#define	MOV_5MM_CLOCK				304
+#define	MOV_6MM_CLOCK				365
+#define	MOV_7MM_CLOCK				426
+#define	MOV_8MM_CLOCK				487
+#define	MOV_9MM_CLOCK				548
+#define	MOV_10MM_CLOCK				608
+
+#define	MOV_100MM_CLOCK				6089 // 100.0061226
+#define	MOV_150MM_CLOCK				9134 // 150.0091839
+#define	MOV_200MM_CLOCK				12179 // 200.0122452
+#define	MOV_250MM_CLOCK				15199 // 250.0153065
+#define	MOV_300MM_CLOCK				18268 // 200.0122452
+#define	MOV_350MM_CLOCK				21313 // 250.0153065
+#define	MOV_400MM_CLOCK				24358 // 200.0122452
+#define	MOV_450MM_CLOCK				27403 // 250.0153065
+#define	MOV_500MM_CLOCK				30448 // 500.0141916
+#define	MOV_1000MM_CLOCK			60896 // 1000.011962
+#define	MOV_1200MM_CLOCK			73075 // 1200.007786
+#define	MOV_1500MM_CLOCK			91344 // 1500.009732
+#define	MOV_2000MM_CLOCK			121792 // 2000.007502
+#define	MOV_2500MM_CLOCK			152240 // 2500.005273
+#define	MOV_2600MM_CLOCK			158330 // 2600.011395
+#define	MOV_2700MM_CLOCK			164419 // 2700.001096
+#define	MOV_2800MM_CLOCK			170509 // 2800.007219
+
+	
+#define	MOV_1CYCLE_PULSE	    	MOV_7MM_CLOCK	// ddam length
+#define	MOV_MAX_PULSE	    		MOV_1500MM_CLOCK	// total meterial length
+#define MOV_ROE_MAX_PULSE           MOV_10MM_CLOCK // roe input run
+
+
+#define ROTATE_TYPE_FORWORD		1
+#define ROTATE_TYPE_BACKWORD	2
+#define UPDOWN_TYPE_UP			1
+#define UPDOWN_TYPE_DOWN 		2
+#define ROTATE_TYPE_CCW 		0
+#define ROTATE_TYPE_CW 			1
+#define VACCUM_ON 			1
+#define VACCUM_OFF 			0
+#define HEAT_ON 			1
+#define HEAT_OFF 			0
+#define OFF 		0
+#define ON 			1
+#define COMPLATE 	2
+#define ON_DOWN 		2
+#define ON_UP 			3
+
+#define RC_INCREASE  1
+#define RC_DECREASE  2
+#define ON_FORWORD  1
+#define ON_BACKWORD  2
+#define ON_RIGHT  1
+#define ON_LEFT  2
+
+
+
+#define TIMECHECK_CUT 1
+
+
+
+
+
+
+#define MANUAL_READY		0
+#define INIT_NEEDLE_PUSH 	1
+#define INIT_LOOFER_PUSH 	2
+#define INIT_MOVING_PUSH 	3
+#define INIT_LIFTING_PUSH 	4
+#define INIT_TEST_PUSH 		5
+
+#define AUTO_READY 			0
+#define AUTO_SEWING_PUSH 	1
+
+
+#define AUTO_INIT 						0
+#define AUTO_MOVING_HOME_CHECK			1
+#define AUTO_NEDDLE_HOME_CHECK			2
+#define AUTO_LOOPER_HOME_CHECK			3
+#define AUTO_LIFTING_HOME_CHECK			4
+#define AUTO_BANDCLAMP_CLOSE_CHECK		5
+#define AUTO_FABLICCLAMP_CLOSE_CHECK	6
+#define AUTO_LIFTUP_10MM				7
+#define AUTO_MOVE_100MM					8
+#define AUTO_SEWING_RUN					9
+#define AUTO_LOOPER_BACK				10
+#define AUTO_SEWINGMOVE_100MM			11
+#define AUTO_LOOPER_FRONT				12
+#define AUTO_VOCCUM_ON					13
+#define AUTO_HEATING_ON					14
+#define AUTO_RC_TOP						15
+#define AUTO_CUTDELAY					16
+#define AUTO_HEATING_OFF				17
+#define AUTO_RC_HOME					18
+#define AUTO_FABLICCLAMP_OPEN_CHECK		19
+#define AUTO_BANDCLAMP_OPEN_CHECK		20
+#define AUTO_LIFTUP_10MM_2				21
+#define AUTO_MOVE_BEFOREHOME			22
+#define AUTO_LIFTUP_10MM_3				23
+#define AUTO_MOVING_HOME_CHECK			24
+#define AUTO_BANDCLAMP_CLOSE_CHECK_2	25
+#define AUTO_VOCCUM_OFF					26
+
+
+
+
+#define MOVING_INIT_FAIL			1
+#define NEEDLE_INIT_FAIL			2
+#define LOOPER_INIT_FAIL			3
+#define LIFTING_INIT_FAIL			4
+#define BANDCLAMP_INIT_FAIL			5
+#define AUTO_LIFTUP_10MM_FAIL		6
+#define AUTO_MOVE_100MM_FAIL		7
+#define AUTO_SEWING_RUN_FAIL		8
+#define AUTO_LOOPER_BACK_FAIL		9
+#define AUTO_SEWINGMOVE_100MM_FAIL	10
+#define AUTO_LOOPER_FRONT_FAIL		11
+#define AUTO_RC_TOP_FAIL			12
+#define AUTO_RC_HOME_FAIL			13
+#define AUTO_MOVING_HOME_CHECK_FAIL	14
+
+
+
+
+
+
+
+static	unsigned int	g_auto_sewing_length;
+static	unsigned int	g_test_sewing_length;
+static	unsigned int	g_init_speed;
+static	unsigned int	g_auto_sewing_speed;
+static	unsigned int	g_test_sewing_speed;
+static	unsigned int	g_lifting_speed;
+static	unsigned int	g_moving_speed;
+static	unsigned int	g_test_sewingspeed;
+
+static	unsigned int	g_manual_status;//manual-mode button/switch status
+static	unsigned int	g_auto_status;  //auto-mode button/switch status
+static	unsigned int	g_autosewing_status;//auto-mod operate status
+static	unsigned int	g_auto_wait;
+static	unsigned int	g_timer_cut_delay;
+
+static	unsigned int	g_move_target_count;  //interrupe plus count
+static	unsigned int	g_lift_target_count;
+static	unsigned int	g_needle_puls_count;
+static	unsigned int	g_looper_puls_count;
+static	unsigned int	g_move_count;
+static	unsigned int	g_move_total_count;
+static	unsigned int	g_lift_count;
+static	unsigned int	g_timer_cut_count;
+
+
+static	unsigned int	g_sewing_servor_status; //servo moter operate status
+static	unsigned int	g_needle_servor_status;
+static	unsigned int	g_looper_servor_status;
+static	unsigned int	g_moving_servor_status;
+static	unsigned int	g_lifting_servor_status;
+static	unsigned int	g_rc_servor_status;
+
+
+
+static	unsigned int    g_sewing_err;
+
+
+
+
+
+
+
+
+void manualMode1(void);
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
+void HAL_TIMEx_CommutCallback(TIM_HandleTypeDef *htim);
+void exeClamp1(unsigned char ClampNo, unsigned char Mode);
+void exeVaccum1(unsigned char Mode);
+void exelHeat1(unsigned char Mode);
+void exeLifting1( int Move_length);
+void exeMoving1( int Move_length,unsigned char Speed);
+void exeAutoSewing1(void);
+void exeLooper1(unsigned int Move_Pulse, unsigned char Rotate);
+void exeSewingMoving1(unsigned int Move_length);
+void exeDelay1(unsigned int Delay_time, unsigned char Mode);
+void exelRC1(unsigned char Mode);
+void void emergnecyMode(void);
+void servorStart(uint32_t Channel,unsigned int Arr,unsigned char Rotate);
+void servorStop(uint32_t Channel);
+void initNeedle1(void);
+void initLooper1(void);
+void initLifting1(void);
+void initMoving1(void);
+void waitManual(void);
+void autoMode1(void);
+void waitAutoSewing(void);
+void autoSewing(void);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // -------------------------------------------------------------------------------------------------------------
 
 #if 0

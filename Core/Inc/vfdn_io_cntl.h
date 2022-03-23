@@ -66,14 +66,14 @@ extern "C" {
 #define	MODE_EMS						0x04
 #define	MODE_MTEST						0x08
 
-#define	IN_CH1							0
-#define	IN_CH2							1
-#define	IN_CH3							2
-#define	IN_CH4							3
-#define	IN_CH5							4
-#define	IN_CH6							5
-#define	IN_CH7							6
-#define	IN_CH8							7
+#define	IN_CH0							0
+#define	IN_CH1							1
+#define	IN_CH2							2
+#define	IN_CH3							3
+#define	IN_CH4							4
+#define	IN_CH5							5
+#define	IN_CH6							6
+#define	IN_CH7							7
 
 #define	OUT_CH1							0
 #define	OUT_CH2							1
