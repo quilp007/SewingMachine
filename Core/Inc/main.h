@@ -593,7 +593,8 @@ struct PORT_DEF {
 #define	MOV_MAX_PULSE	    		MOV_1500MM_CLOCK	// total meterial length
 #define MOV_ROE_MAX_PULSE           MOV_10MM_CLOCK // roe input run
 
-
+#define FORWORD					0
+#define BACKWORD				1
 #define ROTATE_TYPE_FORWORD		1
 #define ROTATE_TYPE_BACKWORD	2
 #define UPDOWN_TYPE_UP			1
@@ -632,6 +633,7 @@ struct PORT_DEF {
 #define INIT_MOVING_PUSH 	3
 #define INIT_LIFTING_PUSH 	4
 #define INIT_TEST_PUSH 		5
+#define RUN_ROTARYENCORDER_PUSH 6
 
 #define AUTO_READY 			0
 #define AUTO_SEWING_PUSH 	1
@@ -661,7 +663,7 @@ struct PORT_DEF {
 #define AUTO_LIFTUP_10MM_2				21
 #define AUTO_MOVE_BEFOREHOME			22
 #define AUTO_LIFTUP_10MM_3				23
-#define AUTO_MOVING_HOME_CHECK			24
+#define AUTO_MOVING_HOME_CHECK2			24
 #define AUTO_BANDCLAMP_CLOSE_CHECK_2	25
 #define AUTO_VOCCUM_OFF					26
 
@@ -681,7 +683,7 @@ struct PORT_DEF {
 #define AUTO_LOOPER_FRONT_FAIL		11
 #define AUTO_RC_TOP_FAIL			12
 #define AUTO_RC_HOME_FAIL			13
-#define AUTO_MOVING_HOME_CHECK_FAIL	14
+#define AUTO_MOVING_HOME_CHECK2_FAIL	14
 
 
 
@@ -720,10 +722,13 @@ static	unsigned int	g_looper_servor_status;
 static	unsigned int	g_moving_servor_status;
 static	unsigned int	g_lifting_servor_status;
 static	unsigned int	g_rc_servor_status;
+static	unsigned int	g_rotaryencorder_status;
+
 
 
 
 static	unsigned int    g_sewing_err;
+static unsigned int    g_rcDuty[2];
 
 
 
@@ -742,10 +747,12 @@ void exeLifting1( int Move_length);
 void exeMoving1( int Move_length,unsigned char Speed);
 void exeAutoSewing1(void);
 void exeLooper1(unsigned int Move_Pulse, unsigned char Rotate);
-void exeSewingMoving1(unsigned int Move_length);
+void exeSewingMoving1(unsigned int Move_length,unsigned char Speed);
 void exeDelay1(unsigned int Delay_time, unsigned char Mode);
-void exelRC1(unsigned char Mode);
-void void emergnecyMode(void);
+void exeRC1(unsigned char Mode);
+void exeTestSewing(void);
+
+void emergnecyMode(void);
 void servorStart(uint32_t Channel,unsigned int Arr,unsigned char Rotate);
 void servorStop(uint32_t Channel);
 void initNeedle1(void);
@@ -756,6 +763,7 @@ void waitManual(void);
 void autoMode1(void);
 void waitAutoSewing(void);
 void autoSewing(void);
+void exeRotaryEncorder(void);
 
 
 

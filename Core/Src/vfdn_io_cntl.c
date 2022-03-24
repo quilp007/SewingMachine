@@ -281,37 +281,23 @@ static unsigned int readSignal(unsigned char ch)
 void readSignalProcess(void)
 {
     uint8_t read_port_data = 0;
+	uint8_t ch_num;
+	
+	for (ch_num = 0; ch_num< IN_CH_MAX; ch_num++)
+	{
+		read_port_data = (uint8_t) readSignal(ch_num);	// select channel signal read
 
-    read_port_data = (uint8_t) readSignal(inCh);	// select channel signal read
-
-	//printf("CH[%d]: 0x%2x\n", inCh, read_port_data);
-    //buf &= 0x00ff;
-
-	if (read_port_data != IN_PORT_DATA[inCh].data){
-		printf("pre Data -> CH[%d]: 0x%2x\n", inCh, IN_PORT_DATA[inCh]);
-		printf("cur Data -> CH[%d]: 0x%2x\n", inCh, read_port_data);
-		IN_PORT_DATA[inCh].data = read_port_data;
-
-		//if(!SW_CLAMP1_OPEN_CLOSE)	cntlClamp(OUT_CLAMP1_CNTL,CLAMP_CLOSE); // clamp1 close
-		//else						cntlClamp(OUT_CLAMP1_CNTL,CLAMP_OPEN); // clamp1 open
+		if (read_port_data != IN_PORT_DATA[ch_num].data){
+			printf("pre Data -> CH[%d]: 0x%2x\n", ch_num, IN_PORT_DATA[ch_num]);
+			printf("cur Data -> CH[%d]: 0x%2x\n", ch_num, read_port_data);
+			IN_PORT_DATA[ch_num].data = read_port_data;
+		}
 	}
 
+    //scFg = 1;
+ 
+    //if(sysStartFg == 0) sysStartFg = 1;
 
-
-
-
-
-    //PORT_DATA[inCh].bit0 = 1;
-
-    if(inCh == IN_CH_MAX)
-    {
-        scFg = 1;
-        inCh = 0;
-
-        if(sysStartFg == 0) sysStartFg = 1;
-    }
-    else
-        inCh++;
 }
 
 /**
