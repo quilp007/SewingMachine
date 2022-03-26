@@ -47,7 +47,7 @@ extern "C" {
 /* Exported macro ------------------------------------------------------------*/
 //#define	__DEBUG_IO__
 
-#define	IN_CH_MAX						7
+#define	IN_CH_MAX						8
 
 #define READ_US_DLY                     5
 

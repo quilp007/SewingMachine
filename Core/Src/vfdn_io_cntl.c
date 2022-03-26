@@ -267,8 +267,8 @@ static unsigned int readSignal(unsigned char ch)
 
 	//buf = 0b1010101010101010;
 
-	SW_CLAMP1_OPEN_CLOSE;	// CH0, bit4
-	SW_AUTO_MANUAL;			// CH7, bit3
+	//if (!SW_AUTO_MANUAL) printf("sw_auto_manual : 0");
+
 
     DWT_Delay_us(READ_US_DLY);
     HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,RESET); // input clock low
@@ -278,106 +278,27 @@ static unsigned int readSignal(unsigned char ch)
 	return	(buf&0x00ff);
 }
 
-#if 0
-/**
-  * @brief read signal function
-  * @param channel(IN_CLK1,IN_CLK2,IN_CLK3,IN_CLK4,IN_CLK5,IN_CLK6,IN_CLK7,IN_CLK8)
-  * @retval input signal(16bit) or error
-  */
-static unsigned int readSignal(unsigned char ch)
+void readSignalProcess(void)
 {
-	unsigned int buf=0;
-
-    #if 0
-    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
-    DWT_Delay_us(READ_US_DLY);
-    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,RESET); // input clock low
-    DWT_Delay_us(READ_US_DLY);
-    #endif
-
-	switch(ch)
+    uint8_t read_port_data = 0;
+	uint8_t ch_num;
+	
+	for (ch_num = 0; ch_num< IN_CH_MAX; ch_num++)
 	{
-		case IN_CH1:	// IN_CLK1 : SV_ALRM1, SV_HOME1, SV_RDY1, ZERO_SPD1, T_POS1, SW_IN1(SW_MOV_HOME), SW_IN2(SW_UD_HOME), SW_IN3(SW_CLAMP1_OPEN_CLOSE)
-						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,RESET); // input en1 low
-						DWT_Delay_us(READ_US_DLY);
-                        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
-                        //DWT_Delay_us(READ_US_DLY);
-            break;
+		read_port_data = (uint8_t) readSignal(ch_num);	// select channel signal read
 
-		case IN_CH2:	// IN_CLK2 : SV_ALRM2, SV_HOME2, SV_RDY2, ZERO_SPD2, T_POS2, SW_IN4(SW_CLAMP2_OPEN_CLOSE), SW_IN5(SW_CLAMP3_OPEN_CLOSE), SW_IN6(SW_CLAMP4_OPEN_CLOSE)
-						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,RESET); // input en2 low
-						DWT_Delay_us(READ_US_DLY);
-                        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
-                        //DWT_Delay_us(READ_US_DLY);
-			break;
-
-		case IN_CH3:	// IN_CLK3 : SV_ALRM3, SV_HOME3, SV_RDY3, ZERO_SPD3, T_POS3, SW_IN7(SW_VACCUM_OPEN_CLOSE), SW_IN8(SW_BAND_CUT), SW_IN9(RES_INPUT1)
-						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_3,RESET); // input en3 low
-						DWT_Delay_us(READ_US_DLY);
-                        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
-                        //DWT_Delay_us(READ_US_DLY);
-			break;
-
-		case IN_CH4:	// IN_CLK4 : SV_ALRM4, SV_HOME4, SV_RDY4, ZERO_SPD4, T_POS4, SW_IN10(RES_INPUT2), SW_IN11(RES_INPUT3), SW_IN12(RES_INPUT4)
-						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_4,RESET); // input en4 low
-						DWT_Delay_us(READ_US_DLY);
-                        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
-                        //DWT_Delay_us(READ_US_DLY);
-			break;
-
-		case IN_CH5:	// IN_CLK5 : INPUT1(SW_EMS), INPUT2(SW_A_M), INPUT3(LIFT_UP_LIM), INPUT4(LIFT_DN_LIM), INPUT5(LIFT_HOME), INPUT6(LIFT_HOME), INPUT7(BAND1_EMPTY), INPUT8(BAND2_EMPTY)
-						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_5,RESET); // input en5 low
-						DWT_Delay_us(READ_US_DLY);
-                        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
-                        //DWT_Delay_us(READ_US_DLY);
-			break;
-
-		case IN_CH6:	// IN_CLK6 : INPUT9(BAND1_LOST), INPUT10(BAND2_LOST), INPUT11(UP_THREAD_CUT_OFF), INPUT12(LOOPER_HOME), INPUT13(UN_THREAD_CUT_OFF), INPUT14(BAND_INSERT1), INPUT15(BAND_INSERT2), INPUT16(MOV_FORWARD_LIM)
-						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,RESET); // input en6 low
-						DWT_Delay_us(READ_US_DLY);
-                        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
-                        //DWT_Delay_us(READ_US_DLY);
-			break;
-
-		case IN_CH7:	// IN_CLK7 : INPUT17(MOV_REVERSE_LIM), INPUT18(MOV_HOME), INPUT19(FABR_DETECT1), INPUT20(FABR_DETECT2), INPUT21(FABR_CLAMP_OPEN), INPUT22(FABR_CLAMP_CLOSE), INPUT23(BAND_CLAMP_OPEN), INPUT24(BAND_CLAMP_CLOSE)
-						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_7,RESET); // input en6 low
-						DWT_Delay_us(READ_US_DLY);
-                        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
-                        //DWT_Delay_us(READ_US_DLY);
-			break;
-
-		case IN_CH8:	// IN_CLK8 : INPUT25(SW_MOV_FR), INPUT26(SW_MOV_UD), INPUT27(SW_AUTO_START), INPUT28(SW_AUTO_STOP), INPUT29(SW_AUTO_RESET), INPUT30(SW_TEST_SEW), INPUT31(SW_NEEDLE_HOME), INPUT32(SW_LOOPER_HOME)
-						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_8,RESET); // input en6 low
-						DWT_Delay_us(READ_US_DLY);
-                        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
-                        //DWT_Delay_us(READ_US_DLY);
-			break;
-		
-		default:
-			break;
+		if (read_port_data != IN_PORT_DATA[ch_num].data){
+			printf("pre Data -> CH[%d]: 0x%2x\n", ch_num, IN_PORT_DATA[ch_num]);
+			printf("cur Data -> CH[%d]: 0x%2x\n", ch_num, read_port_data);
+			IN_PORT_DATA[ch_num].data = read_port_data;
+		}
 	}
 
-    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
-    DWT_Delay_us(READ_US_DLY);
-    
-	buf = GPIOE->IDR;	// GPIO input array
+    //scFg = 1;
+ 
+    //if(sysStartFg == 0) sysStartFg = 1;
 
-    DWT_Delay_us(READ_US_DLY);
-
-    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,RESET); // input clock low
-    
-    if(ch == IN_CH1)        HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,SET); // input EN1 high
-    else if(ch == IN_CH2)   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,SET); // input EN2 high
-    else if(ch == IN_CH3)   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_3,SET); // input EN3 high
-    else if(ch == IN_CH4)   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_4,SET); // input EN4 high
-    else if(ch == IN_CH5)   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_5,SET); // input EN5 high
-    else if(ch == IN_CH6)   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,SET); // input EN6 high
-    else if(ch == IN_CH7)   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_7,SET); // input EN7 high
-    else if(ch == IN_CH8)   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_8,SET); // input EN8 high
-
-	return	(buf&0x00ff);
 }
-#endif
 
 /**
   * @brief output signal function
@@ -477,55 +398,107 @@ void outSignal(unsigned char ch, unsigned int sdata)
 	}
 }
 
-/*
-struct PORT_DEF {
-	union {
-		struct {
-			uint8_t bit0:1; // LSB
-			uint8_t bit1:1;
-			uint8_t bit2:1;
-			uint8_t bit3:1;
-			uint8_t bit4:1;
-			uint8_t bit5:1;
-			uint8_t bit6:1;
-			uint8_t bit7:1; //MSB
-		};
-		uint8_t data;
-	};
-} IN_PORT_DATA[8];
-*/
 
-//uint8_t PORT_DATA[8];
-void readSignalProcess(void)
+#if 0
+/**
+  * @brief read signal function
+  * @param channel(IN_CLK1,IN_CLK2,IN_CLK3,IN_CLK4,IN_CLK5,IN_CLK6,IN_CLK7,IN_CLK8)
+  * @retval input signal(16bit) or error
+  */
+static unsigned int readSignal(unsigned char ch)
 {
-    uint8_t read_port_data = 0;
+	unsigned int buf=0;
 
-    read_port_data = (uint8_t) readSignal(inCh);	// select channel signal read
+    #if 0
+    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
+    DWT_Delay_us(READ_US_DLY);
+    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,RESET); // input clock low
+    DWT_Delay_us(READ_US_DLY);
+    #endif
 
-	//printf("CH[%d]: 0x%2x\n", inCh, read_port_data);
-    //buf &= 0x00ff;
+	switch(ch)
+	{
+		case IN_CH1:	// IN_CLK1 : SV_ALRM1, SV_HOME1, SV_RDY1, ZERO_SPD1, T_POS1, SW_IN1(SW_MOV_HOME), SW_IN2(SW_UD_HOME), SW_IN3(SW_CLAMP1_OPEN_CLOSE)
+						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,RESET); // input en1 low
+						DWT_Delay_us(READ_US_DLY);
+                        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
+                        //DWT_Delay_us(READ_US_DLY);
+            break;
 
-	if (read_port_data != IN_PORT_DATA[inCh].data){
-		printf("pre Data -> CH[%d]: 0x%2x\n", inCh, IN_PORT_DATA[inCh]);
-		printf("cur Data -> CH[%d]: 0x%2x\n", inCh, read_port_data);
-		IN_PORT_DATA[inCh].data = read_port_data;
+		case IN_CH2:	// IN_CLK2 : SV_ALRM2, SV_HOME2, SV_RDY2, ZERO_SPD2, T_POS2, SW_IN4(SW_CLAMP2_OPEN_CLOSE), SW_IN5(SW_CLAMP3_OPEN_CLOSE), SW_IN6(SW_CLAMP4_OPEN_CLOSE)
+						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,RESET); // input en2 low
+						DWT_Delay_us(READ_US_DLY);
+                        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
+                        //DWT_Delay_us(READ_US_DLY);
+			break;
 
-		//putStr(&huart4,(const unsigned char *)"CH[%d] data: 0x%02x\n", inCh, read_port_data);
+		case IN_CH3:	// IN_CLK3 : SV_ALRM3, SV_HOME3, SV_RDY3, ZERO_SPD3, T_POS3, SW_IN7(SW_VACCUM_OPEN_CLOSE), SW_IN8(SW_BAND_CUT), SW_IN9(RES_INPUT1)
+						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_3,RESET); // input en3 low
+						DWT_Delay_us(READ_US_DLY);
+                        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
+                        //DWT_Delay_us(READ_US_DLY);
+			break;
+
+		case IN_CH4:	// IN_CLK4 : SV_ALRM4, SV_HOME4, SV_RDY4, ZERO_SPD4, T_POS4, SW_IN10(RES_INPUT2), SW_IN11(RES_INPUT3), SW_IN12(RES_INPUT4)
+						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_4,RESET); // input en4 low
+						DWT_Delay_us(READ_US_DLY);
+                        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
+                        //DWT_Delay_us(READ_US_DLY);
+			break;
+
+		case IN_CH5:	// IN_CLK5 : INPUT1(SW_EMS), INPUT2(SW_A_M), INPUT3(LIFT_UP_LIM), INPUT4(LIFT_DN_LIM), INPUT5(LIFT_HOME), INPUT6(LIFT_HOME), INPUT7(BAND1_EMPTY), INPUT8(BAND2_EMPTY)
+						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_5,RESET); // input en5 low
+						DWT_Delay_us(READ_US_DLY);
+                        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
+                        //DWT_Delay_us(READ_US_DLY);
+			break;
+
+		case IN_CH6:	// IN_CLK6 : INPUT9(BAND1_LOST), INPUT10(BAND2_LOST), INPUT11(UP_THREAD_CUT_OFF), INPUT12(LOOPER_HOME), INPUT13(UN_THREAD_CUT_OFF), INPUT14(BAND_INSERT1), INPUT15(BAND_INSERT2), INPUT16(MOV_FORWARD_LIM)
+						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,RESET); // input en6 low
+						DWT_Delay_us(READ_US_DLY);
+                        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
+                        //DWT_Delay_us(READ_US_DLY);
+			break;
+
+		case IN_CH7:	// IN_CLK7 : INPUT17(MOV_REVERSE_LIM), INPUT18(MOV_HOME), INPUT19(FABR_DETECT1), INPUT20(FABR_DETECT2), INPUT21(FABR_CLAMP_OPEN), INPUT22(FABR_CLAMP_CLOSE), INPUT23(BAND_CLAMP_OPEN), INPUT24(BAND_CLAMP_CLOSE)
+						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_7,RESET); // input en6 low
+						DWT_Delay_us(READ_US_DLY);
+                        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
+                        //DWT_Delay_us(READ_US_DLY);
+			break;
+
+		case IN_CH8:	// IN_CLK8 : INPUT25(SW_MOV_FR), INPUT26(SW_MOV_UD), INPUT27(SW_AUTO_START), INPUT28(SW_AUTO_STOP), INPUT29(SW_AUTO_RESET), INPUT30(SW_TEST_SEW), INPUT31(SW_NEEDLE_HOME), INPUT32(SW_LOOPER_HOME)
+						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_8,RESET); // input en6 low
+						DWT_Delay_us(READ_US_DLY);
+                        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
+                        //DWT_Delay_us(READ_US_DLY);
+			break;
+
+		default:
+			break;
 	}
-	
-    //PORT_DATA[inCh].bit0 = 1;
 
-    if(inCh == IN_CH_MAX)
-    {
-        scFg = 1;
-        inCh = 0;
+    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET); // input clock high
+    DWT_Delay_us(READ_US_DLY);
 
-        if(sysStartFg == 0) sysStartFg = 1;
-    }
-    else
-        inCh++;
+	buf = GPIOE->IDR;	// GPIO input array
+
+    DWT_Delay_us(READ_US_DLY);
+
+    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,RESET); // input clock low
+
+    if(ch == IN_CH1)        HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,SET); // input EN1 high
+    else if(ch == IN_CH2)   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,SET); // input EN2 high
+    else if(ch == IN_CH3)   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_3,SET); // input EN3 high
+    else if(ch == IN_CH4)   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_4,SET); // input EN4 high
+    else if(ch == IN_CH5)   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_5,SET); // input EN5 high
+    else if(ch == IN_CH6)   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,SET); // input EN6 high
+    else if(ch == IN_CH7)   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_7,SET); // input EN7 high
+    else if(ch == IN_CH8)   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_8,SET); // input EN8 high
+
+	return	(buf&0x00ff);
 }
-
+#endif
 #if 0
 /**
   * @brief output signal function

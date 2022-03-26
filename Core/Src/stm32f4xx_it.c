@@ -228,12 +228,13 @@ void EXTI0_IRQHandler(void)
 {
 	/* USER CODE BEGIN EXTI0_IRQn 0 */
 	// Needle PWM counter read
+	/*
 	if(sysMode & MODE_AUTO)    		sewRunCnt++;
 	else if(sysMode & MODE_MANUAL)
 	{
 		if(sysMode & MODE_MTEST)	tSewCnt++;
 	}
-    
+    */
 	/* USER CODE END EXTI0_IRQn 0 */
 	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
 	/* USER CODE BEGIN EXTI0_IRQn 1 */
@@ -248,7 +249,9 @@ void EXTI1_IRQHandler(void)
 {
 	/* USER CODE BEGIN EXTI1_IRQn 0 */
 	// Looper PWM counter read
+	/*
 	if(looperFg)	looperCnt++;
+	*/
     //if(sysMode & MODE_MANUAL)	svEtiCnt++;
 	/* USER CODE END EXTI1_IRQn 0 */
 	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1);
@@ -264,6 +267,7 @@ void EXTI2_IRQHandler(void)
 {
 	/* USER CODE BEGIN EXTI2_IRQn 0 */
 	// Moving PWM counter read
+	/*
     if(sysMode & MODE_MANUAL)
     {
 		if(sysMode & MODE_MTEST)
@@ -284,6 +288,7 @@ void EXTI2_IRQHandler(void)
 
 		if(movFg == 1)	movCnt++;
     }
+    */
 	/* USER CODE END EXTI2_IRQn 0 */
 	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_2);
 	/* USER CODE BEGIN EXTI2_IRQn 1 */
@@ -298,6 +303,7 @@ void EXTI3_IRQHandler(void)
 {
 	/* USER CODE BEGIN EXTI3_IRQn 0 */
 	// Lifting PWM counter read
+	/*
     if(sysMode & MODE_MANUAL)
 	{
 	//putChar(&huart4,'A');
@@ -305,6 +311,7 @@ void EXTI3_IRQHandler(void)
     }
 
 	if(lfFg == 1)	lfCnt++;
+	*/
 	/* USER CODE END EXTI3_IRQn 0 */
 	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_3);
 	/* USER CODE BEGIN EXTI3_IRQn 1 */
@@ -380,6 +387,7 @@ void EXTI9_5_IRQHandler(void)
 void TIM2_IRQHandler(void)
 {
 	/* USER CODE BEGIN TIM2_IRQn 0 */
+	/*
     if(testFg == 1)
     {
         if(testCnt == 0)    testFg = 2;
@@ -454,7 +462,7 @@ void TIM2_IRQHandler(void)
 		if(initCnt[INIT_STEP_CLAMP] == 0)	initFg[INIT_STEP_CLAMP] = INIT_TOVER;
 		else								initCnt[INIT_STEP_CLAMP]--;
 	}
-    
+    */
     /*
 	if(comCycleFg == COM_PACKET_TIM_START)
 	{
