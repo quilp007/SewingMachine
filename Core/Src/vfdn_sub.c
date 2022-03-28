@@ -535,6 +535,14 @@ void cntlBandCut(void)
 
         bcCnt = RC_GEN_TCNT;
         bcFg = RC_GEN_TSTART;
+
+		//////
+		if(bcFg == RC_GEN_TSTART)
+		{
+			if(bcCnt == 0)	bcFg = RC_GEN_NOW;
+			else			bcCnt--;
+		}
+		//////
     }
     else if(bcStep == 1)    // pwm start
     {

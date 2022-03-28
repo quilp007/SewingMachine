@@ -519,61 +519,61 @@ struct OUT_PORT_DEF {
 
 enum outport_name {
 	// OUTPUT CH0
-	out_port0 = 0,		
-	niddel_servo_on,
+	needle_servo_on = 0,		
+	needle_alram_reset,		//out_port1,
 	out_port2,
 	out_port3,
 	out_port4,
 	out_port5,
 	out_port6,
 	out_port7,
-	out_port8,		
 	// OUTPUT CH1
-	looper_servo_on,
+	looper_servo_on,		
+	looper_alram_reset,
 	out_port10,
 	out_port11,
 	out_port12,
 	out_port13,
 	out_port14,
 	out_port15,
-	out_port16,		
 	// OUTPUT CH2
-	moving_servo_on,
+	moving_servo_on,		
+	moving_alram_reset,		//out_port17,
 	out_port18,
 	out_port19,
 	out_port20,
 	out_port21,
 	out_port22,
 	out_port23,
-	out_port24,	
 	// OUTPUT CH3
-	updown_servo_on,	// out_port25
+	updown_servo_on,	
+	updown_alram_reset,		// out_port25
 	out_port26,
 	out_port27,
 	out_port28,
 	out_port29,
 	out_port30,
 	out_port31,
+	// OUTPUT CH4		
 	out_port32,		
-	// OUTPUT CH4
-	band_clamp_1_on,	//out_port33,
+	band_clamp_1_on,		//out_port33,
 	out_port34,
-	band_clamp_2_on,	//out_port35,
+	band_clamp_2_on,		//out_port35,
 	out_port36,
-	fablic_clamp_1_on, 	//out_port37,
-	out_port38,
-	fablic_clamp_2_on,	//out_port39,
-	out_port40,		
+	fablic_clamp_1_on, 		//out_port37,
+	out_port38,	
+	fablic_clamp_2_on,		//out_port39,
 	// OUTPUT CH5
-	vaccum_on, 			//out_port41,
+	out_port40,		
+	vaccum_on, 				//out_port41,
 	out_port42,
-	heating_on,			//out_port43,
+	heating_on,				//out_port43,
 	out_port44,			
 	out_port45,
 	out_port46,
 	out_port47,
-	out_port48,	
 	// OUTPUT CH6
+	out_port48,	
 	out_port49,
 	out_port50,
 	out_port51,
@@ -581,8 +581,8 @@ enum outport_name {
 	out_port53,
 	out_port54,
 	out_port55,
-	out_port56,
 	// OUTPUT CH7
+	out_port56,
 	out_port57,
 	out_port58,
 	out_port59,
@@ -774,6 +774,8 @@ enum outport_name {
 #define AUTO_MOVING_HOME_CHECK2			25
 #define AUTO_BANDCLAMP_CLOSE_CHECK_2	26
 #define AUTO_VOCCUM_OFF					27
+#define AUTO_NEDDLE_HOME_CHECK2			28
+
 
 
 
@@ -813,6 +815,8 @@ static	unsigned int	g_auto_status;  //auto-mode button/switch status
 static	unsigned int	g_autosewing_status;//auto-mod operate status
 static	unsigned int	g_auto_wait;
 static	unsigned int	g_timer_cut_delay;
+static	unsigned int	g_timer_rc_delay;
+
 
 static	unsigned int	g_move_target_count;  //interrupe plus count
 static	unsigned int	g_lift_target_count;
@@ -822,6 +826,10 @@ static	unsigned int	g_move_count;
 static	unsigned int	g_move_total_count;
 static	unsigned int	g_lift_count;
 static	unsigned int	g_timer_cut_count;
+static	unsigned int	g_timer_rc_count;
+static	unsigned int	g_rc_delay_time;
+
+
 
 
 static	unsigned int	g_sewing_servor_status; //servo moter operate status
@@ -879,7 +887,6 @@ void waitAutoSewing(void);
 void autoSewing(void);
 void exeRotaryEncorder(void);
 void initVariables(void);
-
 
 
 

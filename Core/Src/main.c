@@ -268,10 +268,16 @@ void initVariables(void)
 	OUT_PORT_DATA[OUT_CH5].data=0b11111111;
 	OUT_PORT_DATA[OUT_CH6].data=0b11111111;
 	OUT_PORT_DATA[OUT_CH7].data=0b11111111;
-	outportSignal(niddel_servo_on,SET);
-	outportSignal(looper_servo_on,SET);
-	outportSignal(moving_servo_on,SET);
-	outportSignal(updown_servo_on,SET);
+	outportSignal(needle_alram_reset,SET);
+	outportSignal(looper_alram_reset,SET);
+	outportSignal(moving_alram_reset,SET);
+	outportSignal(updown_alram_reset,SET);
+	outportSignal(needle_servo_on,RESET);
+	outportSignal(looper_servo_on,RESET);
+	outportSignal(moving_servo_on,RESET);
+	outportSignal(updown_servo_on,RESET);
+	
+	
 
 	g_auto_sewing_length = 50;//1500mm
 	g_test_sewing_length = 50;//1000mm
@@ -287,6 +293,7 @@ void initVariables(void)
 	g_autosewing_status=AUTO_INIT;
 	g_auto_wait = false;
 	g_rotaryencorder_status=OFF;
+	g_rc_delay_time=5;//5ms
 }
 
 void manualMode1(void)
@@ -437,17 +444,18 @@ void autoSewing(void)
 			g_looper_servor_status=OFF;
 			g_lifting_servor_status=OFF;
 			g_moving_servor_status=OFF;
+			g_rc_servor_status=OFF;
 			break;
 		case AUTO_MOVING_HOME_CHECK:
 			g_autosewing_status = AUTO_NEDDLE_HOME_CHECK;
-			/*if(SEN_MOVING_HOME == 1)//???
+			/*if(SEN_MOVING_HOME == 1)//1: ON, 0: OFF
 				g_autosewing_status = AUTO_NEDDLE_HOME_CHECK;
 			else
 				g_sewing_err = MOVING_INIT_FAIL;*/
 			break;
 		case AUTO_NEDDLE_HOME_CHECK:
 			initNeedle1();
-			if(g_needle_servor_status==OFF&&SEN_NEEDLE_HOME == 0)//???
+			if(g_needle_servor_status==OFF&&SEN_NEEDLE_HOME == 0)//0: ON, 1: OFF
 				g_autosewing_status = AUTO_LOOPER_HOME_CHECK;
 			else if(g_needle_servor_status==ON)
 				;
@@ -456,7 +464,7 @@ void autoSewing(void)
 			break;
 		case AUTO_LOOPER_HOME_CHECK:
 			initLooper1();
-			if(g_looper_servor_status==OFF&&SEN_LOOPER_HOME == 0)
+			if(g_looper_servor_status==OFF&&SEN_LOOPER_HOME == 0)//0: ON, 1: OFF
 				g_autosewing_status = AUTO_LIFTING_HOME_CHECK;
 			else if(g_looper_servor_status==ON)
 				;
@@ -465,7 +473,7 @@ void autoSewing(void)
 			break;
 		case AUTO_LIFTING_HOME_CHECK:
 			initLifting1();
-			if(g_lifting_servor_status==OFF&&SEN_LIFTING_HOME == 1)
+			if(g_lifting_servor_status==OFF&&SEN_LIFTING_HOME == 1)//1: ON, 0: OFF
 				g_autosewing_status = AUTO_BANDCLAMP_CLOSE_CHECK;
 			else if(g_lifting_servor_status==ON_UP ||g_lifting_servor_status==ON_DOWN)
 				;
@@ -475,7 +483,7 @@ void autoSewing(void)
 		case AUTO_BANDCLAMP_CLOSE_CHECK:
 			exeClamp1(band_clamp_1_on,RESET);
 			exeClamp1(band_clamp_2_on,RESET);
-			if(SEN_FABRIC_CHECK1 == 1&&SEN_FABRIC_CHECK2 == 1)
+			if(SEN_FABRIC_CHECK1 == 1&&SEN_FABRIC_CHECK2 == 1)//1: ON, 0: OFF
 				g_autosewing_status = AUTO_FABLICCLAMP_CLOSE_CHECK;
 			else
 				g_sewing_err = BANDCLAMP_INIT_FAIL;
@@ -516,6 +524,7 @@ void autoSewing(void)
 			exeAutoSewing1();
 			if(g_sewing_servor_status==OFF)
 				g_autosewing_status = AUTO_LOOPER_BACK;
+				//g_auto_status = AUTO_READY;	
 			else if(g_sewing_servor_status==ON || g_sewing_servor_status==MOVE_END )
 				;
 			else
@@ -559,7 +568,10 @@ void autoSewing(void)
 		case AUTO_RC_TOP:
 			exeRC1(RC_INCREASE);
 			if(g_rc_servor_status==OFF)
+			{
 				g_autosewing_status = AUTO_CUTDELAY;
+				g_timer_rc_delay= OFF;
+			}
 			else if(g_rc_servor_status==RC_INCREASE)
 				;
 			else
@@ -632,7 +644,7 @@ void autoSewing(void)
 		case AUTO_BANDCLAMP_CLOSE_CHECK_2:
 			exeClamp1(band_clamp_1_on,RESET);
 			exeClamp1(band_clamp_2_on,RESET);
-			if(SEN_FABRIC_CHECK1 == 1&&SEN_FABRIC_CHECK2 == 1)
+			if(SEN_FABRIC_CHECK1 == 1&&SEN_FABRIC_CHECK2 == 1)//1: ON, 0: OFF
 				g_autosewing_status = AUTO_VOCCUM_OFF;
 			else
 				g_sewing_err = BANDCLAMP_INIT_FAIL;
@@ -640,7 +652,16 @@ void autoSewing(void)
 		case AUTO_VOCCUM_OFF:
 			printf("AUTO_VOCCUM_OFF\n");
 			exeVaccum1(vaccum_on,SET);
-			g_auto_status = AUTO_READY;	
+			g_autosewing_status = AUTO_NEDDLE_HOME_CHECK2;
+			break;
+		case AUTO_NEDDLE_HOME_CHECK2:
+			initNeedle1();
+			if(g_needle_servor_status==OFF&&SEN_NEEDLE_HOME == 0)//0: ON, 1: OFF
+				g_auto_status = AUTO_READY;	
+			else if(g_needle_servor_status==ON)
+				;
+			else
+				g_sewing_err = NEEDLE_INIT_FAIL;
 			break;
 		default : 
 			break;
@@ -650,7 +671,7 @@ void autoSewing(void)
 
 void initNeedle1(void)
 {
-	if(SEN_NEEDLE_HOME == 0) //??? needle sensor on
+	if(SEN_NEEDLE_HOME == 0) //0: ON, 1: OFF
 	{
 		servorStop(TIM_CHANNEL_1);	// needle servo stop
 		g_manual_status=MANUAL_READY;
@@ -675,7 +696,7 @@ void initNeedle1(void)
 
 void initLooper1(void)
 {
-	if(SEN_LOOPER_HOME == 0) //??? looper sensor on
+	if(SEN_LOOPER_HOME == 0) //0: ON, 1: OFF
 	{
 		servorStop(TIM_CHANNEL_2);	// needle servo stop
 		g_manual_status=MANUAL_READY;
@@ -701,7 +722,7 @@ void initLooper1(void)
 
 void initLifting1(void)
 {
-	if( g_lifting_servor_status!=ON_UP && SEN_LIFTING_HOME == 1 ) // ??? lifting home sensor on -> stop
+	if( g_lifting_servor_status!=ON_UP && SEN_LIFTING_HOME == 1 ) //1: ON, 0: OFF
 	{
 		servorStop(TIM_CHANNEL_4);	
 		g_manual_status=MANUAL_READY;
@@ -717,7 +738,7 @@ void initLifting1(void)
 				g_lifting_servor_status = ON_UP;
 				break;
 			case ON_UP:
-				if(SEN_LIFTING_UP_LIM == 1)// ??? top sensor sensor on
+				if(SEN_LIFTING_UP_LIM == 1)//1: ON, 0: OFF
 				{
 					printf("top sensor sensor on");
 					servorStop(TIM_CHANNEL_4);	
@@ -726,7 +747,7 @@ void initLifting1(void)
 				}
 				break;
 			case ON_DOWN:
-				if(SEN_LIFTING_DN_LIM == 1)//??? bottom sensor sensor on
+				if(SEN_LIFTING_DN_LIM == 1)//1: ON, 0: OFF
 					servorStop(TIM_CHANNEL_4);//error
 				break;
 			default : 
@@ -738,7 +759,7 @@ void initLifting1(void)
 
 void initMoving1(void)
 {
-	if(SEN_MOVING_HOME == 1) 
+	if(SEN_MOVING_HOME == 1)//1: ON, 0: OFF 
 	{
 		servorStop(TIM_CHANNEL_3);	
 		g_manual_status=MANUAL_READY;
@@ -750,17 +771,13 @@ void initMoving1(void)
 		switch (g_moving_servor_status)
 		{
 			case OFF://SV4_DIR_CW; 
-				printf("initMoving1 off\n");
-				servorStop(TIM_CHANNEL_3);	
 				servorStart(TIM_CHANNEL_3,FRQ_2KHz,ROTATE_TYPE_CCW);//FRQ_200Hz g_moving_speed
 				g_moving_servor_status = ON;
 				break;
 			case ON:
-				printf("initMoving1 on\n");
 				//time over err
 				break;
 			default : 
-				printf("initMoving1 default\n");
 				break;
 		}
 	}
@@ -799,21 +816,20 @@ void waitManual(void)
 void exeTestSewing(unsigned int sewingLength,unsigned int Speed)
 {
 	
-	if(g_sewing_servor_status==OFF && (SEN_NEEDLE_HOME == 1 || SEN_LOOPER_HOME == 1)) // needle home sensor on -> stop
+	if(g_sewing_servor_status==OFF && (SEN_NEEDLE_HOME == 1 || SEN_LOOPER_HOME == 1)) //1: ON, 0: OFF
 	{
 		g_manual_status=MANUAL_READY;
 		g_sewing_servor_status=OFF;
 		return;
 	}
 
-	if(g_sewing_servor_status==COMPLATE) // needle home sensor on -> stop
+	if(g_sewing_servor_status==COMPLATE) 
 	{
 		g_manual_status=MANUAL_READY;
 		g_sewing_servor_status=OFF;
 	}
 	else
 	{
-		printf("exeTestSewing [%d]",g_sewing_servor_status);
 		switch (g_sewing_servor_status)
 		{
 			case OFF:
@@ -841,10 +857,9 @@ void exeTestSewing(unsigned int sewingLength,unsigned int Speed)
 
 void exeRotaryEncorder(void)
 {
-	if(g_prev_rotaryencorder_z_on==0 && SW_ROE_Z==1)//Z-push button rising
+	if(g_prev_rotaryencorder_z_on==0 && SW_ROE_Z==1)//SWITCH 0:ON  1:OFF  ===>   Z-push button rising
 			g_sewing_servor_status=MOVE_END;
-
-	if( (SW_ROE_X == 1) && (SW_ROE_Y == 1) && (SW_ROE_Z == 1) )
+	if( (SW_ROE_X == 1) && (SW_ROE_Y == 1) && (SW_ROE_Z == 1) )//SWITCH 0: ON, 1: OFF
 	{
 		g_manual_status=MANUAL_READY;
 		g_rotaryencorder_count=0;
@@ -852,30 +867,30 @@ void exeRotaryEncorder(void)
 		g_lift_count=0;
 		g_rotaryencorder_status=OFF;
 		g_prev_rotaryencorder_z_on=IN_PORT_DATA[3].bit5;
+
 		return;
 	}
 	
-	
-
 	switch (g_rotaryencorder_status)
 	{
 		case OFF:
 			g_prev_rorate=FORWORD;
-			if(SW_ROE_X == 0)
+			if(SW_ROE_X == 0)//SWITCH 0: ON, 1: OFF
 			{
 				g_rotaryencorder_status=RIGHTLEFT_MOVE;
 				TIM4->ARR = FRQ_15KHz;
 				__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_3,0); // pwm gen off
 				HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_3);
+
 			}
-			else if(SW_ROE_Y == 0)
+			else if(SW_ROE_Y == 0)//SWITCH 0: ON, 1: OFF
 			{
 				g_rotaryencorder_status=UPDOWN_MOVE;
 				TIM4->ARR = FRQ_5KHz;
 				__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_4,0); // pwm gen off
 				HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_4);
 			}	
-			else if(SW_ROE_Z == 0)
+			else if(SW_ROE_Z == 0)//SWITCH 0: ON, 1: OFF
 				g_rotaryencorder_status=JOG_MOVE;
 			break;
 		case RIGHTLEFT_MOVE:
@@ -892,15 +907,16 @@ void exeRotaryEncorder(void)
 				else
 					SV3_DIR_CW;
 				g_prev_rorate=g_rotaryencorder_rorate;
-				if(SEN_MOVING_HOME == 0 && g_rotaryencorder_rorate==BACKWORD)
+				if(SEN_MOVING_HOME == 0 && g_rotaryencorder_rorate==BACKWORD)// 1: ON, 0: OFF
 					TIM4->CCR3 = (FRQ_15KHz+1)/2;
 				else if(g_rotaryencorder_rorate==FORWORD)
 					TIM4->CCR3 = (FRQ_15KHz+1)/2;
+				else
+					TIM4->CCR3 = 0;	
 			}
 			else
 			{
 				TIM4->CCR3 = 0;	
-				printf("exeRotaryEncorder stop\n");
 			}
 			break;
 		case UPDOWN_MOVE:
@@ -917,10 +933,12 @@ void exeRotaryEncorder(void)
 				else
 					SV4_DIR_CW;
 				g_prev_rorate=g_rotaryencorder_rorate;
-				if(SEN_LIFTING_UP_LIM == 0 && g_rotaryencorder_rorate==FORWORD)
+				if(SEN_LIFTING_UP_LIM == 0 && g_rotaryencorder_rorate==FORWORD)// 1: ON, 0: OFF
 					TIM4->CCR4 = (FRQ_5KHz+1)/2;
-				else if(SEN_LIFTING_DN_LIM && g_rotaryencorder_rorate==BACKWORD)
+				else if(SEN_LIFTING_DN_LIM == 0 && g_rotaryencorder_rorate==BACKWORD)// 1: ON, 0: OFF
 					TIM4->CCR4 = (FRQ_5KHz+1)/2;
+				else 
+					TIM4->CCR4 = 0;
 			}
 			else
 			{
@@ -928,7 +946,7 @@ void exeRotaryEncorder(void)
 			}
 			break;
 		case JOG_MOVE:
-			g_prev_rotaryencorder_z_on=IN_PORT_DATA[3].bit5;
+			g_prev_rotaryencorder_z_on=SW_ROE_Z;//SWITCH 0:ON  1:OFF
 			exeTestSewing(2000,FRQ_500Hz);
 			break;
 		default : 
@@ -945,6 +963,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		if(g_sewing_servor_status == ON  || g_sewing_servor_status == MOVE_END)
 		{
 			g_needle_puls_count++;
+			if(g_sewing_servor_status==MOVE_END)
+				TIM4->ARR = g_init_speed;   
 			if(g_needle_puls_count >= SEW_1CYCLE_PULSE)
 			{	
 				if(g_sewing_servor_status == MOVE_END)
@@ -976,8 +996,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
 	if(GPIO_Pin==GPIO_PIN_2)//moving servor 
 	{
-		if(g_autosewing_status==AUTO_MOVE_100MM||g_autosewing_status== AUTO_SEWINGMOVE_100MM||g_autosewing_status== AUTO_MOVE_BEFOREHOME|| g_rotaryencorder_status==RIGHTLEFT_MOVE)//
-			g_move_count++;
+		if(g_manual_status==INIT_MOVING_PUSH||g_autosewing_status==AUTO_MOVE_100MM||g_autosewing_status== AUTO_SEWINGMOVE_100MM||g_autosewing_status== AUTO_MOVE_BEFOREHOME|| g_rotaryencorder_status==RIGHTLEFT_MOVE)//
+			g_move_count++;				//g_manual_status==INIT_MOVING_PUSH==>for rotaryencorder
 		else if(g_sewing_servor_status == ON || g_sewing_servor_status == MOVE_END)
 		{
 			g_move_count++;
@@ -1019,11 +1039,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-  if(htim->Instance==TIM2)
+	if(htim->Instance==TIM2)
 	{
 		if(g_timer_cut_delay)
 			g_timer_cut_count++;
+		if(g_timer_rc_delay)
+			g_timer_rc_count++;
 	}
+	
 }
 
 
@@ -1033,22 +1056,22 @@ void servorStart(uint32_t Channel,unsigned int Arr,unsigned char Rotate)
 	HAL_TIM_PWM_Stop(&htim4,Channel);
 	if(Channel==TIM_CHANNEL_1)
 	{
-		outportSignal(niddel_servo_on,SET);
+		outportSignal(needle_servo_on,RESET);
 		HAL_GPIO_WritePin(GPIOD,SV_SIGN1,Rotate);  //SV1_DIR_CCW; // needle ac servo ccw
 	}
 	else if(Channel==TIM_CHANNEL_2)
 	{
-		outportSignal(looper_servo_on,SET);
+		outportSignal(looper_servo_on,RESET);
 		HAL_GPIO_WritePin(GPIOD,SV_SIGN2,Rotate);
 	}
 	else if(Channel==TIM_CHANNEL_3)
 	{
-		outportSignal(moving_servo_on,SET);
+		outportSignal(moving_servo_on,RESET);
 		HAL_GPIO_WritePin(GPIOD,SV_SIGN3,Rotate);
 	}
 	else if(Channel==TIM_CHANNEL_4)
 	{
-		outportSignal(updown_servo_on,SET);
+		outportSignal(updown_servo_on,RESET);
 		HAL_GPIO_WritePin(GPIOD,SV_SIGN4,Rotate);
 	}
 	if(Arr!=0)
@@ -1277,6 +1300,7 @@ void exeRC1(unsigned char Mode)
 			{
 				g_rcDuty[0] = RC_DUTY_MIN;
 				g_rcDuty[1] = RC_DUTY_MAX;
+				g_timer_rc_delay=ON;
 			}
 			else
 			{
@@ -1290,12 +1314,17 @@ void exeRC1(unsigned char Mode)
 			g_rc_servor_status=Mode;
 			break;
 		case RC_INCREASE:
-			g_rcDuty[0] += RC_DUTY_STEP;
-			g_rcDuty[1] -= RC_DUTY_STEP;
-			__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_1,g_rcDuty[0]);	// duty set rc servo1
-			__HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_1,g_rcDuty[1]);	// duty set rc servo2
-			if((g_rcDuty[0] > RC_DUTY_MAX) && (g_rcDuty[1] < RC_DUTY_MIN)) // moving top end
-				g_rc_servor_status = OFF;
+			if(g_timer_rc_count>=g_rc_delay_time)
+			{
+				g_rcDuty[0] += RC_DUTY_STEP;
+				g_rcDuty[1] -= RC_DUTY_STEP;
+				__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_1,g_rcDuty[0]);	// duty set rc servo1
+				__HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_1,g_rcDuty[1]);	// duty set rc servo2
+				if((g_rcDuty[0] > RC_DUTY_MAX) && (g_rcDuty[1] < RC_DUTY_MIN)) // moving top end
+					g_rc_servor_status = OFF;
+				
+				g_timer_rc_count=0;
+			}
 			break;
 		case RC_DECREASE:
 			g_rcDuty[0] -= RC_DUTY_STEP;
