@@ -276,7 +276,7 @@ void EXTI2_IRQHandler(void)
 			tMovMaxCnt++;
 		}
 		
-		if(roeMode & 0x01)	svEtiCnt++;// ¹Ù´Ã ³ô³·ÀÌ À§Ä¡ ÃÊ±âÈ­¸¦ À§ÇÑ Ä«¿îÅÍ¸¦ Ã¼Å©ÇØ¾ß ÇÑ´Ù....
+		if(roeMode & 0x01)	svEtiCnt++;// ï¿½Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½Í¸ï¿½ Ã¼Å©ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½....
     }
 		
 
@@ -307,7 +307,7 @@ void EXTI3_IRQHandler(void)
     if(sysMode & MODE_MANUAL)
 	{
 	//putChar(&huart4,'A');
-		svEtiCnt++;// ¹Ù´Ã ³ô³·ÀÌ À§Ä¡ ÃÊ±âÈ­¸¦ À§ÇÑ Ä«¿îÅÍ¸¦ Ã¼Å©ÇØ¾ß ÇÑ´Ù....
+		svEtiCnt++;// ï¿½Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½Í¸ï¿½ Ã¼Å©ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½....
     }
 
 	if(lfFg == 1)	lfCnt++;
@@ -325,7 +325,7 @@ void EXTI3_IRQHandler(void)
 void EXTI9_5_IRQHandler(void)
 {
 	/* USER CODE BEGIN EXTI9_5_IRQn 0 */
-
+/*
     if(__HAL_GPIO_EXTI_GET_IT(GPIO_PIN_5) != 0x00u)
     {
         if(sysMode & MODE_MANUAL)
@@ -361,7 +361,7 @@ void EXTI9_5_IRQHandler(void)
 			{
 				roeEvent = 1;
 
-				roeNowCnt++; // Áõ°¡
+				roeNowCnt++; // ï¿½ï¿½ï¿½ï¿½
 			}
 			else	// ccw
 			{
@@ -373,9 +373,9 @@ void EXTI9_5_IRQHandler(void)
         }
         __HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_5);
     }
-    
+   */ 
 	/* USER CODE END EXTI9_5_IRQn 0 */
-	//HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);
+	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);
 	/* USER CODE BEGIN EXTI9_5_IRQn 1 */
 
 	/* USER CODE END EXTI9_5_IRQn 1 */
@@ -550,18 +550,11 @@ void TIM2_IRQHandler(void)
 	else
 		sysLedCnt--;
         */
-    #if 0
-    // tower lamp on-off timer
-	if(manualFg	== MANUAL_TSTART)
-	{
-		if(manualCnt == 0)	manualFg = MANUAL_NOW;
-		else			    manualCnt--;
-	}
-	#endif
 	/* USER CODE END TIM2_IRQn 0 */
 	HAL_TIM_IRQHandler(&htim2);
 	/* USER CODE BEGIN TIM2_IRQn 1 */
-
+	if(g_timer_cut_delay)
+		g_timer_cut_count++;
 	/* USER CODE END TIM2_IRQn 1 */
 }
 

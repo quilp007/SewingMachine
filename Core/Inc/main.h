@@ -501,19 +501,116 @@ struct PORT_DEF {
 	};
 } IN_PORT_DATA[8];
 
+struct OUT_PORT_DEF {
+	union {
+		struct {
+			uint8_t bit0:1; // LSB
+			uint8_t bit1:1;
+			uint8_t bit2:1;
+			uint8_t bit3:1;
+			uint8_t bit4:1;
+			uint8_t bit5:1;
+			uint8_t bit6:1;
+			uint8_t bit7:1; //MSB
+		};
+		uint8_t data;
+	};
+} OUT_PORT_DATA[8];
+
+enum outport_name {
+	// OUTPUT CH0
+	out_port0 = 0,		
+	niddel_servo_on,
+	out_port2,
+	out_port3,
+	out_port4,
+	out_port5,
+	out_port6,
+	out_port7,
+	out_port8,		
+	// OUTPUT CH1
+	looper_servo_on,
+	out_port10,
+	out_port11,
+	out_port12,
+	out_port13,
+	out_port14,
+	out_port15,
+	out_port16,		
+	// OUTPUT CH2
+	moving_servo_on,
+	out_port18,
+	out_port19,
+	out_port20,
+	out_port21,
+	out_port22,
+	out_port23,
+	out_port24,	
+	// OUTPUT CH3
+	updown_servo_on,	// out_port25
+	out_port26,
+	out_port27,
+	out_port28,
+	out_port29,
+	out_port30,
+	out_port31,
+	out_port32,		
+	// OUTPUT CH4
+	band_clamp_1_on,	//out_port33,
+	out_port34,
+	band_clamp_2_on,	//out_port35,
+	out_port36,
+	fablic_clamp_1_on, 	//out_port37,
+	out_port38,
+	fablic_clamp_2_on,	//out_port39,
+	out_port40,		
+	// OUTPUT CH5
+	vaccum_on, 			//out_port41,
+	out_port42,
+	heating_on,			//out_port43,
+	out_port44,			
+	out_port45,
+	out_port46,
+	out_port47,
+	out_port48,	
+	// OUTPUT CH6
+	out_port49,
+	out_port50,
+	out_port51,
+	out_port52,
+	out_port53,
+	out_port54,
+	out_port55,
+	out_port56,
+	// OUTPUT CH7
+	out_port57,
+	out_port58,
+	out_port59,
+	out_port60,
+	out_port61,
+	out_port62,
+	out_port63,
+    num_of_out_port
+};
+
+#define SET   1
+#define RESET 0
+
 
 // -------------------------------------------------------------------------------------------------------------
 // INPUT CH 0
-#define SW_VACCUM_OPEN_CLOSE        IN_PORT_DATA[IN_CH0].bit5   // vaccum select(open/close) switch(manual mode)
+#define SW_VACCUM_OPEN_CLOSE        IN_PORT_DATA[IN_CH0].bit5   // [SWITCH] 0: ON, 1: OFF
 
 // INPUT CH 1
-//
+#define SEN_FABRIC_CHECK1           IN_PORT_DATA[IN_CH1].bit6   // [SWITCH] 1: ON, 0: OFF or another
+#define SEN_FABRIC_CHECK2           IN_PORT_DATA[IN_CH1].bit7   // [SWITCH] 1: ON, 0: OFF or another
+
 // INPUT CH 2
-#define SW_ROE_X                    IN_PORT_DATA[IN_CH2].bit6   // [SWITCH] 1: FB, 0: OFF or another
-#define SW_ROE_Y                    IN_PORT_DATA[IN_CH2].bit7   // [SWITCH] 1: UD, 0: OFF or another
+#define SW_ROE_X                    IN_PORT_DATA[IN_CH2].bit6   // [SWITCH] 0: ON, 1: OFF
+#define SW_ROE_Y                    IN_PORT_DATA[IN_CH2].bit7   // [SWITCH] 0: ON, 1: OFF
 
 // INPUT CH 3
-#define SW_ROE_Z                    IN_PORT_DATA[IN_CH3].bit5   // [SWITCH] 1: NEEDLE? and LOOPER?,     0 : OFF or another
+#define SW_ROE_Z                    IN_PORT_DATA[IN_CH3].bit5   // [SWITCH] 0: ON, 1: OFF
 #define SW_ROE_X1                   IN_PORT_DATA[IN_CH3].bit6   // [SWITCH] 1: ROE 1pulse/len = 1mm,    0 : OFF or another
 #define SW_ROE_X10                  IN_PORT_DATA[IN_CH3].bit7   // [SWITCH] 1: ROE 1pulse/len = 10mm,   0 : OFF or another
 
@@ -527,26 +624,27 @@ struct PORT_DEF {
 
 // INPUT CH 5
 #define SEN_UPPER_THREAD_CUT_OFF    IN_PORT_DATA[IN_CH5].bit6   // [SENSOR] UPPER SEWING THREAD         1: CUT OFF DETECT, 0: NORMAL
-#define SEN_LOOPER_HOME             IN_PORT_DATA[IN_CH5].bit0   // [SENSOR] LOOPER HOME                 1: ON, 0: OFF
+#define SEN_LOOPER_HOME             IN_PORT_DATA[IN_CH5].bit0   // [SENSOR] LOOPER HOME                 0: ON, 1: OFF
 
 // INPUT CH 6
-#define SW_AUTO_MANUAL              IN_PORT_DATA[IN_CH6].bit3   // [SWITCH] Mode select  1: MANUAL MODE, 0: AUTO MODE
-#define SW_AUTO_START               IN_PORT_DATA[IN_CH6].bit4   // [PUSH BT] 1: AUTO MODE START
-#define SW_AUTO_STOP                IN_PORT_DATA[IN_CH6].bit5   // [PUSH BT] 1: AUTO MODE STOP
-#define SW_AUTO_RESET               IN_PORT_DATA[IN_CH6].bit6   // [PUSH BT] 1: AUTO MODE RESET
-#define SW_TEST_SEWING              IN_PORT_DATA[IN_CH6].bit7   // [PUSH BT] 1: TEST SEWING
+#define SW_AUTO_MANUAL              IN_PORT_DATA[IN_CH6].bit3   // [SWITCH] Mode select  0: MANUAL MODE, 1: AUTO MODE
+#define SW_AUTO_START               IN_PORT_DATA[IN_CH6].bit4   // [PUSH BT] 0: ON, 1: OFF
+#define SW_AUTO_STOP                IN_PORT_DATA[IN_CH6].bit5   // [PUSH BT] 0: ON, 1: OFF
 #define SEN_LIFTING_UP_LIM          IN_PORT_DATA[IN_CH6].bit1   // [SENSOR] LIFTING UP LIMITE           1: ON, 0: OFF
-#define SEN_NEEDLE_HOME             IN_PORT_DATA[IN_CH6].bit0   // [SENSOR] NEEDLE HOME                 1: ON, 0: OFF
+#define SEN_NEEDLE_HOME             IN_PORT_DATA[IN_CH6].bit0   // [SENSOR] NEEDLE HOME                 0: ON, 1: OFF
+#define SW_TEST_SEWING		 		IN_PORT_DATA[IN_CH6].bit7	// [PUSH BT] 0: ON, 1: OFF
+#define SW_MANUAL_STOP		 		IN_PORT_DATA[IN_CH6].bit6	// [PUSH BT] 0: ON, 1: OFF
+
 
 // INPUT CH 7
-//#define SEN_NEEDLE_HOME             IN_PORT_DATA[IN_CH7].bit0   // [SENSOR] NEEDLE HOME                 1: ON, 0: OFF
-//#define SEN_LIFTING_UP_LIM          IN_PORT_DATA[IN_CH7].bit1   // [SENSOR] LIFTING UP LIMITE           1: ON, 0: OFF
-//#define SEN_LIFTING_UP_LIM          IN_PORT_DATA[IN_CH7].bit2   // [SENSOR] LIFTING UP LIMITE           1: ON, 0: OFF
-//#define SW_AUTO_MANUAL              IN_PORT_DATA[IN_CH7].bit3   // [SWITCH] Mode select  1: MANUAL MODE, 0: AUTO MODE
-#define SW_CLAMP1_OPEN_CLOSE        IN_PORT_DATA[IN_CH7].bit4   // 
-#define SW_CLAMP2_OPEN_CLOSE        IN_PORT_DATA[IN_CH7].bit5   // [PUSH BT] 1: AUTO MODE STOP
-#define SW_CLAMP3_OPEN_CLOSE        IN_PORT_DATA[IN_CH7].bit6   // [PUSH BT] 1: AUTO MODE RESET
-#define SW_CLAMP4_OPEN_CLOSE        IN_PORT_DATA[IN_CH7].bit7   // [PUSH BT] 1: AUTO MODE RESET
+#define SW_NEEDLE_HOME 				IN_PORT_DATA[IN_CH7].bit0	// [PUSH BT] 0: ON, 1: OFF
+#define SW_LOOPER_HOME 				IN_PORT_DATA[IN_CH7].bit1	// [PUSH BT] 0: ON, 1: OFF
+#define SW_MOVING_HOME 				IN_PORT_DATA[IN_CH7].bit2	// [PUSH BT] 0: ON, 1: OFF
+#define SW_LIFTING_HOME 			IN_PORT_DATA[IN_CH7].bit3	// [PUSH BT] 0: ON, 1: OFF
+#define SW_CLAMP1_OPEN_CLOSE        IN_PORT_DATA[IN_CH7].bit4   // [SWITCH] 0: ON, 1: OFF
+#define SW_CLAMP2_OPEN_CLOSE        IN_PORT_DATA[IN_CH7].bit5   // [SWITCH] 0: ON, 1: OFF
+#define SW_CLAMP3_OPEN_CLOSE        IN_PORT_DATA[IN_CH7].bit6   // [SWITCH] 0: ON, 1: OFF
+#define SW_CLAMP4_OPEN_CLOSE        IN_PORT_DATA[IN_CH7].bit7   // [SWITCH] 0: ON, 1: OFF
 
 //#define SW_TEST_SEWING              IN_PORT_DATA[IN_CH7].bit7   // [PUSH BT] 1: TEST SEWING
 
@@ -599,15 +697,16 @@ struct PORT_DEF {
 #define ROTATE_TYPE_BACKWORD	2
 #define UPDOWN_TYPE_UP			1
 #define UPDOWN_TYPE_DOWN 		2
-#define ROTATE_TYPE_CCW 		0
-#define ROTATE_TYPE_CW 			1
+#define ROTATE_TYPE_CCW 		1
+#define ROTATE_TYPE_CW 			0
 #define VACCUM_ON 			1
 #define VACCUM_OFF 			0
 #define HEAT_ON 			1
 #define HEAT_OFF 			0
 #define OFF 		0
 #define ON 			1
-#define COMPLATE 	2
+#define MOVE_END 	2
+#define COMPLATE 	3
 #define ON_DOWN 		2
 #define ON_UP 			3
 
@@ -617,6 +716,14 @@ struct PORT_DEF {
 #define ON_BACKWORD  2
 #define ON_RIGHT  1
 #define ON_LEFT  2
+
+
+#define RIGHTLEFT_MOVE  1
+#define UPDOWN_MOVE  	2
+#define JOG_MOVE  		3
+
+
+
 
 
 
@@ -646,26 +753,27 @@ struct PORT_DEF {
 #define AUTO_LIFTING_HOME_CHECK			4
 #define AUTO_BANDCLAMP_CLOSE_CHECK		5
 #define AUTO_FABLICCLAMP_CLOSE_CHECK	6
-#define AUTO_LIFTUP_10MM				7
+#define AUTO_LIFTUP_10MM_UP				7
 #define AUTO_MOVE_100MM					8
-#define AUTO_SEWING_RUN					9
-#define AUTO_LOOPER_BACK				10
-#define AUTO_SEWINGMOVE_100MM			11
-#define AUTO_LOOPER_FRONT				12
-#define AUTO_VOCCUM_ON					13
-#define AUTO_HEATING_ON					14
-#define AUTO_RC_TOP						15
-#define AUTO_CUTDELAY					16
-#define AUTO_HEATING_OFF				17
-#define AUTO_RC_HOME					18
-#define AUTO_FABLICCLAMP_OPEN_CHECK		19
-#define AUTO_BANDCLAMP_OPEN_CHECK		20
-#define AUTO_LIFTUP_10MM_2				21
-#define AUTO_MOVE_BEFOREHOME			22
-#define AUTO_LIFTUP_10MM_3				23
-#define AUTO_MOVING_HOME_CHECK2			24
-#define AUTO_BANDCLAMP_CLOSE_CHECK_2	25
-#define AUTO_VOCCUM_OFF					26
+#define AUTO_LIFTUP_10MM_DOWN			9
+#define AUTO_SEWING_RUN					10
+#define AUTO_LOOPER_BACK				11
+#define AUTO_SEWINGMOVE_100MM			12
+#define AUTO_LOOPER_FRONT				13
+#define AUTO_VOCCUM_ON					14
+#define AUTO_HEATING_ON					15
+#define AUTO_RC_TOP						16
+#define AUTO_CUTDELAY					17
+#define AUTO_HEATING_OFF				18
+#define AUTO_RC_HOME					19
+#define AUTO_FABLICCLAMP_OPEN_CHECK		20
+#define AUTO_BANDCLAMP_OPEN_CHECK		21
+#define AUTO_LIFTUP_10MM_2				22
+#define AUTO_MOVE_BEFOREHOME			23
+#define AUTO_LIFTUP_10MM_3				24
+#define AUTO_MOVING_HOME_CHECK2			25
+#define AUTO_BANDCLAMP_CLOSE_CHECK_2	26
+#define AUTO_VOCCUM_OFF					27
 
 
 
@@ -723,6 +831,14 @@ static	unsigned int	g_moving_servor_status;
 static	unsigned int	g_lifting_servor_status;
 static	unsigned int	g_rc_servor_status;
 static	unsigned int	g_rotaryencorder_status;
+static	unsigned int	g_rotaryencorder_count;
+static	unsigned int	g_rotaryencorder_rorate;
+static	unsigned int	g_prev_rorate;
+static	unsigned int	g_prev_rotaryencorder_z_on;
+
+
+
+
 
 
 
@@ -738,19 +854,17 @@ static unsigned int    g_rcDuty[2];
 
 
 void manualMode1(void);
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
-void HAL_TIMEx_CommutCallback(TIM_HandleTypeDef *htim);
-void exeClamp1(unsigned char ClampNo, unsigned char Mode);
-void exeVaccum1(unsigned char Mode);
-void exelHeat1(unsigned char Mode);
-void exeLifting1( int Move_length);
-void exeMoving1( int Move_length,unsigned char Speed);
+void exeClamp1(unsigned char outportName, unsigned char Mode);
+void exeVaccum1(unsigned char outportName, unsigned char Mode);
+void exelHeat1(unsigned char outportName, unsigned char Mode);
+void exeLifting1( int Move_length, unsigned char Rotate);
+void exeMoving1( int Move_length,unsigned int Speed,unsigned char Rotate);
 void exeAutoSewing1(void);
 void exeLooper1(unsigned int Move_Pulse, unsigned char Rotate);
-void exeSewingMoving1(unsigned int Move_length,unsigned char Speed);
+void exeSewingMoving1(unsigned int Move_length,unsigned int Speed);
 void exeDelay1(unsigned int Delay_time, unsigned char Mode);
 void exeRC1(unsigned char Mode);
-void exeTestSewing(void);
+void exeTestSewing(unsigned int sewingLength,unsigned int Speed);
 
 void emergnecyMode(void);
 void servorStart(uint32_t Channel,unsigned int Arr,unsigned char Rotate);
@@ -764,6 +878,10 @@ void autoMode1(void);
 void waitAutoSewing(void);
 void autoSewing(void);
 void exeRotaryEncorder(void);
+void initVariables(void);
+
+
+
 
 
 

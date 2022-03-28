@@ -81,7 +81,7 @@ extern "C" {
 
 #define RC_DUTY_MIN                     1000
 #define RC_DUTY_MAX                     2000
-#define RC_DUTY_STEP                    20
+#define RC_DUTY_STEP                    5
 #define	RC_GEN_TCNT			        	20
 #define	RC_GEN_TSTART		        	1
 #define	RC_GEN_NOW  		        	2

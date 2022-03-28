@@ -242,7 +242,7 @@ void outTest(void)
     }
 }
 
-uint16_t GPIO_PIN_DEF[8] = {
+uint16_t GPIO_INPUT_PIN_DEF[8] = {
     GPIO_PIN_0,
     GPIO_PIN_1,
     GPIO_PIN_3,
@@ -257,7 +257,7 @@ static unsigned int readSignal(unsigned char ch)
 {
 	uint32_t buf;
 
-	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_DEF[ch], RESET); // input [ch] enable low
+	HAL_GPIO_WritePin(GPIOC, GPIO_INPUT_PIN_DEF[ch], RESET); // input [ch] enable low
     DWT_Delay_us(READ_US_DLY);
 
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, SET); // input clock high
@@ -273,7 +273,7 @@ static unsigned int readSignal(unsigned char ch)
     DWT_Delay_us(READ_US_DLY);
     HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,RESET); // input clock low
 
-	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_DEF[ch], SET); // input [ch] enable high
+	HAL_GPIO_WritePin(GPIOC, GPIO_INPUT_PIN_DEF[ch], SET); // input [ch] enable high
 
 	return	(buf&0x00ff);
 }
@@ -288,7 +288,7 @@ void readSignalProcess(void)
 		read_port_data = (uint8_t) readSignal(ch_num);	// select channel signal read
 
 		if (read_port_data != IN_PORT_DATA[ch_num].data){
-			printf("pre Data -> CH[%d]: 0x%2x\n", ch_num, IN_PORT_DATA[ch_num]);
+			printf("pre Data -> CH[%d]: 0x%2x\n", ch_num, IN_PORT_DATA[ch_num].data);
 			printf("cur Data -> CH[%d]: 0x%2x\n", ch_num, read_port_data);
 			IN_PORT_DATA[ch_num].data = read_port_data;
 		}
@@ -300,11 +300,76 @@ void readSignalProcess(void)
 
 }
 
+
+
+
+uint16_t GPIO_OUTPUT_PIN_DEF[8] = {
+    GPIO_PIN_0,
+    GPIO_PIN_1,
+    GPIO_PIN_2,
+    GPIO_PIN_4,
+    GPIO_PIN_5,
+    GPIO_PIN_12,
+    GPIO_PIN_8,
+    GPIO_PIN_9,
+};
+
+
+void outSignal(unsigned char ch, unsigned int sdata)
+{
+    sdata <<= 8;
+	GPIOE->ODR = sdata;
+	DWT_Delay_us(1);
+
+	HAL_GPIO_WritePin(GPIOB, GPIO_OUTPUT_PIN_DEF[ch],SET);
+	DWT_Delay_us(READ_US_DLY);
+	//OUT_CLK1_LOW;
+	HAL_GPIO_WritePin(GPIOB,GPIO_OUTPUT_PIN_DEF[ch],RESET);
+}
+
+void outportSignal(uint8_t out_port_name, uint8_t data)
+{
+	uint8_t ch_num = out_port_name/8; //3
+	uint8_t pin_num = out_port_name%8; //4
+	
+    //printf("pre data: [%d]: 0x%02x\n", out_port_name/8, OUT_PORT_DATA[out_port_name/8]);
+    if (data == 1)
+        OUT_PORT_DATA[ch_num].data  |= (1 << pin_num%8);
+    else
+        OUT_PORT_DATA[ch_num].data  &= ~(1 << pin_num%8);
+
+
+	outSignal(ch_num, OUT_PORT_DATA[ch_num].data);
+    //printf("cur data: [%d]: 0x%02x\n", out_port_name/8, OUT_PORT_DATA[out_port_name/8]);
+}
+
+
+/*
+
+
+void out_control_signal(uint8_t out_port_name, uint8_t data)
+{
+	uint8_t ch_num = out_port_name/8; //3
+	uint8_t pin_num = out_port_name%8; //4
+	
+    //printf("pre data: [%d]: 0x%02x\n", out_port_name/8, OUT_PORT_DATA[out_port_name/8]);
+    if (data == 1)
+        OUT_PORT_DATA[ch_num]  |= (1 << pin_num%8); 
+    else
+        OUT_PORT_DATA[ch_num]  &= ~(1 << pin_num%8); 
+
+
+	outSignal(ch_num, pin_num);
+    //printf("cur data: [%d]: 0x%02x\n", out_port_name/8, OUT_PORT_DATA[out_port_name/8]);
+}
+*/
+
 /**
   * @brief output signal function
   * @param channel(OUT_CLK1,OUT_CLK2,OUT_CLK3,OUT_CLK4,OUT_CLK5,OUT_CLK6,OUT_CLK7,OUT_CLK8), send data
   * @retval None
   */
+  /*
 void outSignal(unsigned char ch, unsigned int sdata)
 {
     sdata <<= 8;
@@ -397,7 +462,7 @@ void outSignal(unsigned char ch, unsigned int sdata)
 			break;
 	}
 }
-
+*/
 
 #if 0
 /**

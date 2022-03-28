@@ -75,14 +75,14 @@ extern "C" {
 #define	IN_CH6							6
 #define	IN_CH7							7
 
-#define	OUT_CH1							0
-#define	OUT_CH2							1
-#define	OUT_CH3							2
-#define	OUT_CH4							3
-#define	OUT_CH5							4
-#define	OUT_CH6							5
-#define	OUT_CH7							6
-#define	OUT_CH8							7
+#define	OUT_CH0							0
+#define	OUT_CH1							1
+#define	OUT_CH2							2
+#define	OUT_CH3							3
+#define	OUT_CH4							4
+#define	OUT_CH5							5
+#define	OUT_CH6							6
+#define	OUT_CH7							7
 
 // SWITCH INPUT VARIABLE BIT DEFINE
 #define	ST_SW_EMS						0x00000001	// PUSH LOCK SWITCH 1 : EMERGENCY STOP, 0 : NORMAL
@@ -140,21 +140,7 @@ extern "C" {
 #define	ST_ZERO_SPD						0x08		// SERVO ZERO SPEED
 #define	ST_T_POS						0x10		// SERVO TERMINATE POSITION
 
-struct OUT_PORT_DEF {
-	union {
-		struct {
-			uint8_t bit0:1; // LSB
-			uint8_t bit1:1;
-			uint8_t bit2:1;
-			uint8_t bit3:1;
-			uint8_t bit4:1;
-			uint8_t bit5:1;
-			uint8_t bit6:1;
-			uint8_t bit7:1; //MSB
-		};
-		uint8_t data;
-	};
-} OUT_PORT_DATA[8];
+
 
 // AC SERVO OUTPUT BIT DEFINE
 #define	ST_SV_ON						0x01		// SERVO ON
