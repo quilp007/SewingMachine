@@ -654,7 +654,7 @@ void USART3_IRQHandler(void)
 void UART4_IRQHandler(void)
 {
 	/* USER CODE BEGIN UART4_IRQn 0 */
-	unsigned long tfg=0,titsrc=0;
+/*	unsigned long tfg=0,titsrc=0;
 
 	tfg = __HAL_UART_GET_FLAG(&huart4, UART_FLAG_RXNE);
 	titsrc = __HAL_UART_GET_IT_SOURCE(&huart4, UART_IT_RXNE);
@@ -670,9 +670,9 @@ void UART4_IRQHandler(void)
 	else
 	{
 		__HAL_UART_CLEAR_PEFLAG(&huart4);
-	}
+	}*/
 	/* USER CODE END UART4_IRQn 0 */
-	//HAL_UART_IRQHandler(&huart4);
+	HAL_UART_IRQHandler(&huart4);
 	/* USER CODE BEGIN UART4_IRQn 1 */
 
 	/* USER CODE END UART4_IRQn 1 */

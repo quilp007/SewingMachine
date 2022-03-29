@@ -571,11 +571,11 @@ enum outport_name {
 	out_port44,			
 	out_port45,
 	out_port46,
-	out_port47,
+	towerlamp_r_on,			//out_port47
 	// OUTPUT CH6
-	out_port48,	
-	out_port49,
-	out_port50,
+	towerlamp_y_on,			//out_port48
+	towerlamp_g_on,			//out_port49
+	out_port50,			
 	out_port51,
 	out_port52,
 	out_port53,
@@ -595,6 +595,7 @@ enum outport_name {
 
 #define SET   1
 #define RESET 0
+#define EXCLUSIVE 2
 
 
 // -------------------------------------------------------------------------------------------------------------
@@ -796,6 +797,14 @@ enum outport_name {
 #define AUTO_MOVING_HOME_CHECK2_FAIL	14
 
 
+#define RED		0
+#define YELLOW	1
+#define GREEN	2
+
+
+
+
+
 
 
 
@@ -824,6 +833,8 @@ static	unsigned int	g_needle_puls_count;
 static	unsigned int	g_looper_puls_count;
 static	unsigned int	g_move_count;
 static	unsigned int	g_move_total_count;
+static	unsigned int	g_prev_move_total_count;
+
 static	unsigned int	g_lift_count;
 static	unsigned int	g_timer_cut_count;
 static	unsigned int	g_timer_rc_count;
@@ -843,6 +854,13 @@ static	unsigned int	g_rotaryencorder_count;
 static	unsigned int	g_rotaryencorder_rorate;
 static	unsigned int	g_prev_rorate;
 static	unsigned int	g_prev_rotaryencorder_z_on;
+
+
+static	unsigned char	g_error;
+static	unsigned int	g_error_count;
+static	uint8_t	g_turn_on;
+
+
 
 
 
@@ -881,12 +899,18 @@ void initNeedle1(void);
 void initLooper1(void);
 void initLifting1(void);
 void initMoving1(void);
-void waitManual(void);
+void stopManual(void);
 void autoMode1(void);
-void waitAutoSewing(void);
+void stopAutoSewing(void);
 void autoSewing(void);
 void exeRotaryEncorder(void);
 void initVariables(void);
+
+void exeTowerLamp(unsigned int Color);
+
+
+void runTowerLamp(void);
+
 
 
 

@@ -335,9 +335,11 @@ void outportSignal(uint8_t out_port_name, uint8_t data)
     //printf("pre data: [%d]: 0x%02x\n", out_port_name/8, OUT_PORT_DATA[out_port_name/8]);
     if (data == 1)
         OUT_PORT_DATA[ch_num].data  |= (1 << pin_num%8);
-    else
+    else if(data == 0)
         OUT_PORT_DATA[ch_num].data  &= ~(1 << pin_num%8);
-
+	else if(data == EXCLUSIVE)
+		OUT_PORT_DATA[ch_num].data	^= (1 << pin_num%8);
+		
 
 	outSignal(ch_num, OUT_PORT_DATA[ch_num].data);
     //printf("cur data: [%d]: 0x%02x\n", out_port_name/8, OUT_PORT_DATA[out_port_name/8]);
