@@ -26,6 +26,14 @@
  extern "C" {
 #endif
 
+
+unsigned char	insertBufferCount;	
+unsigned char	readBufferCount;	
+unsigned char	readBuffer[COM_BUF_MAX];
+
+
+
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 

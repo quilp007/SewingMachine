@@ -19,7 +19,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "vfdn_adc.h"
-#include "vfdn_sub.h"
 
 #ifdef	__DEBUG_ADC__
 #include "vfdn_com.h"
@@ -105,24 +104,16 @@ void adcCheck(void)
 				sum += adcBuf[i];
 			}
 
-			avr = sum/(ADC_CNT_MAX-2);	// average, ÃÖ´ë°ª°ú ÃÖ¼Ò°ªÀ» Á¦¿ÜÇÑ...
+			avr = sum/(ADC_CNT_MAX-2);	// average, ï¿½Ö´ë°ªï¿½ï¿½ ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
 
-			dat = (3300*(float)avr)/4096;	// mV·Î º¯°æ..
+			dat = (3300*(float)avr)/4096;	// mVï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 			//adcV = (unsigned int)dat;
 
 			dat /= 50;	// 50mV per A
 
-			heatCurr = (unsigned char)(dat*10);	// 10¹è µ¥ÀÌÅÍ »ý¼º
+			//heatCurr = (unsigned char)(dat*10);	// 10ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			
-#ifdef __DEBUG_ADC__
-			avr = (unsigned int)dat;
-			putChar(&huart1, ((avr/1000)+0x30));
-			putChar(&huart1, (((avr%1000)/100)+0x30));
-			putChar(&huart1, ((((avr%1000)%100)/10)+0x30));
-			putChar(&huart1, ((avr%10)+0x30));
-			putChar(&huart1, '\n');
-#endif
 			
 			adcBufCnt = 0;
 		}

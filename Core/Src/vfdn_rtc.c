@@ -20,11 +20,6 @@
 #include "main.h"
 #include "vfdn_rtc.h"
 
-#ifdef	__DEBUG_RTC__
-#include "vfdn_com.h"
-#endif
-
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 

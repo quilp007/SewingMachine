@@ -20,10 +20,6 @@
 #include "main.h"
 #include "vfdn_roe.h"
 
-#ifdef	__DEBUG_ROE__
-#include "vfdn_com.h"
-#endif
-
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */

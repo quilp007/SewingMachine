@@ -19,7 +19,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "vfdn_acsv.h"
-#include "vfdn_sub.h"
 
 #ifdef	__DEBUG_ACSV__
 #include "vfdn_com.h"
@@ -69,19 +68,6 @@ void svMovLenCaluate(void);
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
-/**
-  * @brief servo moving  total length calcuate
-  * @param None
-  * @retval void
-  */
-void svMovLenCaluate(void)
-{
-    float a=0;
-
-    a = ((float)metLen / ONE_PULSE_MV)+1;
-
-    svMovMLP = (unsigned long)a;
-}
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
 
