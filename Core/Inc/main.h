@@ -37,7 +37,7 @@ extern "C" {
 unsigned int	sysLedCnt;
 
 #define RC_DUTY_MIN                     1000
-#define RC_DUTY_MAX                     2000
+#define RC_DUTY_MAX                     1850
 #define RC_DUTY_STEP                    1
 
 
@@ -209,10 +209,10 @@ enum outport_name {
 	towerlamp_r_on,			//out_port47
 	// OUTPUT CH6
 	towerlamp_y_on,			//out_port48
-	towerlamp_g_on,			//out_port49
+	towerlamp_g_on,			//out_port49   18
 	out_port50,			
 	out_port51,
-	out_port52,
+	fix_machine_on,
 	out_port53,
 	out_port54,
 	out_port55,
@@ -259,8 +259,17 @@ enum outport_name {
 #define SEN_BAND_LOST2              IN_PORT_DATA[IN_CH4].bit5   // [SENSOR] BAND2 LOST                  1: ON, 0: OFF
 
 // INPUT CH 5
-#define SEN_UPPER_THREAD_CUT_OFF    IN_PORT_DATA[IN_CH5].bit6   // [SENSOR] UPPER SEWING THREAD         1: CUT OFF DETECT, 0: NORMAL
+
 #define SEN_LOOPER_HOME             IN_PORT_DATA[IN_CH5].bit0   // [SENSOR] LOOPER HOME                 0: ON, 1: OFF
+#define SEN_FABLICCLAMP_CLOSE       IN_PORT_DATA[IN_CH5].bit4   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
+#define SEN_BANDCLAMP_CLOSE         IN_PORT_DATA[IN_CH5].bit5   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
+#define SEN_UPPER_THREAD_CUT_OFF    IN_PORT_DATA[IN_CH5].bit6   // [SENSOR] UPPER SEWING THREAD         1: CUT OFF DETECT, 0: NORMAL
+
+
+
+
+
+
 
 // INPUT CH 6
 #define SW_AUTO_MANUAL              IN_PORT_DATA[IN_CH6].bit3   // [SWITCH] Mode select  1: MANUAL MODE, 0: AUTO MODE
@@ -294,8 +303,29 @@ enum outport_name {
 #define	SEW_1CYCLE_PULSE            1600//1600
 #define	SEW_OFF_FABRIC_PULSE        1350// 1400 short needle, 1200 long needle
 
+// AC SERVO
+#define	FRQ_25KHz					39		// very fast
+#define	FRQ_20KHz					49
+#define	FRQ_15KHz					74				// narmal
+#define	FRQ_10KHz					99	// 10KHz
+#define	FRQ_8KHz					124
+#define	FRQ_5KHz					199
+#define	FRQ_4KHz					249
+#define	FRQ_2KHz					499
+#define	FRQ_1KHz					999
+#define	FRQ_500Hz					1999
+#define	FRQ_200Hz					4999			// low
+#define	FRQ_100Hz					9999	// 100Hz
+#define	FRQ_62Hz					15999	// 62Hz
+
+#define	FRQ_RC_SV                   FRQ_62Hz
+
+
 
 #define	MOV_1MM_CLOCK				60
+#define	MOV_2MM_CLOCK				121
+#define	MOV_3MM_CLOCK				182
+#define	MOV_4MM_CLOCK				243
 #define	MOV_5MM_CLOCK				304
 #define	MOV_6MM_CLOCK				365
 #define	MOV_7MM_CLOCK				426
@@ -322,6 +352,8 @@ enum outport_name {
 #define	MOV_2800MM_CLOCK			170509 // 2800.007219
 
 #define SEWING_TICK                 7
+#define SEWINGMOVING_TICK           5
+
 #define	MOV_1CYCLE_PULSE	    	MOV_7MM_CLOCK	// ddam length
 #define	MOV_MAX_PULSE	    		MOV_1500MM_CLOCK	// total meterial length
 #define MOV_ROE_MAX_PULSE           MOV_10MM_CLOCK // roe input run
@@ -366,7 +398,7 @@ enum outport_name {
 #define JOG_MOVE  		3
 
 
-#define TIMECHECK_CUT 1
+#define TIMECHECK_DELAY 1
 
 
 #define MANUAL_READY			0
@@ -394,24 +426,23 @@ enum outport_name {
 #define AUTO_MOVE_100MM					8
 #define AUTO_LIFTUP_10MM_DOWN			9
 #define AUTO_SEWING_RUN					10
-#define AUTO_LOOPER_BACK				11
-#define AUTO_SEWINGMOVE_100MM			12
-#define AUTO_NEDDLE_HOME_CHECK2			13
-#define AUTO_LOOPER_FRONT				14
-#define AUTO_VOCCUM_ON					15
-#define AUTO_HEATING_ON					16
-#define AUTO_RC_TOP						17
-#define AUTO_CUTDELAY					18
-#define AUTO_HEATING_OFF				19
-#define AUTO_RC_HOME					20
-#define AUTO_FABLICCLAMP_OPEN_CHECK		21
-#define AUTO_BANDCLAMP_OPEN_CHECK		22
-#define AUTO_LIFTUP_10MM_2				23
-#define AUTO_MOVE_BEFOREHOME			24
-#define AUTO_LIFTUP_10MM_3				25
-#define AUTO_MOVING_HOME_CHECK2			26
-#define AUTO_BANDCLAMP_CLOSE_CHECK_2	27
-#define AUTO_VOCCUM_OFF					28
+#define AUTO_SEWINGMOVDELAY				11
+#define AUTO_HEATING_ON					12
+#define AUTO_SEWINGMOVE_100MM			13
+#define AUTO_VOCCUM_ON					14
+#define AUTO_RC_TOP						15
+#define AUTO_CUTDELAY					16
+#define AUTO_HEATING_OFF				17
+#define AUTO_RC_HOME					18
+#define AUTO_FABLICCLAMP_OPEN_CHECK		29
+#define AUTO_BANDCLAMP_OPEN_CHECK		20
+#define AUTO_BANDCLAMP_OPEN_DELAY		21
+#define AUTO_LIFTUP_10MM_2				22
+#define AUTO_MOVE_BEFOREHOME			23
+#define AUTO_LIFTUP_10MM_3				24
+#define AUTO_MOVING_HOME_CHECK2			25
+#define AUTO_BANDCLAMP_CLOSE_CHECK_2	26
+#define AUTO_VOCCUM_OFF					27
 
 
 #define MOVING_INIT_FAIL				1
@@ -453,6 +484,10 @@ enum outport_name {
 
 #define WAKWUP_MAX        				2000
 
+#define	COM_BUF_MAX						50
+#define	RECEIVE_DATA_MAX				7
+
+
 
 
 static	unsigned int	g_auto_sewing_length;
@@ -463,85 +498,107 @@ static	unsigned int	g_test_sewing_speed;
 static	unsigned int	g_lifting_speed;
 static	unsigned int	g_moving_speed;
 static	unsigned int	g_test_sewingspeed;
+static  unsigned int 	g_target_speed;
 
-static	unsigned int	g_manual_status;//manual-mode button/switch status
-static	unsigned int	g_auto_status;  //auto-mode button/switch status
-static	unsigned int	g_autosewing_status;//auto-mod operate status
-static	unsigned int	g_auto_wait;
-static	unsigned int	g_timer_cut_delay;
-static	unsigned int	g_timer_rc_delay;
 
-static	unsigned int	g_move_target_count;  //interrupe plus count
+static	unsigned int	g_manual_status;			//manual-mode button/switch status
+static	unsigned int	g_auto_status;  			//auto-mode button/switch status
+static	unsigned int	g_autosewing_status;		//auto-mod operate status
+static	unsigned int	g_auto_wait;				//오토모드 자동스윙 동작중 STOP
+static	unsigned int	g_timer_delay_on;			//지연을 위한 플래그
+
+static	unsigned int	g_move_target_count;  		//interrupe plus count
 static	unsigned int	g_lift_target_count;
 static	unsigned int	g_needle_puls_count;
 static	unsigned int	g_looper_puls_count;
 static	unsigned int	g_move_count;
-static	unsigned int	g_move_total_count;
-static	unsigned int	g_prev_move_total_count;
-
 static	unsigned int	g_lift_count;
-static	unsigned int	g_timer_cut_count;
-static	unsigned int	g_timer_rc_count;
-static	unsigned int	g_rc_delay_time;
+static	unsigned int	g_timer_delay_count;		//지연동작을 위한 카운트
+static  uint32_t  		g_needle_puls_target_count; //autosweing or testsweing의 목표거리값
+static  uint32_t  		g_prev_needle_puls_count;   //autosweing or testsweing의 stop시 이전값을 저장
 
-static	unsigned int	g_sewing_servor_status; //servo moter operate status
+
+
+static	unsigned int	g_sewing_servor_status; 	//servo moter operate status
 static	unsigned int	g_needle_servor_status;
 static	unsigned int	g_looper_servor_status;
 static	unsigned int	g_moving_servor_status;
 static	unsigned int	g_lifting_servor_status;
 static	unsigned int	g_rc_servor_status;
 static	unsigned int	g_rotaryencorder_status;
-static	unsigned int	g_rotaryencorder_count;
+static	unsigned int 	g_sewingmoving_servor_status;
+static	unsigned int	g_prev_manual_status;		//메뉴얼모드의 이전상태값을 저장하여 OFF->ON시 최초 한번만 기능정의를 위해 
+static  uint8_t 		g_check_prevstatus;			//g_check_prevstatus() 개별기능의 시간을 설정하여 타임오버에러를 발생시키기 위해 
+static	unsigned int	g_prev_autosewing_status;	//오토모드 자동스윙 동작중 STOP기능을 위해 이전 오토모드 상태를 저장
+
+
+static	unsigned int	g_rotaryencorder_count;		//로터리엔코더관련 변수
 static	unsigned int	g_rotaryencorder_rorate;
-static	unsigned int	g_prev_rorate;
+static	unsigned int	g_prev_rotaryencorder_rorate;
 static	unsigned int	g_prev_rotaryencorder_z_on;
-static	unsigned int	g_prev_manual_status;
-
-static	unsigned int	g_error_count;
-static  uint8_t g_lamp_mode;
-static  uint8_t g_prev_lamp_mode;
-static  uint8_t g_timer_err_delay;
-
-static  unsigned int g_check_time_count;
-static  uint8_t g_check_prevstatus;
-static  uint8_t g_prev_sw_auto_manual;
-static  uint8_t g_change_sw_auto_manual;
-
-static	uint8_t    g_prev_sewing_err;
-static	uint8_t    g_sewing_err;
-
-static unsigned int    g_rcDuty[2];
-static	uint8_t    g_receive_flag;
-
-static	unsigned int	g_prev_autosewing_status;
 
 
-static	unsigned int g_com_wakeup_count;
-static	uint8_t  g_com_wakeup_flag;
+static	unsigned int	g_error_count;				//에러 및 램프관련 변수
+static  uint8_t 		g_lamp_mode;
+static  uint8_t 		g_prev_lamp_mode;
+static  uint8_t 		g_timer_errlamp_delay;			
+
+static  unsigned int 	g_check_time_count;			//checkRunTime()함수 사용
+
+static  uint8_t 		g_prev_sw_auto_manual;		//checkPrevRunStatus() 스위치변경시 초기화상태인지 진행상태인지를 판다...
+static  uint8_t 		g_change_sw_auto_manual;	//checkPrevRunStatus()  true:진행   false:초기화
+
+static	uint8_t    		g_prev_sewing_err;			//PC전송하기위.....새로운 에러만 전송
+static	uint8_t    		g_sewing_err;				//머신에러상태
+
+static unsigned int    	g_rcDuty[2];				//rc 서보를 위한 MIN,MAX
+
+static	uint8_t    		g_receive_flag;				//통신용 플래그 및 변수
+static	unsigned int 	g_com_wakeup_count;
+static	uint8_t  		g_com_wakeup_flag;
+static	uint8_t  		g_cycle_send_flag;
 
 
-static	uint8_t g_test_flag;
-static	uint8_t g_stop_flag;
-static	uint8_t g_m_stop_flag;
-static  uint32_t  g_needle_puls_target_count;
-static  uint32_t  g_prev_needle_puls_count;
-
-static	uint8_t  g_cycle_send_flag;
-
-
-#define	COM_BUF_MAX						50
-#define	RECEIVE_DATA_MAX				7
-
-extern unsigned char	readBufferCount;	
+extern unsigned char	readBufferCount;			//PC통신을 위해 배열정보 및 변수
 extern unsigned char	insertBufferCount;	
-
-
 extern unsigned char	readBuffer[COM_BUF_MAX];
 static unsigned char	readData[RECEIVE_DATA_MAX];
 static unsigned char	DataCount;
 
+static  uint8_t 		g_attachband_length;
+static  uint8_t 		g_fablic_cut_position;
 
-static unsigned char	g_bandcut_status;
+
+
+static unsigned char	g_test_status;
+
+
+
+static unsigned char	g_etc_machine_status;
+
+
+
+#define ETC_MACHINE_READY 				0
+#define ETC_MACHINE_STOP				1
+#define ETC_MACHINE_HEATING_ON			2
+#define ETC_MACHINE_CUTTING_TOP			3
+#define ETC_MACHINE_CUTDELAY			4
+#define ETC_MACHINE_HEATING_OFF			5
+#define ETC_MACHINE_CUTTING_HOME		6
+#define ETC_MACHINE_RUN					7
+#define ETC_MACHINE_STOP2				8
+#define ETC_MACHINE_WELDING				9
+#define ETC_MACHINE_RUN2				10
+#define ETC_MACHINE_FINISH_RUN			11
+
+
+
+
+
+
+
+
+
 
 
 
@@ -584,8 +641,13 @@ void servorStop(uint32_t Channel);
 void initNeedle(void);
 void initLooper(void);
 void initLifting(void);
-void initMoving(void);
+void initMoving(unsigned int Speed);
 void bandCutting(void);
+
+void testSweingMoving(void);
+void exeNeedle(unsigned int Move_Pulse,unsigned char Rotate);
+
+
 
 void stopManual(void);
 void autoMode(void);
@@ -597,6 +659,14 @@ void initVariables(void);
 void runTowerLamp(void);
 uint8_t checkRunTime(unsigned int checkTime, uint8_t machineStatus, uint8_t errCode );
 uint8_t checkPrevRunStatus(void);
+
+void exeJogSewing(unsigned int Speed);
+
+void startAutoSewing(void);
+void checkSweingLength(void);
+
+
+
 
 
 

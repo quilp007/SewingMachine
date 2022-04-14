@@ -78,13 +78,14 @@ extern "C" {
 
 #define AP_KPA_MIN                      100
 #define AP_KPA_MAX                      700
-
+/*
 #define RC_DUTY_MIN                     1000
 #define RC_DUTY_MAX                     2000
 #define RC_DUTY_STEP                    1
 #define	RC_GEN_TCNT			        	20
 #define	RC_GEN_TSTART		        	1
 #define	RC_GEN_NOW  		        	2
+*/
 
 #define HEATER_CURR_MIN                 20 // 2A
 #define HEATER_CURR_MAX                 80 // 8A
