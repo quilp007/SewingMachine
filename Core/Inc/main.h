@@ -30,7 +30,6 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
 
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #define SYS_LED_TCNT                    499
@@ -54,8 +53,6 @@ extern	I2C_HandleTypeDef hi2c1;
 
 extern	RTC_HandleTypeDef hrtc;
 
-extern	SPI_HandleTypeDef hspi2;
-extern	SPI_HandleTypeDef hspi3;
 
 extern	TIM_HandleTypeDef htim2;
 extern	TIM_HandleTypeDef htim3;
@@ -88,33 +85,21 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define __DEBUG__
+
+/* USER CODE BEGIN Private defines */
 /* PORTA */
-#define ROE_A						GPIO_PIN_5
-#define UART2_RW					GPIO_PIN_8
-#define SYS_RUN						GPIO_PIN_11
-#define EEP_WP						GPIO_PIN_12
-
-
-#define	LED_RUN_ON					HAL_GPIO_WritePin(GPIOA, SYS_RUN, GPIO_PIN_RESET)
-#define	LED_RUN_OFF					HAL_GPIO_WritePin(GPIOA, SYS_RUN, GPIO_PIN_SET)
-#define	LED_RUN_TOG					HAL_GPIO_TogglePin(GPIOA, SYS_RUN)
-
-
-
+#define	LED_RUN_ON					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, GPIO_PIN_RESET)
+#define	LED_RUN_OFF					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, GPIO_PIN_SET)
+#define	LED_RUN_TOG					HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_11)
 /* PORT D */
-#define SV_SIGN1					GPIO_PIN_8
-#define SV_SIGN2					GPIO_PIN_9
-#define SV_SIGN3					GPIO_PIN_10
-#define SV_SIGN4					GPIO_PIN_11
-#define	SV1_DIR_CW					HAL_GPIO_WritePin(GPIOD,SV_SIGN1,GPIO_PIN_SET)
-#define	SV1_DIR_CCW					HAL_GPIO_WritePin(GPIOD,SV_SIGN1,GPIO_PIN_RESET)
-#define	SV2_DIR_CW					HAL_GPIO_WritePin(GPIOD,SV_SIGN2,GPIO_PIN_SET)
-#define	SV2_DIR_CCW					HAL_GPIO_WritePin(GPIOD,SV_SIGN2,GPIO_PIN_RESET)
-#define	SV3_DIR_CW					HAL_GPIO_WritePin(GPIOD,SV_SIGN3,GPIO_PIN_SET)
-#define	SV3_DIR_CCW					HAL_GPIO_WritePin(GPIOD,SV_SIGN3,GPIO_PIN_RESET)	
-#define	SV4_DIR_CW					HAL_GPIO_WritePin(GPIOD,SV_SIGN4,GPIO_PIN_SET)
-#define	SV4_DIR_CCW					HAL_GPIO_WritePin(GPIOD,SV_SIGN4,GPIO_PIN_RESET)
+#define	SV1_DIR_CW					HAL_GPIO_WritePin(GPIOD,GPIO_PIN_8,GPIO_PIN_SET)
+#define	SV1_DIR_CCW					HAL_GPIO_WritePin(GPIOD,GPIO_PIN_8,GPIO_PIN_RESET)
+#define	SV2_DIR_CW					HAL_GPIO_WritePin(GPIOD,GPIO_PIN_9,GPIO_PIN_SET)
+#define	SV2_DIR_CCW					HAL_GPIO_WritePin(GPIOD,GPIO_PIN_9,GPIO_PIN_RESET)
+#define	SV3_DIR_CW					HAL_GPIO_WritePin(GPIOD,GPIO_PIN_10,GPIO_PIN_SET)
+#define	SV3_DIR_CCW					HAL_GPIO_WritePin(GPIOD,GPIO_PIN_10,GPIO_PIN_RESET)	
+#define	SV4_DIR_CW					HAL_GPIO_WritePin(GPIOD,GPIO_PIN_11,GPIO_PIN_SET)
+#define	SV4_DIR_CCW					HAL_GPIO_WritePin(GPIOD,GPIO_PIN_11,GPIO_PIN_RESET)
 
 
 
@@ -204,22 +189,22 @@ enum outport_name {
 	out_port42,
 	heating_on,				//out_port43,
 	out_port44,			
-	out_port45,
+	fablic_heating_on,		//out_port45,
 	out_port46,
 	towerlamp_r_on,			//out_port47
 	// OUTPUT CH6
 	towerlamp_y_on,			//out_port48
-	towerlamp_g_on,			//out_port49   18
+	towerlamp_g_on,			//out_port49   
 	out_port50,			
 	out_port51,
-	fix_machine_on,
-	out_port53,
-	out_port54,
+	etc_machine_on,			//out_port52
+	fablic_aircylinder,		//out_port53
+	band_welding_on,		//out_port54
 	out_port55,
 	// OUTPUT CH7
-	out_port56,
+	out_port56,		
 	out_port57,
-	out_port58,
+	out_port58,		
 	out_port59,
 	out_port60,
 	out_port61,
@@ -236,6 +221,10 @@ enum outport_name {
 // -------------------------------------------------------------------------------------------------------------
 // INPUT CH 0
 #define SW_VACCUM_OPEN_CLOSE        IN_PORT_DATA[IN_CH0].bit5   // [SWITCH] 0: ON, 1: OFF
+#define SEN_WELDINF_CYLINDER_CLOSE  IN_PORT_DATA[IN_CH0].bit6   // [SENSOR] 0: CLOSE, 1: OPEN
+#define SEN_WELDINF_CYLINDER_OPEN   IN_PORT_DATA[IN_CH0].bit7   // [SENSOR] 0: CLOSE, 1: OPEN
+
+
 
 // INPUT CH 1
 #define SEN_FABRIC_CHECK1           IN_PORT_DATA[IN_CH1].bit6   // [SWITCH] 1: ON, 0: OFF or another
@@ -257,28 +246,29 @@ enum outport_name {
 #define SEN_MOVING_HOME             IN_PORT_DATA[IN_CH4].bit3   // [SENSOR] MOVING HOME                 1: ON, 0: OFF
 #define SEN_BAND_LOST1              IN_PORT_DATA[IN_CH4].bit4   // [SENSOR] BAND1 LOST                  1: ON, 0: OFF
 #define SEN_BAND_LOST2              IN_PORT_DATA[IN_CH4].bit5   // [SENSOR] BAND2 LOST                  1: ON, 0: OFF
+#define SEN_UPPER_THREAD_CUT_OFF    IN_PORT_DATA[IN_CH4].bit6   // [SENSOR] UPPER SEWING THREAD         1: CUT OFF DETECT, 0: NORMAL
+
 
 // INPUT CH 5
-
 #define SEN_LOOPER_HOME             IN_PORT_DATA[IN_CH5].bit0   // [SENSOR] LOOPER HOME                 0: ON, 1: OFF
+#define SEN_FABLICAIRCYLINDER_CLOSE IN_PORT_DATA[IN_CH5].bit1   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
+#define SEN_FABLICAIRCYLINDER_OPEN  IN_PORT_DATA[IN_CH5].bit2   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
+
 #define SEN_FABLICCLAMP_CLOSE       IN_PORT_DATA[IN_CH5].bit4   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
 #define SEN_BANDCLAMP_CLOSE         IN_PORT_DATA[IN_CH5].bit5   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
-#define SEN_UPPER_THREAD_CUT_OFF    IN_PORT_DATA[IN_CH5].bit6   // [SENSOR] UPPER SEWING THREAD         1: CUT OFF DETECT, 0: NORMAL
-
-
-
-
-
-
+#define SEN_FABLICCLAMP_OPEN        IN_PORT_DATA[IN_CH5].bit6   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
+#define SEN_BANDCLAMP_OPEN          IN_PORT_DATA[IN_CH5].bit7   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
 
 // INPUT CH 6
+#define SEN_NEEDLE_HOME             IN_PORT_DATA[IN_CH6].bit0   // [SENSOR] NEEDLE HOME                 0: ON, 1: OFF
+#define SEN_LIFTING_UP_LIM          IN_PORT_DATA[IN_CH6].bit1   // [SENSOR] LIFTING UP LIMITE           1: ON, 0: OFF
+
 #define SW_AUTO_MANUAL              IN_PORT_DATA[IN_CH6].bit3   // [SWITCH] Mode select  1: MANUAL MODE, 0: AUTO MODE
 #define SW_AUTO_START               IN_PORT_DATA[IN_CH6].bit4   // [PUSH BT] 0: ON, 1: OFF
 #define SW_AUTO_STOP                IN_PORT_DATA[IN_CH6].bit5   // [PUSH BT] 0: ON, 1: OFF
-#define SEN_LIFTING_UP_LIM          IN_PORT_DATA[IN_CH6].bit1   // [SENSOR] LIFTING UP LIMITE           1: ON, 0: OFF
-#define SEN_NEEDLE_HOME             IN_PORT_DATA[IN_CH6].bit0   // [SENSOR] NEEDLE HOME                 0: ON, 1: OFF
-#define SW_TEST_SEWING		 		IN_PORT_DATA[IN_CH6].bit7	// [PUSH BT] 0: ON, 1: OFF
 #define SW_MANUAL_STOP		 		IN_PORT_DATA[IN_CH6].bit6	// [PUSH BT] 0: ON, 1: OFF
+#define SW_TEST_SEWING		 		IN_PORT_DATA[IN_CH6].bit7	// [PUSH BT] 0: ON, 1: OFF
+
 
 
 // INPUT CH 7
@@ -302,6 +292,7 @@ enum outport_name {
 
 #define	SEW_1CYCLE_PULSE            1600//1600
 #define	SEW_OFF_FABRIC_PULSE        1350// 1400 short needle, 1200 long needle
+#define	SEWMOVING_OFF_FABRIC_PULSE  1300
 
 // AC SERVO
 #define	FRQ_25KHz					39		// very fast
@@ -319,8 +310,6 @@ enum outport_name {
 #define	FRQ_62Hz					15999	// 62Hz
 
 #define	FRQ_RC_SV                   FRQ_62Hz
-
-
 
 #define	MOV_1MM_CLOCK				60
 #define	MOV_2MM_CLOCK				121
@@ -361,59 +350,58 @@ enum outport_name {
 #define INIT_SERVORSTOP_SPEED		FRQ_200Hz
 #define SEWING_TICK                 7
 
-#define FORWORD					0
-#define BACKWORD				1
+#define FORWORD							0
+#define BACKWORD						1
 
-#define ROTATE_TYPE_FORWORD		1
-#define ROTATE_TYPE_BACKWORD	2
+#define ROTATE_TYPE_FORWORD				1
+#define ROTATE_TYPE_BACKWORD			2
 
-#define UPDOWN_TYPE_UP			1
-#define UPDOWN_TYPE_DOWN 		2
+#define UPDOWN_TYPE_UP					1
+#define UPDOWN_TYPE_DOWN 				2
 
-#define ROTATE_TYPE_CCW 		1
-#define ROTATE_TYPE_CW 			0
+#define ROTATE_TYPE_CCW 				1
+#define ROTATE_TYPE_CW 					0
 
-#define VACCUM_ON 			1
-#define VACCUM_OFF 			0
+#define VACCUM_ON 						1
+#define VACCUM_OFF 						0
 
-#define HEAT_ON 			1
-#define HEAT_OFF 			0
+#define HEAT_ON 						1
+#define HEAT_OFF 						0
 
-#define OFF 			0
-#define ON 				1
-#define MOVE_END 		2
-#define COMPLATE 		3
-#define ON_DOWN 		2
-#define ON_UP 			3
-#define RC_INCREASE  	1
-#define RC_DECREASE  	2
-#define ON_FORWORD   	1
-#define ON_BACKWORD  	2
-#define ON_RIGHT  	 	1
-#define ON_LEFT  	 	2
+#define OFF 							0
+#define ON 								1
+#define MOVE_END 						2
+#define COMPLATE 						3
+#define ON_DOWN 						2
+#define ON_UP 							3
+#define RC_INCREASE  					1
+#define RC_DECREASE  					2
+#define ON_FORWORD   					1
+#define ON_BACKWORD  					2
+#define ON_RIGHT  	 					1
+#define ON_LEFT  	 					2
+#define SWEING_WAIT       				1
+#define ETCMACHINE_WAIT   				2
 
+#define RIGHTLEFT_MOVE  				1
+#define UPDOWN_MOVE  					2
+#define JOG_MOVE  						3
 
-#define RIGHTLEFT_MOVE  1
-#define UPDOWN_MOVE  	2
-#define JOG_MOVE  		3
+#define TIMECHECK_DELAY 				1
 
+#define MANUAL_READY					0
+#define INIT_NEEDLE_PUSH 				1
+#define INIT_LOOFER_PUSH 				2
+#define INIT_MOVING_PUSH 				3
+#define INIT_LIFTING_PUSH 				4
+#define INIT_TEST_PUSH 					5
+#define RUN_ROTARYENCORDER_PUSH	 		6
 
-#define TIMECHECK_DELAY 1
+#define AUTO_READY 						0
+#define AUTO_SEWING_PUSH 				1
+#define AUTO_ETCMACHINE_PUSH 			2
 
-
-#define MANUAL_READY			0
-#define INIT_NEEDLE_PUSH 		1
-#define INIT_LOOFER_PUSH 		2
-#define INIT_MOVING_PUSH 		3
-#define INIT_LIFTING_PUSH 		4
-#define INIT_TEST_PUSH 			5
-#define RUN_ROTARYENCORDER_PUSH 6
-
-#define AUTO_READY 				0
-#define AUTO_SEWING_PUSH 		1
-
-#define CHECK_READY 			0
-
+#define CHECK_READY 					0
 
 #define AUTO_INIT 						0
 #define AUTO_MOVING_HOME_CHECK			1
@@ -444,7 +432,6 @@ enum outport_name {
 #define AUTO_BANDCLAMP_CLOSE_CHECK_2	26
 #define AUTO_VOCCUM_OFF					27
 
-
 #define MOVING_INIT_FAIL				1
 #define NEEDLE_INIT_FAIL				2
 #define LOOPER_INIT_FAIL				3
@@ -460,17 +447,32 @@ enum outport_name {
 #define AUTO_RC_HOME_FAIL				13
 #define AUTO_MOVING_HOME_CHECK2_FAIL	14
 
-#define RED_ERROR		0
-#define YELLOW_RUN		1
-#define GREEN_READY		2
-#define RED_COM_ERROR	3
+#define ETC_MACHINE_READY 				0
+#define ETC_MACHINE_RUN					1
+#define ETC_MACHINE_STOP				2
+#define ETC_MACHINE_HEATING_ON			3
+#define ETC_MACHINE_HEATTINGDELAY		4
+#define ETC_MACHINE_CUTTING_TOP			5
+#define ETC_MACHINE_CUTDELAY			6
+#define ETC_MACHINE_HEATING_OFF			7
+#define ETC_MACHINE_CUTTING_HOME		8
+#define ETC_MACHINE_RUN1				9
+#define ETC_MACHINE_STOP1				10
+#define ETC_MACHINE_WELDING_DOWN		11
+#define ETC_MACHINE_WELDINGDELAY		12
+#define ETC_MACHINE_WELDING_HOME		13
+#define ETC_MACHINE_RUN2				14
+#define ETC_MACHINE_FINISH_RUN			15
 
+#define RED_ERROR						0
+#define YELLOW_RUN						1
+#define GREEN_READY						2
+#define RED_COM_ERROR					3
 
 #define	COM_STX1						0x02
 #define	COM_STX2						0x0b
 #define	COM_ETX1						0x0d
 #define	COM_ETX2						0x0a
-
 
 #define	COMMAND_IN						0x01
 #define	COMMAND_OUT						0x02
@@ -487,8 +489,16 @@ enum outport_name {
 #define	COM_BUF_MAX						50
 #define	RECEIVE_DATA_MAX				7
 
+#define RED_LAMP_FAST_TOGGLE			250
+#define RED_LAMP_SLOW_TOGGLE			500
 
 
+
+extern unsigned char	readBufferCount;			//PC통신을 위해 배열정보 및 변수
+extern unsigned char	insertBufferCount;	
+extern unsigned char	readBuffer[COM_BUF_MAX];
+static unsigned char	readData[RECEIVE_DATA_MAX];
+static unsigned char	DataCount;
 
 static	unsigned int	g_auto_sewing_length;
 static	unsigned int	g_test_sewing_length;
@@ -498,13 +508,14 @@ static	unsigned int	g_test_sewing_speed;
 static	unsigned int	g_lifting_speed;
 static	unsigned int	g_moving_speed;
 static	unsigned int	g_test_sewingspeed;
-static  unsigned int 	g_target_speed;
-
+static  unsigned int 	g_target_speed;				//테스트스윙이나 오토스윙시 스피드를 HAL_GPIO_EXTI_Callback()에서 사용하기 위해
+static  uint8_t 		g_attachband_length;		//달기밴드를 접합할 거리값
+static  uint8_t 		g_fablic_cut_position;		//원단 절단을 위한 거리값
 
 static	unsigned int	g_manual_status;			//manual-mode button/switch status
 static	unsigned int	g_auto_status;  			//auto-mode button/switch status
 static	unsigned int	g_autosewing_status;		//auto-mod operate status
-static	unsigned int	g_auto_wait;				//오토모드 자동스윙 동작중 STOP
+static	unsigned int	g_auto_wait;				//오토모드 자동스윙 동작중 STOP          0:OFF   1:SWEING_WAIT   2:ETCMACHINE_WAIT
 static	unsigned int	g_timer_delay_on;			//지연을 위한 플래그
 
 static	unsigned int	g_move_target_count;  		//interrupe plus count
@@ -517,8 +528,6 @@ static	unsigned int	g_timer_delay_count;		//지연동작을 위한 카운트
 static  uint32_t  		g_needle_puls_target_count; //autosweing or testsweing의 목표거리값
 static  uint32_t  		g_prev_needle_puls_count;   //autosweing or testsweing의 stop시 이전값을 저장
 
-
-
 static	unsigned int	g_sewing_servor_status; 	//servo moter operate status
 static	unsigned int	g_needle_servor_status;
 static	unsigned int	g_looper_servor_status;
@@ -527,90 +536,37 @@ static	unsigned int	g_lifting_servor_status;
 static	unsigned int	g_rc_servor_status;
 static	unsigned int	g_rotaryencorder_status;
 static	unsigned int 	g_sewingmoving_servor_status;
-static	unsigned int	g_prev_manual_status;		//메뉴얼모드의 이전상태값을 저장하여 OFF->ON시 최초 한번만 기능정의를 위해 
 static  uint8_t 		g_check_prevstatus;			//g_check_prevstatus() 개별기능의 시간을 설정하여 타임오버에러를 발생시키기 위해 
-static	unsigned int	g_prev_autosewing_status;	//오토모드 자동스윙 동작중 STOP기능을 위해 이전 오토모드 상태를 저장
+static	unsigned int	g_prev_autosewing_status;	//send2PCautoSewingStatus()에서 동일한 상태를 전송하지 않기 위해...
+static unsigned char	g_etc_machine_status;
 
+static	unsigned int	g_rotaryencorder_count;			//로터리엔코더 엔코더카운트
+static	unsigned int	g_rotaryencorder_rorate;		//로터리엔코더의 회전방향
+static	unsigned int	g_prev_rotaryencorder_rorate;	//로터리엔코더의 이전회전방향==>방향이 바뀌었는지 체크하기 위해
+static	unsigned int	g_prev_rotaryencorder_z_on;		//로터리엔코더의 z버튼의 이전값==>최초 한번만 동작하기 위해
 
-static	unsigned int	g_rotaryencorder_count;		//로터리엔코더관련 변수
-static	unsigned int	g_rotaryencorder_rorate;
-static	unsigned int	g_prev_rotaryencorder_rorate;
-static	unsigned int	g_prev_rotaryencorder_z_on;
-
-
-static	unsigned int	g_error_count;				//에러 및 램프관련 변수
+static	unsigned int	g_error_count;				//적색램프의 점멸간격을 위한 카운트....RED_COM_ERROR:250(빠르게 점멸)         RED_ERROR:500(느리게 점멸)     에러 및 램프관련 변수
 static  uint8_t 		g_lamp_mode;
-static  uint8_t 		g_prev_lamp_mode;
-static  uint8_t 		g_timer_errlamp_delay;			
+static  uint8_t 		g_prev_lamp_mode;			//g_lamp_mode의 이전값과 현재값을 비교하여 에러램프를 처리.....이전 RED_ERROR상태에서 현재GREEN_READY변경없음 RED_ERROR확인 후, 구동시켜서 YELLOW_RUN, 그리고 GREEN_READY
 
 static  unsigned int 	g_check_time_count;			//checkRunTime()함수 사용
-
 static  uint8_t 		g_prev_sw_auto_manual;		//checkPrevRunStatus() 스위치변경시 초기화상태인지 진행상태인지를 판다...
 static  uint8_t 		g_change_sw_auto_manual;	//checkPrevRunStatus()  true:진행   false:초기화
 
 static	uint8_t    		g_prev_sewing_err;			//PC전송하기위.....새로운 에러만 전송
 static	uint8_t    		g_sewing_err;				//머신에러상태
-
-static unsigned int    	g_rcDuty[2];				//rc 서보를 위한 MIN,MAX
+static  unsigned int    g_rcDuty[2];				//rc 서보를 위한 MIN,MAX
 
 static	uint8_t    		g_receive_flag;				//통신용 플래그 및 변수
 static	unsigned int 	g_com_wakeup_count;
 static	uint8_t  		g_com_wakeup_flag;
 static	uint8_t  		g_cycle_send_flag;
 
-
-extern unsigned char	readBufferCount;			//PC통신을 위해 배열정보 및 변수
-extern unsigned char	insertBufferCount;	
-extern unsigned char	readBuffer[COM_BUF_MAX];
-static unsigned char	readData[RECEIVE_DATA_MAX];
-static unsigned char	DataCount;
-
-static  uint8_t 		g_attachband_length;
-static  uint8_t 		g_fablic_cut_position;
-
-
+static	uint32_t  		g_lenth_encode_count;		//재봉거리 측정을 위한 엔코드카운트값
+static	uint32_t  		g_prev_lenth_encode_count;	//wait를 위해 이전값 저장
+static 	uint8_t  		g_etc_machine_run;			//무창기계 작동여부...g_lenth_encode_count의 증가(무창기계가 ON인 경우만 g_lenth_encode_count동작)
 
 static unsigned char	g_test_status;
-
-
-
-static unsigned char	g_etc_machine_status;
-
-
-
-#define ETC_MACHINE_READY 				0
-#define ETC_MACHINE_STOP				1
-#define ETC_MACHINE_HEATING_ON			2
-#define ETC_MACHINE_CUTTING_TOP			3
-#define ETC_MACHINE_CUTDELAY			4
-#define ETC_MACHINE_HEATING_OFF			5
-#define ETC_MACHINE_CUTTING_HOME		6
-#define ETC_MACHINE_RUN					7
-#define ETC_MACHINE_STOP2				8
-#define ETC_MACHINE_WELDING				9
-#define ETC_MACHINE_RUN2				10
-#define ETC_MACHINE_FINISH_RUN			11
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -620,12 +576,10 @@ void send2PCerrorStatus(void);
 void receiveFromPC(void);
 void send2PCautoSewingStatus(void);
 void sendCycle2PC(void);
-
-
 void manualMode(void);
 void exeClamp(unsigned char outportName, unsigned char Mode);
 void exeVaccum(unsigned char outportName, unsigned char Mode);
-void exelHeat(unsigned char outportName, unsigned char Mode);
+void exeHeat(unsigned char outportName, unsigned char Mode);
 void exeLifting( int Move_length, unsigned char Rotate);
 void exeMoving( int Move_length,unsigned int Speed,unsigned char Rotate);
 void exeAutoSewing(void);
@@ -634,7 +588,6 @@ void exeSewingMoving(unsigned int Move_length,unsigned int Speed);
 void exeDelay(unsigned int Delay_time, unsigned char Mode);
 void exeRC(unsigned char Mode);
 void exeTestSewing(unsigned int sewingLength,unsigned int Speed);
-
 void emergnecyMode(void);
 void servorStart(uint32_t Channel,unsigned int Arr,unsigned char Rotate);
 void servorStop(uint32_t Channel);
@@ -643,36 +596,27 @@ void initLooper(void);
 void initLifting(void);
 void initMoving(unsigned int Speed);
 void bandCutting(void);
-
 void testSweingMoving(void);
 void exeNeedle(unsigned int Move_Pulse,unsigned char Rotate);
-
-
-
 void stopManual(void);
 void autoMode(void);
 void stopAutoSewing(void);
 void autoSewing(void);
 void exeRotaryEncorder(void);
 void initVariables(void);
-
 void runTowerLamp(void);
 uint8_t checkRunTime(unsigned int checkTime, uint8_t machineStatus, uint8_t errCode );
 uint8_t checkPrevRunStatus(void);
-
 void exeJogSewing(unsigned int Speed);
-
 void startAutoSewing(void);
 void checkSweingLength(void);
+void exeEtcMachine(unsigned char outportName, unsigned char Mode);
+void exeAircylinder(unsigned char outportName, unsigned char Mode);
+void exeWelding(unsigned char outportName, unsigned char Mode);
 
 
 
 
-
-
-
-
-/* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
 

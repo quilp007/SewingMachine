@@ -21,14 +21,12 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f4xx_it.h"
-
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
 #include "vfdn_adc.h"
 #include "vfdn_spi.h"
 #include "vfdn_acsv.h"
 #include "vfdn_io_cntl.h"
-
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -197,7 +195,7 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
-    /* USER CODE BEGIN SysTick_IRQn 0 */
+  /* USER CODE BEGIN SysTick_IRQn 0 */
     
 	if(sysLedCnt == 0)
 	{
@@ -208,11 +206,11 @@ void SysTick_Handler(void)
 	else
 		sysLedCnt--;
 	
-    /* USER CODE END SysTick_IRQn 0 */
-    HAL_IncTick();
-    /* USER CODE BEGIN SysTick_IRQn 1 */
+  /* USER CODE END SysTick_IRQn 0 */
+  HAL_IncTick();
+  /* USER CODE BEGIN SysTick_IRQn 1 */
 
-    /* USER CODE END SysTick_IRQn 1 */
+  /* USER CODE END SysTick_IRQn 1 */
 }
 
 /******************************************************************************/
@@ -227,13 +225,13 @@ void SysTick_Handler(void)
   */
 void EXTI0_IRQHandler(void)
 {
-	/* USER CODE BEGIN EXTI0_IRQn 0 */
-	
-	/* USER CODE END EXTI0_IRQn 0 */
-	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
-	/* USER CODE BEGIN EXTI0_IRQn 1 */
+  /* USER CODE BEGIN EXTI0_IRQn 0 */
 
-	/* USER CODE END EXTI0_IRQn 1 */
+  /* USER CODE END EXTI0_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
+  /* USER CODE BEGIN EXTI0_IRQn 1 */
+
+  /* USER CODE END EXTI0_IRQn 1 */
 }
 
 /**
@@ -241,13 +239,13 @@ void EXTI0_IRQHandler(void)
   */
 void EXTI1_IRQHandler(void)
 {
-	/* USER CODE BEGIN EXTI1_IRQn 0 */
+  /* USER CODE BEGIN EXTI1_IRQn 0 */
 
-	/* USER CODE END EXTI1_IRQn 0 */
-	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1);
-	/* USER CODE BEGIN EXTI1_IRQn 1 */
+  /* USER CODE END EXTI1_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1);
+  /* USER CODE BEGIN EXTI1_IRQn 1 */
 
-	/* USER CODE END EXTI1_IRQn 1 */
+  /* USER CODE END EXTI1_IRQn 1 */
 }
 
 /**
@@ -255,13 +253,13 @@ void EXTI1_IRQHandler(void)
   */
 void EXTI2_IRQHandler(void)
 {
-	/* USER CODE BEGIN EXTI2_IRQn 0 */
-	
-	/* USER CODE END EXTI2_IRQn 0 */
-	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_2);
-	/* USER CODE BEGIN EXTI2_IRQn 1 */
+  /* USER CODE BEGIN EXTI2_IRQn 0 */
 
-	/* USER CODE END EXTI2_IRQn 1 */
+  /* USER CODE END EXTI2_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_2);
+  /* USER CODE BEGIN EXTI2_IRQn 1 */
+
+  /* USER CODE END EXTI2_IRQn 1 */
 }
 
 /**
@@ -269,13 +267,13 @@ void EXTI2_IRQHandler(void)
   */
 void EXTI3_IRQHandler(void)
 {
-	/* USER CODE BEGIN EXTI3_IRQn 0 */
+  /* USER CODE BEGIN EXTI3_IRQn 0 */
 
-	/* USER CODE END EXTI3_IRQn 0 */
-	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_3);
-	/* USER CODE BEGIN EXTI3_IRQn 1 */
+  /* USER CODE END EXTI3_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_3);
+  /* USER CODE BEGIN EXTI3_IRQn 1 */
 
-	/* USER CODE END EXTI3_IRQn 1 */
+  /* USER CODE END EXTI3_IRQn 1 */
 }
 
 /**
@@ -283,13 +281,13 @@ void EXTI3_IRQHandler(void)
   */
 void EXTI9_5_IRQHandler(void)
 {
-	/* USER CODE BEGIN EXTI9_5_IRQn 0 */
+  /* USER CODE BEGIN EXTI9_5_IRQn 0 */
 
-	/* USER CODE END EXTI9_5_IRQn 0 */
-	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);
-	/* USER CODE BEGIN EXTI9_5_IRQn 1 */
+  /* USER CODE END EXTI9_5_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);
+  /* USER CODE BEGIN EXTI9_5_IRQn 1 */
 
-	/* USER CODE END EXTI9_5_IRQn 1 */
+  /* USER CODE END EXTI9_5_IRQn 1 */
 }
 
 /**
@@ -297,13 +295,13 @@ void EXTI9_5_IRQHandler(void)
   */
 void TIM2_IRQHandler(void)
 {
-	/* USER CODE BEGIN TIM2_IRQn 0 */
-	
-	/* USER CODE END TIM2_IRQn 0 */
-	HAL_TIM_IRQHandler(&htim2);
-	/* USER CODE BEGIN TIM2_IRQn 1 */
+  /* USER CODE BEGIN TIM2_IRQn 0 */
 
-	/* USER CODE END TIM2_IRQn 1 */
+  /* USER CODE END TIM2_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim2);
+  /* USER CODE BEGIN TIM2_IRQn 1 */
+
+  /* USER CODE END TIM2_IRQn 1 */
 }
 
 /**
@@ -311,13 +309,13 @@ void TIM2_IRQHandler(void)
   */
 void USART1_IRQHandler(void)
 {
-	/* USER CODE BEGIN USART1_IRQn 0 */
-	
-	/* USER CODE END USART1_IRQn 0 */
-	HAL_UART_IRQHandler(&huart1);
-	/* USER CODE BEGIN USART1_IRQn 1 */
+  /* USER CODE BEGIN USART1_IRQn 0 */
 
-	/* USER CODE END USART1_IRQn 1 */
+  /* USER CODE END USART1_IRQn 0 */
+  HAL_UART_IRQHandler(&huart1);
+  /* USER CODE BEGIN USART1_IRQn 1 */
+
+  /* USER CODE END USART1_IRQn 1 */
 }
 
 /**
@@ -325,13 +323,13 @@ void USART1_IRQHandler(void)
   */
 void USART2_IRQHandler(void)
 {
-	/* USER CODE BEGIN USART2_IRQn 0 */
+  /* USER CODE BEGIN USART2_IRQn 0 */
 
-	/* USER CODE END USART2_IRQn 0 */
-	HAL_UART_IRQHandler(&huart2);
-	/* USER CODE BEGIN USART2_IRQn 1 */
+  /* USER CODE END USART2_IRQn 0 */
+  HAL_UART_IRQHandler(&huart2);
+  /* USER CODE BEGIN USART2_IRQn 1 */
 
-	/* USER CODE END USART2_IRQn 1 */
+  /* USER CODE END USART2_IRQn 1 */
 }
 
 /**
@@ -339,7 +337,7 @@ void USART2_IRQHandler(void)
   */
 void USART3_IRQHandler(void)
 {
-	 /* USER CODE BEGIN UART3_IRQn 0 */
+  /* USER CODE BEGIN UART3_IRQn 0 */
 	 if ((__HAL_UART_GET_FLAG(&huart3, UART_FLAG_RXNE) != RESET) && (__HAL_UART_GET_IT_SOURCE(&huart3, UART_IT_RXNE) != RESET)) 
 	 { 
 		readBuffer[insertBufferCount++] = (unsigned char)(huart3.Instance->DR & 0x00ff);
@@ -356,17 +354,31 @@ void USART3_IRQHandler(void)
 }
 
 /**
+  * @brief This function handles EXTI line[15:10] interrupts.
+  */
+void EXTI15_10_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI15_10_IRQn 0 */
+
+  /* USER CODE END EXTI15_10_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_10);
+  /* USER CODE BEGIN EXTI15_10_IRQn 1 */
+
+  /* USER CODE END EXTI15_10_IRQn 1 */
+}
+
+/**
   * @brief This function handles UART4 global interrupt.
   */
 void UART4_IRQHandler(void)
 {
-	/* USER CODE BEGIN UART4_IRQn 0 */
+  /* USER CODE BEGIN UART4_IRQn 0 */
 
-	/* USER CODE END UART4_IRQn 0 */
-	HAL_UART_IRQHandler(&huart4);
-	/* USER CODE BEGIN UART4_IRQn 1 */
+  /* USER CODE END UART4_IRQn 0 */
+  HAL_UART_IRQHandler(&huart4);
+  /* USER CODE BEGIN UART4_IRQn 1 */
 
-	/* USER CODE END UART4_IRQn 1 */
+  /* USER CODE END UART4_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

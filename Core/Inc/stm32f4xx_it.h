@@ -26,14 +26,6 @@
  extern "C" {
 #endif
 
-
-unsigned char	insertBufferCount;	
-unsigned char	readBufferCount;	
-unsigned char	readBuffer[COM_BUF_MAX];
-
-
-
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -41,6 +33,9 @@ unsigned char	readBuffer[COM_BUF_MAX];
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+unsigned char	insertBufferCount;	
+unsigned char	readBufferCount;	
+unsigned char	readBuffer[COM_BUF_MAX];
 
 /* USER CODE END ET */
 
@@ -73,6 +68,7 @@ void TIM2_IRQHandler(void);
 void USART1_IRQHandler(void);
 void USART2_IRQHandler(void);
 void USART3_IRQHandler(void);
+void EXTI15_10_IRQHandler(void);
 void UART4_IRQHandler(void);
 /* USER CODE BEGIN EFP */
 
