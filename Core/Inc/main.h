@@ -176,20 +176,20 @@ enum outport_name {
 	out_port31,
 	// OUTPUT CH4		
 	out_port32,		
-	band_clamp_1_on,		//out_port33,
+	welding_cylinder_on,		//out_port33,
 	out_port34,
-	band_clamp_2_on,		//out_port35,
+	cut_cylinder_on,		//out_port35,
 	out_port36,
-	fablic_clamp_1_on, 		//out_port37,
+	band_clamp_1_on, 		//out_port37,
 	out_port38,	
-	fablic_clamp_2_on,		//out_port39,
+	band_clamp_2_on,		//out_port39,
 	// OUTPUT CH5
 	out_port40,		
 	vaccum_on, 				//out_port41,
 	out_port42,
 	heating_on,				//out_port43,
 	out_port44,			
-	fablic_heating_on,		//out_port45,
+	out_port45,		//out_port45,
 	out_port46,
 	towerlamp_r_on,			//out_port47
 	// OUTPUT CH6
@@ -198,9 +198,9 @@ enum outport_name {
 	out_port50,			
 	out_port51,
 	etc_machine_on,			//out_port52
-	fablic_aircylinder,		//out_port53
-	band_welding_on,		//out_port54
-	out_port55,
+	out_port53,		
+	out_port54,		
+	fablic_heating_on,		//out_port55
 	// OUTPUT CH7
 	out_port56,		
 	out_port57,
@@ -251,18 +251,18 @@ enum outport_name {
 
 // INPUT CH 5
 #define SEN_LOOPER_HOME             IN_PORT_DATA[IN_CH5].bit0   // [SENSOR] LOOPER HOME                 0: ON, 1: OFF
-#define SEN_FABLICAIRCYLINDER_CLOSE IN_PORT_DATA[IN_CH5].bit1   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
-#define SEN_FABLICAIRCYLINDER_OPEN  IN_PORT_DATA[IN_CH5].bit2   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
+#define SEN_WELDINF_CYLINDER_CLOSE  IN_PORT_DATA[IN_CH5].bit1   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
+#define SEN_WELDINF_CYLINDER_OPEN   IN_PORT_DATA[IN_CH5].bit2   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
 
-#define SEN_FABLICCLAMP_CLOSE       IN_PORT_DATA[IN_CH5].bit4   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
+#define SEN_FABLICAIRCYLINDER_CLOSE IN_PORT_DATA[IN_CH5].bit4   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
 #define SEN_BANDCLAMP_CLOSE         IN_PORT_DATA[IN_CH5].bit5   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
-#define SEN_FABLICCLAMP_OPEN        IN_PORT_DATA[IN_CH5].bit6   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
+#define SEN_FABLICAIRCYLINDER_OPEN  IN_PORT_DATA[IN_CH5].bit6   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
 #define SEN_BANDCLAMP_OPEN          IN_PORT_DATA[IN_CH5].bit7   // [SENSOR] LOOPER HOME                 0: CLOSE, 1: OPEN
 
 // INPUT CH 6
 #define SEN_NEEDLE_HOME             IN_PORT_DATA[IN_CH6].bit0   // [SENSOR] NEEDLE HOME                 0: ON, 1: OFF
 #define SEN_LIFTING_UP_LIM          IN_PORT_DATA[IN_CH6].bit1   // [SENSOR] LIFTING UP LIMITE           1: ON, 0: OFF
-
+#define SW_ETCMACHINE_RUN			IN_PORT_DATA[IN_CH6].bit2   // [PUSH BT] 0: ON, 1: OFF
 #define SW_AUTO_MANUAL              IN_PORT_DATA[IN_CH6].bit3   // [SWITCH] Mode select  1: MANUAL MODE, 0: AUTO MODE
 #define SW_AUTO_START               IN_PORT_DATA[IN_CH6].bit4   // [PUSH BT] 0: ON, 1: OFF
 #define SW_AUTO_STOP                IN_PORT_DATA[IN_CH6].bit5   // [PUSH BT] 0: ON, 1: OFF
@@ -276,8 +276,8 @@ enum outport_name {
 #define SW_LOOPER_HOME 				IN_PORT_DATA[IN_CH7].bit1	// [PUSH BT] 0: ON, 1: OFF
 #define SW_MOVING_HOME 				IN_PORT_DATA[IN_CH7].bit2	// [PUSH BT] 0: ON, 1: OFF
 #define SW_LIFTING_HOME 			IN_PORT_DATA[IN_CH7].bit3	// [PUSH BT] 0: ON, 1: OFF
-#define SW_CLAMP1_OPEN_CLOSE        IN_PORT_DATA[IN_CH7].bit4   // [SWITCH] 0: ON, 1: OFF
-#define SW_CLAMP2_OPEN_CLOSE        IN_PORT_DATA[IN_CH7].bit5   // [SWITCH] 0: ON, 1: OFF
+#define SW_WELDING_ON		        IN_PORT_DATA[IN_CH7].bit4   // [SWITCH] 0: ON, 1: OFF
+#define SW_CUT_AIRCYLINDER_ON	    IN_PORT_DATA[IN_CH7].bit5   // [SWITCH] 0: ON, 1: OFF
 #define SW_CLAMP3_OPEN_CLOSE        IN_PORT_DATA[IN_CH7].bit6   // [SWITCH] 0: ON, 1: OFF
 #define SW_CLAMP4_OPEN_CLOSE        IN_PORT_DATA[IN_CH7].bit7   // [SWITCH] 0: ON, 1: OFF
 
@@ -395,7 +395,10 @@ enum outport_name {
 #define INIT_MOVING_PUSH 				3
 #define INIT_LIFTING_PUSH 				4
 #define INIT_TEST_PUSH 					5
-#define RUN_ROTARYENCORDER_PUSH	 		6
+#define INIT_ETCRUN_PUSH				6
+#define INIT_WELDINGRUN_PUSH			7
+#define INIT_CUTFABLICRUN_PUSH			8
+#define RUN_ROTARYENCORDER_PUSH	 		9
 
 #define AUTO_READY 						0
 #define AUTO_SEWING_PUSH 				1
@@ -409,28 +412,26 @@ enum outport_name {
 #define AUTO_LOOPER_HOME_CHECK			3
 #define AUTO_LIFTING_HOME_CHECK			4
 #define AUTO_BANDCLAMP_CLOSE_CHECK		5
-#define AUTO_FABLICCLAMP_CLOSE_CHECK	6
-#define AUTO_LIFTUP_10MM_UP				7
-#define AUTO_MOVE_100MM					8
-#define AUTO_LIFTUP_10MM_DOWN			9
-#define AUTO_SEWING_RUN					10
-#define AUTO_SEWINGMOVDELAY				11
-#define AUTO_HEATING_ON					12
-#define AUTO_SEWINGMOVE_100MM			13
-#define AUTO_VOCCUM_ON					14
-#define AUTO_RC_TOP						15
-#define AUTO_CUTDELAY					16
-#define AUTO_HEATING_OFF				17
-#define AUTO_RC_HOME					18
-#define AUTO_FABLICCLAMP_OPEN_CHECK		29
-#define AUTO_BANDCLAMP_OPEN_CHECK		20
-#define AUTO_BANDCLAMP_OPEN_DELAY		21
-#define AUTO_LIFTUP_10MM_2				22
-#define AUTO_MOVE_BEFOREHOME			23
-#define AUTO_LIFTUP_10MM_3				24
-#define AUTO_MOVING_HOME_CHECK2			25
-#define AUTO_BANDCLAMP_CLOSE_CHECK_2	26
-#define AUTO_VOCCUM_OFF					27
+#define AUTO_LIFTUP_10MM_UP				6
+#define AUTO_MOVE_100MM					7
+#define AUTO_LIFTUP_10MM_DOWN			8
+#define AUTO_SEWING_RUN					9
+#define AUTO_SEWINGMOVDELAY				10
+#define AUTO_HEATING_ON					11
+#define AUTO_SEWINGMOVE_100MM			12
+#define AUTO_VOCCUM_ON					13
+#define AUTO_RC_TOP						14
+#define AUTO_CUTDELAY					15
+#define AUTO_HEATING_OFF				16
+#define AUTO_RC_HOME					17
+#define AUTO_BANDCLAMP_OPEN_CHECK		18
+#define AUTO_BANDCLAMP_OPEN_DELAY		19
+#define AUTO_LIFTUP_10MM_2				20
+#define AUTO_MOVE_BEFOREHOME			21
+#define AUTO_LIFTUP_10MM_3				22
+#define AUTO_MOVING_HOME_CHECK2			23
+#define AUTO_BANDCLAMP_CLOSE_CHECK_2	24
+#define AUTO_VOCCUM_OFF					25
 
 #define MOVING_INIT_FAIL				1
 #define NEEDLE_INIT_FAIL				2
@@ -450,24 +451,36 @@ enum outport_name {
 #define ETC_MACHINE_READY 				0
 #define ETC_MACHINE_RUN					1
 #define ETC_MACHINE_STOP				2
-#define ETC_MACHINE_HEATING_ON			3
-#define ETC_MACHINE_HEATTINGDELAY		4
-#define ETC_MACHINE_CUTTING_TOP			5
-#define ETC_MACHINE_CUTDELAY			6
-#define ETC_MACHINE_HEATING_OFF			7
-#define ETC_MACHINE_CUTTING_HOME		8
-#define ETC_MACHINE_RUN1				9
-#define ETC_MACHINE_STOP1				10
-#define ETC_MACHINE_WELDING_DOWN		11
-#define ETC_MACHINE_WELDINGDELAY		12
-#define ETC_MACHINE_WELDING_HOME		13
-#define ETC_MACHINE_RUN2				14
-#define ETC_MACHINE_FINISH_RUN			15
+#define ETC_MACHINE_CUTING_RUN          3
+#define ETC_MACHINE_RUN1				4
+#define ETC_MACHINE_STOP1				5
+#define ETC_MACHINE_WELDING_RUN         6
+#define ETC_MACHINE_RUN2				7
+#define ETC_MACHINE_FINISH_RUN			8
+
+
+#define ETC_MACHINE_HEATING_ON			1
+#define ETC_MACHINE_HEATTINGDELAY		2
+#define ETC_MACHINE_CUTTING_TOP			3
+#define ETC_MACHINE_CUTDELAY			4
+#define ETC_MACHINE_HEATING_OFF			5
+#define ETC_MACHINE_CUTTING_HOME		6
+#define ETC_CUT_COMPLATE				7
+
+#define ETC_MACHINE_WELDING_DOWN		1
+#define ETC_MACHINE_WELDINGDELAY		2
+#define ETC_MACHINE_WELDING_HOME		3
+#define ETC_WELDING_COMPLATE			4
+
+
+
 
 #define RED_ERROR						0
 #define YELLOW_RUN						1
 #define GREEN_READY						2
 #define RED_COM_ERROR					3
+#define YELLOW_RUN_WAIT					4
+
 
 #define	COM_STX1						0x02
 #define	COM_STX2						0x0b
@@ -492,6 +505,12 @@ enum outport_name {
 #define RED_LAMP_FAST_TOGGLE			250
 #define RED_LAMP_SLOW_TOGGLE			500
 
+#define ENCODE_COUNT_READY 				0
+#define ENCODE_COUNT_STEP1				1
+#define ENCODE_COUNT_STEP2				2
+#define ENCODE_COUNT_STEP3				3
+
+
 
 
 extern unsigned char	readBufferCount;			//PC통신을 위해 배열정보 및 변수
@@ -500,6 +519,7 @@ extern unsigned char	readBuffer[COM_BUF_MAX];
 static unsigned char	readData[RECEIVE_DATA_MAX];
 static unsigned char	DataCount;
 
+static  unsigned int	g_starting_position;
 static	unsigned int	g_auto_sewing_length;
 static	unsigned int	g_test_sewing_length;
 static	unsigned int	g_init_speed;
@@ -523,6 +543,7 @@ static	unsigned int	g_lift_target_count;
 static	unsigned int	g_needle_puls_count;
 static	unsigned int	g_looper_puls_count;
 static	unsigned int	g_move_count;
+static	unsigned int	g_re_move_count;			//로터리엔코더용 무빙카운트
 static	unsigned int	g_lift_count;
 static	unsigned int	g_timer_delay_count;		//지연동작을 위한 카운트
 static  uint32_t  		g_needle_puls_target_count; //autosweing or testsweing의 목표거리값
@@ -569,6 +590,20 @@ static 	uint8_t  		g_etc_machine_run;			//무창기계 작동여부...g_lenth_en
 static unsigned char	g_test_status;
 
 
+static unsigned char	g_fablic_cut_status;
+static unsigned char	g_welding_status;
+
+
+
+
+static unsigned char	g_prev_etc_machine_status;	//테스트확인용
+
+
+static unsigned char	g_encode_count_step;		//인터럽터의 카운트와 메인의 카운트가 시간차이로 인해 메인에서 정확한 카운트 불가능==>인터럽트 안에서 정확한 카운트를 구하여 플래그값 변경을 통해 메인에서 동작 구현
+
+
+
+
 
 
 void errInitChangeSwitch(void);
@@ -613,6 +648,10 @@ void checkSweingLength(void);
 void exeEtcMachine(unsigned char outportName, unsigned char Mode);
 void exeAircylinder(unsigned char outportName, unsigned char Mode);
 void exeWelding(unsigned char outportName, unsigned char Mode);
+void exeCuttingFablic(void);
+void exeWeldingBand(void);
+
+
 
 
 
