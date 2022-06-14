@@ -104,9 +104,9 @@ void errInitChangeSwitch(void)				//manual모드나  auto모드 에서 SWITCH변
 	servorStop(TIM_CHANNEL_2);
 	servorStop(TIM_CHANNEL_3);
 	servorStop(TIM_CHANNEL_4);
-	exeHeat(heating_on,SET);
+	exeOutportSignal(heating_on,SET);
 	exeRC(RC_DECREASE);
-	exeVaccum(vaccum_on,SET);
+	exeOutportSignal(vaccum_on,SET);
 	g_manual_status=MANUAL_READY;
 	g_auto_status=AUTO_READY;
 	g_change_sw_auto_manual=false;
@@ -122,11 +122,18 @@ void errInitChangeSwitch(void)				//manual모드나  auto모드 에서 SWITCH변
 	g_lenth_encode_count=0;						//무창기계관련 동작 초기화.....제어할수 있는 입력버튼이 없어서 메뉴얼모드에서 조작불가하기때문에....
 	g_etc_machine_status=ETC_MACHINE_READY;
 	g_fablic_cut_status=OFF;
-	g_welding_status=OFF;
 	exeEtcMachine(etc_machine_on,RESET);	
-	exeHeat(fablic_heating_on,RESET);
-	exeAircylinder(cut_cylinder_on,SET);
-	exeWelding(welding_cylinder_on,RESET);
+	exeOutportSignal(fablic_heating_on,RESET);
+	exeOutportSignal(cut_cylinder_on,SET);
+	exeOutportSignal(loader_updown_on,SET);
+	exeOutportSignal(loader_pushpull_on,SET);
+
+
+	g_etc_slow_count=0;
+	g_prev_etcmachine_home=OFF;
+
+
+	g_topstop_flag=false;
 }
 
 uint8_t checkPrevRunStatus(void)					//manual모드나  auto모드 에서 SWITCH변경시  이전 모드의 동작이 진행 중인지를  판단하여    결과 리턴
@@ -150,6 +157,9 @@ uint8_t checkPrevRunStatus(void)					//manual모드나  auto모드 에서 SWITCH
 					g_auto_wait=OFF;				//SW_AUTO_STARTf ON시에   if(g_auto_wait==OFF)에 의해 초기화		
 					g_prev_lamp_mode=YELLOW_RUN;
 				}
+				//메뉴얼모드에서 오토모드로 변경시 최초 loader를 초기화
+				exeOutportSignal(loader_updown_on,RESET);
+				exeOutportSignal(loader_pushpull_on,RESET);
 				break;
 			case 0:
 				if(g_auto_status==AUTO_READY&&g_autosewing_status==AUTO_INIT&&g_etc_machine_status==ETC_MACHINE_READY)				//auto모드에서 아무 동작을 하지 않은 경우...
@@ -186,28 +196,33 @@ void initVariables(void)
 	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);    				// rc servo1 pwm start
 	HAL_TIM_PWM_Start(&htim8,TIM_CHANNEL_1);    				// rc servo2 pwm start
 	__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_1,RC_DUTY_MIN);  	// duty set rc servo1
-    __HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_1,RC_DUTY_MAX);	
-	outportSignal(etc_machine_on,RESET);						//무창기계 스탑
-	exeHeat(fablic_heating_on,RESET);							//절단용 에어실린더 OFF
-	outportSignal(out_port53,RESET);							//원단절단용 에어실린더 (예비용)
-	outportSignal(out_port54,RESET);							//접착용 에어실린더 (예비용)
-	
+    __HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_1,RC_DUTY_MIN);	
+	exeOutportSignal(etc_machine_on,RESET);						//무창기계 스탑
+	exeOutportSignal(etc_machine_decrease,RESET);				//무창기계 감속 정지
+	exeOutportSignal(fablic_heating_on,RESET);					//절단용 열선  OFF
+	exeOutportSignal(loader_updown_on,RESET);
+	exeOutportSignal(loader_pushpull_on,RESET);
+
 	DWT_Delay_us(500);
 
-	g_starting_position=100;					//자동스윙시작시 최초 재봉시작위치...
-	g_fablic_cut_position=200;					//원단절단 시작시점(길이)
-	g_attachband_length  = 500;					//달기밴드 길이
-	g_auto_sewing_length = 100;//1500mm
-	g_test_sewing_length = 100;//1000mm
-	g_init_speed =FRQ_200Hz;					//needle,looper초기화속도
+	g_auto_sewingmove_length	= 170;					//스윙무브 기본길이
+	g_attachband_length  		= 300;					//달기밴드 길이
+	g_auto_vertical_length		= 1200;					//무창기계 수직봉제길이
+	g_fablic_cut_position		= 830;					//원단절단 시작시점(길이)
+
+	
+	g_starting_position			= 160;					//자동스윙시작시 최초 재봉시작위치...
+	g_auto_sewing_length 		= 1080;					//테스트원단 실제 너비 1065
+	g_test_sewing_length 		= 300;//1000mm
+
 	g_auto_sewing_speed = FRQ_15KHz;			//자동모드 속도
 	g_test_sewing_speed = FRQ_15KHz;			//테스트모드 기본속도
-	g_lifting_speed = FRQ_2KHz;					//lifting 기본속도
-	g_moving_speed = FRQ_2KHz;					//moving 기본속도  FRQ_5KHz
+	g_lifting_speed 	= FRQ_2KHz;				//lifting 기본속도
+	g_moving_speed 		= FRQ_2KHz;				//moving 기본속도  FRQ_5KHz
+	g_init_speed 		= FRQ_200Hz;				//needle,looper초기화속도
 
 
 	g_rotaryencorder_status=OFF;
-	
 	g_manual_status 		=	MANUAL_READY;	//메뉴얼모드 초기상태
 	g_auto_status			=	AUTO_READY;		//오토모드 초기상태
 	g_autosewing_status 	=	AUTO_INIT;		//자동봉제 초기상태
@@ -227,11 +242,17 @@ void initVariables(void)
 	g_prev_sw_auto_manual=2;					//[SWITCH] Mode select  0: MANUAL MODE, 1: AUTO MODE      2:INIT   manual/auto변경여부를 확인하기 위해 이전 모드값 셋팅
 	g_change_sw_auto_manual=false;				//manual/auto변경여부
 
-	g_lenth_encode_count=0;
+	
 	g_etc_machine_status=ETC_MACHINE_READY;
 	g_etc_machine_run=OFF;						//PC최초 연결시 해당정보 받아서 셋팅:g_lenth_encode_count...g_auto_wait...g_sewingmoving_servor_status...g_etc_machine_status....g_prev_needle_puls_count
 	g_fablic_cut_status=OFF;
-	g_welding_status=OFF;
+	g_loader_status=LOADER_READY;
+	g_encode_count_step=ENCODE_COUNT_READY;
+	g_prev_encode_count_step=ENCODE_COUNT_READY;
+	g_lenth_encode_count=0;
+	g_etc_slow_count=0;
+	g_topstop_flag=false;
+	
 }
 
 void manualMode(void)
@@ -243,7 +264,7 @@ void manualMode(void)
 			g_manual_status=INIT_NEEDLE_PUSH;
 		else if(SW_LOOPER_HOME == 0)										// [PUSH BT] 0: ON, 1: OFF
 			g_manual_status=INIT_LOOFER_PUSH;
-		else if(SW_MOVING_HOME == 0)										// [PUSH BT] 0: ON, 1: OFF
+		if(SW_MOVING_HOME == 0)										// [PUSH BT] 0: ON, 1: OFF
 			g_manual_status=INIT_MOVING_PUSH;							
 		else if(SW_LIFTING_HOME == 0)
 			g_manual_status=INIT_LIFTING_PUSH;
@@ -253,23 +274,38 @@ void manualMode(void)
 			g_manual_status=RUN_ROTARYENCORDER_PUSH;
 		else if(SW_ETCMACHINE_RUN == 0)										// [PUSH BT] 0: ON, 1: OFF
 			g_manual_status=INIT_ETCRUN_PUSH;
-		else if(SW_WELDING_ON == 0)											// [PUSH BT] 0: ON, 1: OFF
-			g_manual_status=INIT_WELDINGRUN_PUSH;
+		else if(SW_PUSHPULL == 0)											// [PUSH BT] 0: ON, 1: OFF
+			g_manual_status=INIT_PUSHPULL_PUSH;
 		else if(SW_CUT_AIRCYLINDER_ON == 0)										// [PUSH BT] 0: ON, 1: OFF
 			g_manual_status=INIT_CUTFABLICRUN_PUSH;
+		else if(SW_LOADER_UPDOWN==0)	
+			g_manual_status=INIT_LOADER_UPDOWN;
+
 
 		if(SW_CLAMP3_OPEN_CLOSE==0)											// [SWITCH] 0: ON, 1: OFF
-		 	exeClamp(band_clamp_1_on,RESET);
+		 	exeOutportSignal(band_clamp_3_on,RESET);
 		else
-			exeClamp(band_clamp_1_on,SET);
+			exeOutportSignal(band_clamp_3_on,SET);
 		if(SW_CLAMP4_OPEN_CLOSE==0)											// [SWITCH] 0: ON, 1: OFF
-		 	exeClamp(band_clamp_2_on,RESET);
+		 	exeOutportSignal(band_clamp_4_on,RESET);
 		else
-			exeClamp(band_clamp_2_on,SET);
+			exeOutportSignal(band_clamp_4_on,SET);
 		if(SW_VACCUM_OPEN_CLOSE==0)											// [SWITCH] 0: ON, 1: OFF
-		 	exeVaccum(vaccum_on,RESET);
+		 	exeOutportSignal(vaccum_on,RESET);
 		else
-			exeVaccum(vaccum_on,SET);
+			exeOutportSignal(vaccum_on,SET);
+
+		
+		if(SW_ETCMACHINE_JOG == 0)
+		{
+			exeOutportSignal(etc_machine_on,SET);
+			exeOutportSignal(etc_machine_decrease,SET);
+		}
+		else
+		{
+			exeOutportSignal(etc_machine_on,RESET);
+			exeOutportSignal(etc_machine_decrease,RESET);
+		}
 
 		g_sewing_err=CHECK_READY;			//메뉴얼모드에서는  err 초기화(에러 발견시  통신하고 초기화)
 											// [PUSH BT] 0: ON, 1: OFF
@@ -305,11 +341,14 @@ void manualMode(void)
 		case INIT_ETCRUN_PUSH:
 			exeEtcMachine(etc_machine_on,SET);
 			break;
-		case INIT_WELDINGRUN_PUSH:
-			exeWeldingBand();
+		case INIT_PUSHPULL_PUSH:
+			exeLoaderPushPull();
 			break;
 		case INIT_CUTFABLICRUN_PUSH:
 			exeCuttingFablic();
+			break;
+		case INIT_LOADER_UPDOWN:
+			exeLoaderUpdown();
 			break;
 		default : 
 			break;
@@ -355,91 +394,118 @@ void autoMode(void)
 		stopAutoSewing();
 	else if(g_auto_status==AUTO_SEWING_PUSH)
 		autoSewing();
-
+	
 	checkSweingLength();									//동작과 별개로 무장기계 제어.....
 }
 
 void checkSweingLength(void)
 {
+	if(g_sewing_err)				
+	{
+		printf("checkSweingLength error code : %d\n",g_sewing_err);
+		exeEtcMachine(etc_machine_on,RESET);
+		exeOutportSignal(fablic_heating_on,SET);
+		exeOutportSignal(cut_cylinder_on,SET);
+		exeOutportSignal(loader_updown_on,SET);
+		exeOutportSignal(loader_pushpull_on,SET);	
+		return;
+		
+	}
 	if(g_auto_wait!=OFF)					//스탑버튼이 눌릴경우 return....
 		return;
-
-	g_fablic_cut_position=200;
-	g_attachband_length  = 200;
-	g_auto_sewing_length = 200;//1500mm																
-	if(g_encode_count_step==ENCODE_COUNT_STEP3)							//g_auto_sewing_length까지 봉제 완료한 경우
+	//printf(" %d \n",g_lenth_encode_count);
+														
+	if(g_prev_encode_count_step!=g_encode_count_step&&g_encode_count_step==ENCODE_COUNT_END_POS)							//g_auto_sewing_length까지 봉제 완료한 경우
 	{
-		g_etc_machine_status=ETC_MACHINE_FINISH_RUN;
-		g_encode_count_step=ENCODE_COUNT_READY;
-		g_lenth_encode_count++;											//인터럽트안에서 한번만 수행하게 하기위해.....카운트 1증가
 		printf("step 3 ON  %d \n",g_lenth_encode_count);
+		g_etc_machine_status=ETC_MACHINE_FINISH_RUN;
 	}
-	else if(g_encode_count_step==ENCODE_COUNT_STEP2)					//원단절단후 달기밴드 길이까지 봉제완료 한경우
+	else if(g_prev_encode_count_step!=g_encode_count_step&&g_encode_count_step==ENCODE_COUNT_INSERT_POS)					//원단절단후 달기밴드 길이까지 봉제완료 한경우
 	{
-		g_etc_machine_status=ETC_MACHINE_STOP1;
-		g_encode_count_step=ENCODE_COUNT_READY;
-		g_lenth_encode_count++;
 		printf("step 2 ON   %d \n",g_lenth_encode_count);
+		g_etc_machine_status=ETC_MACHINE_STOP1;
 	}
-	else if(g_encode_count_step==ENCODE_COUNT_STEP1)					//원단절단 포지션까지 이동했을 경우
+	else if(g_prev_encode_count_step!=g_encode_count_step&&g_encode_count_step==ENCODE_COUNT_CUT_POS)						//원단절단 포지션까지 이동했을 경우
 	{
-		g_etc_machine_status=ETC_MACHINE_STOP;
-		g_encode_count_step=ENCODE_COUNT_READY;
-		g_lenth_encode_count++;
 		printf("step 1 ON   %d \n",g_lenth_encode_count);
+		g_etc_machine_status=ETC_MACHINE_STOP;
 	}
+	g_prev_encode_count_step=g_encode_count_step;
 
 	switch (g_etc_machine_status)
 	{
-		case ETC_MACHINE_RUN:												//무창기계 온   1단계 동작
+		case ETC_MACHINE_RUN:												//무창기계 런:컷팅포지션까지 가기위해
 			exeEtcMachine(etc_machine_on,SET);	
-			if(g_prev_etc_machine_status!=g_etc_machine_status)
-			{
-				printf("ETC_MACHINE_RUN\n");
-				g_prev_etc_machine_status=g_etc_machine_status;
-			}
+			printf("ETC_MACHINE_RUN %d\n",g_lenth_encode_count);
 			break;
-		case ETC_MACHINE_STOP:												//무창기계 스탑   2단계 동작
+		case ETC_MACHINE_STOP:												//무창기계 스탑:컷팅위치까지 도착
 			exeEtcMachine(etc_machine_on,RESET);	
-			printf("ETC_MACHINE_STOP\n");
-			g_etc_machine_status = ETC_MACHINE_CUTING_RUN;
+			printf("ETC_MACHINE_STOP %d\n",g_lenth_encode_count);
+			g_etc_machine_status = ETC_LOADER_DOWN;
 			break;
-		case ETC_MACHINE_CUTING_RUN:
+		case ETC_LOADER_DOWN:												//로우더머신 다운:절단할 원단 고정하기 위해
+			printf("ETC_LOADER_DOWN\n");
+			exeOutportSignal(loader_updown_on,SET);
+			exeDelay(2000,TIMECHECK_DELAY);
+			if(g_timer_delay_on==OFF)
+				g_etc_machine_status = ETC_MACHINE_CUTING_RUN;
+			break;
+		case ETC_MACHINE_CUTING_RUN:										//원단절단
+			printf("ETC_MACHINE_CUTING_RUN\n");
 			exeCuttingFablic();
 			if(g_fablic_cut_status==OFF)	//[SENSOR] 0: ON, 1: OFF
 				g_etc_machine_status = ETC_MACHINE_RUN1;
 			else 
 				;
 			break;
-		case ETC_MACHINE_RUN1:												//무창기계 온   3단계 동작		
-			if(g_prev_etc_machine_status!=g_etc_machine_status)
+		case ETC_MACHINE_RUN1:												//무창기계 런:달기로프 재봉을 위해
+			exeEtcMachine(etc_machine_on,SET);	
+			printf("ETC_MACHINE_RUN1 %d\n",g_lenth_encode_count);
+			break;
+		case ETC_MACHINE_STOP1:												//무창기계 스탑:달기로프 봉제 완료==>정지시 최상단 센서 위치에 정지하도록....
+			printf("ETC_MACHINE_STOP1 %d\n",g_lenth_encode_count);
+			topStopEtcMachine();	
+			if(g_topstop_flag==true)
 			{
-				printf("ETC_MACHINE_RUN1\n");
-				g_prev_etc_machine_status=g_etc_machine_status;
+				g_etc_machine_status = ETC_LOADER_PUSH;
+				g_topstop_flag=false;
 			}
-			exeEtcMachine(etc_machine_on,SET);								//무창기계 런
 			break;
-		case ETC_MACHINE_STOP1:												//무창기계 스탑
-			exeEtcMachine(etc_machine_on,RESET);
-			printf("ETC_MACHINE_STOP2\n");//무창기계 런
-			g_etc_machine_status = ETC_MACHINE_WELDING_RUN;
+		case ETC_LOADER_PUSH:												//로우더머신 푸쉬:절단후 대기중인 원단 무창기계 안단까지 밀어넣기
+			printf("ETC_LOADER_PUSH\n");
+			exeOutportSignal(loader_pushpull_on,SET);
+			exeDelay(3500,TIMECHECK_DELAY);
+			if(g_timer_delay_on==OFF)
+				g_etc_machine_status = ETC_MACHINE_SLOWRUN;
 			break;
-		case ETC_MACHINE_WELDING_RUN:										//접합
-			exeWelding(welding_cylinder_on,SET);
-			if(g_welding_status==OFF)
+		case ETC_MACHINE_SLOWRUN:											//조깅런:밀어넣은 원단을 조깅으로 봉제
+			printf("ETC_MACHINE_SLOWRUN\n");
+			slowRunEtcMachine(2);	
+			if(g_topstop_flag==true)
+			{
+				g_etc_machine_status = ETC_LOADER_PULL;
+				g_topstop_flag=false;
+			}
+			break;
+		case ETC_LOADER_PULL:												//로우더머신 풀:로우더 머신 원위치
+			exeOutportSignal(loader_pushpull_on,RESET);
+			printf("ETC_LOADER_PULL\n");
+			exeDelay(1000,TIMECHECK_DELAY);
+			if(g_timer_delay_on==OFF)
+				g_etc_machine_status = ETC_LOADER_UP;
+			break;
+		case ETC_LOADER_UP:												    //로우더머신 업:로우더 머신 원위치
+			exeOutportSignal(loader_updown_on,RESET);
+			printf("ETC_LOADER_UP\n");
+			exeDelay(1000,TIMECHECK_DELAY);
+			if(g_timer_delay_on==OFF)
 				g_etc_machine_status = ETC_MACHINE_RUN2;
-			else
-				;
 			break;
-		case ETC_MACHINE_RUN2:												//무창기계 런
-			if(g_prev_etc_machine_status!=g_etc_machine_status)
-			{
-				printf("ETC_MACHINE_RUN2\n");
-				g_prev_etc_machine_status=g_etc_machine_status;
-			}
+		case ETC_MACHINE_RUN2:												//무창기계 런:세로봉제 완료를 위해
+			printf("ETC_MACHINE_RUN2 %d\n",g_lenth_encode_count);
 			exeEtcMachine(etc_machine_on,SET);
 			break;
-		case ETC_MACHINE_FINISH_RUN:										//오토스윙시작   4단계 동작	
+		case ETC_MACHINE_FINISH_RUN:										//무창기계 스탑:새로봉제 완료==>오토스윙시작   
 			printf("ETC_MACHINE_FINISH_RUN     %d\n",g_lenth_encode_count);
 			exeEtcMachine(etc_machine_on,RESET);
 			g_lenth_encode_count=0;
@@ -449,6 +515,58 @@ void checkSweingLength(void)
 	}
 	
 }
+
+void topStopEtcMachine(void)
+{
+	exeOutportSignal(etc_machine_decrease,SET);
+	if(SEN_ETCMACHINE_HOME== 1&&g_prev_etcmachine_home!=SEN_ETCMACHINE_HOME)	//최상단 센서 ON시 정지  [SENSOR] 							0: ON, 1: OFF
+		g_etc_slow_count++;
+	if( g_etc_slow_count > 1 )													//최상단 센서 ON시 정지
+	{
+		if(SEN_ETCMACHINE_HOME == 1)											//최상단 센서 ON시 정지  [SENSOR] 							1: ON,    0:OFF
+		{
+			printf("SEN_ETCMACHINE_HOME\n");
+			exeEtcMachine(etc_machine_on,RESET);								//무창기계 RUN off
+			exeOutportSignal(etc_machine_decrease,RESET);						//무창기계 Decrease off
+			g_topstop_flag=true;
+			g_etc_slow_count=0;
+		}
+		else
+		{
+			g_topstop_flag=false;
+		}
+	}
+	g_prev_etcmachine_home=SEN_ETCMACHINE_HOME;
+
+	
+}
+
+void slowRunEtcMachine(uint8_t count)
+{
+	if(SEN_ETCMACHINE_HOME== 1&&g_prev_etcmachine_home!=SEN_ETCMACHINE_HOME)	//최상단 센서 ON시 정지  [SENSOR] 							0: ON, 1: OFF
+		g_etc_slow_count++;
+	if( g_etc_slow_count == count )												//최상단 센서 ON시 정지
+	{
+		exeEtcMachine(etc_machine_on,RESET);									//무창기계 RUN off
+		exeOutportSignal(etc_machine_decrease,RESET);							//무창기계 Decrease off
+		g_topstop_flag=true;
+		g_etc_slow_count=0;
+	}
+	else
+	{
+		exeOutportSignal(etc_machine_on,SET);
+		exeOutportSignal(etc_machine_decrease,SET);
+		g_topstop_flag=false;
+	}
+	g_prev_etcmachine_home=SEN_ETCMACHINE_HOME;
+}
+
+
+void exeOutportSignal(unsigned char outportName, unsigned char Mode)
+{
+	outportSignal(outportName,Mode);
+}
+
 
 void startAutoSewing(void)
 {
@@ -483,6 +601,10 @@ void autoSewing(void)
 			g_lifting_servor_status=OFF;
 			g_moving_servor_status=OFF;
 			g_rc_servor_status=OFF;
+			
+			g_encode_count_step		=ENCODE_COUNT_READY;
+			g_prev_encode_count_step=ENCODE_COUNT_READY;
+			g_lenth_encode_count	=0;
 			break;
 		case AUTO_MOVING_HOME_CHECK:
 			g_autosewing_status = AUTO_NEDDLE_HOME_CHECK;
@@ -518,16 +640,18 @@ void autoSewing(void)
 			else
 				g_sewing_err = LIFTING_INIT_FAIL;
 			break;
-		case AUTO_BANDCLAMP_CLOSE_CHECK:
-			exeClamp(band_clamp_1_on,RESET);
-			exeClamp(band_clamp_2_on,RESET);
-			if(SEN_FABRIC_CHECK1 == 1&&SEN_FABRIC_CHECK2 == 1)		//[SENSOR] 1: ON, 0: OFF    
+		case AUTO_BANDCLAMP_CLOSE_CHECK:									//밴드 삽입센서가 둘다 온되었느지 체크...온시 밴드를 잡아줌
+			if(SEN_BANDINSERT_CHECK1 == 1&&SEN_BANDINSERT_CHECK2 == 1)		//[SENSOR] 1: ON, 0: OFF    
+			{
+				exeOutportSignal(band_clamp_3_on,RESET);
+				exeOutportSignal(band_clamp_4_on,RESET);
 				g_autosewing_status = AUTO_LIFTUP_10MM_UP;
+			}
 			else
 				g_sewing_err = BANDCLAMP_INIT_FAIL;
 			break;
 		case AUTO_LIFTUP_10MM_UP:
-			exeLifting(15,ON_UP);
+			exeLifting(25,ON_UP);
 			if(g_lifting_servor_status==OFF)
 				g_autosewing_status = AUTO_MOVE_100MM;
 			else if(g_lifting_servor_status==ON_UP||g_lifting_servor_status==ON_DOWN)
@@ -545,7 +669,7 @@ void autoSewing(void)
 				g_sewing_err = AUTO_MOVE_100MM_FAIL;//time check
 			break;
 		case AUTO_LIFTUP_10MM_DOWN:
-			exeLifting(15,ON_DOWN);
+			exeLifting(25,ON_DOWN);
 			if(g_lifting_servor_status==OFF)
 				g_autosewing_status = AUTO_SEWING_RUN;
 			else if(g_lifting_servor_status==ON_UP ||g_lifting_servor_status==ON_DOWN)
@@ -568,12 +692,13 @@ void autoSewing(void)
 				g_autosewing_status = AUTO_HEATING_ON;
 			break;
 		case AUTO_HEATING_ON:
-			exeHeat(heating_on,RESET);
+			exeOutportSignal(heating_on,RESET);
+			exeOutportSignal(fablic_heating_on,SET);
 			g_autosewing_status = AUTO_SEWINGMOVE_100MM;
 			break;
 		case AUTO_SEWINGMOVE_100MM:
-			exeSewingMoving(160,FRQ_15KHz);
-			if(g_sewingmoving_servor_status==OFF)
+			exeSewingMoving(g_auto_sewingmove_length,FRQ_10KHz);
+			if(g_sewingmoving_servor_status==OFF)	
 				g_autosewing_status = AUTO_VOCCUM_ON;
 			else if(g_sewingmoving_servor_status==ON)
 				;
@@ -581,8 +706,8 @@ void autoSewing(void)
 				g_sewing_err = AUTO_SEWINGMOVE_100MM_FAIL;//time check
 			break;
 		case AUTO_VOCCUM_ON:
-			exeVaccum(vaccum_on,RESET);
-			exeHeat(heating_on,RESET);														//정지후 해당 구역에서 재시작시 히팅온.......???
+			exeOutportSignal(vaccum_on,RESET);
+			exeOutportSignal(heating_on,RESET);												//정지후 해당 구역에서 재시작시 히팅온.......???
 			g_autosewing_status = AUTO_RC_TOP;
 			break;
 		case AUTO_RC_TOP:
@@ -590,21 +715,30 @@ void autoSewing(void)
 			g_autosewing_status = AUTO_CUTDELAY;
 			break;
 		case AUTO_CUTDELAY:																	//열절단 되는 밴드 두께를 고려하여 delay설정
-			exeDelay(4500,TIMECHECK_DELAY);
+			exeDelay(7000,TIMECHECK_DELAY);
 			if(g_timer_delay_on==OFF)
 				g_autosewing_status = AUTO_HEATING_OFF;
 			break;
 		case AUTO_HEATING_OFF:
-			exeHeat(heating_on,SET);
-			g_autosewing_status = AUTO_RC_HOME;
+			exeOutportSignal(heating_on,SET);
+			g_autosewing_status = AUTO_MOVE_10MM;
+			break;
+		case AUTO_MOVE_10MM:
+			exeMoving(50,FRQ_10KHz,ON_RIGHT);												//컷팅완료후 뒤로 이동한 후, RC모터 복귀
+			if(g_moving_servor_status==OFF)
+				g_autosewing_status = AUTO_RC_HOME;
+			else if(g_moving_servor_status==ON)
+				;
+			else
+				g_sewing_err = AUTO_MOVE_100MM_FAIL;//time check
 			break;
 		case AUTO_RC_HOME:
 			exeRC(RC_DECREASE);
 			g_autosewing_status = AUTO_BANDCLAMP_OPEN_CHECK;
 			break;
 		case AUTO_BANDCLAMP_OPEN_CHECK:
-			exeClamp(band_clamp_1_on,SET);
-			exeClamp(band_clamp_2_on,SET);
+			exeOutportSignal(band_clamp_3_on,SET);
+			exeOutportSignal(band_clamp_4_on,SET);
 			g_autosewing_status = AUTO_BANDCLAMP_OPEN_DELAY;
 			break;
 		case AUTO_BANDCLAMP_OPEN_DELAY:															//band_clamp가 정상적으로 OPEN되었는지 체크하기위해 클램프 동작시간 딜레이를 줌.....
@@ -615,7 +749,7 @@ void autoSewing(void)
 				g_sewing_err = AUTO_RC_HOME_FAIL;//time check
 			break;
 		case AUTO_LIFTUP_10MM_2:
-			exeLifting(10,ON_UP);
+			exeLifting(50,ON_UP);
 			if(g_lifting_servor_status==OFF)
 				g_autosewing_status = AUTO_MOVE_BEFOREHOME;
 			else if(g_lifting_servor_status==ON_UP ||g_lifting_servor_status==ON_DOWN)
@@ -625,17 +759,17 @@ void autoSewing(void)
 			break;
 		case AUTO_MOVE_BEFOREHOME:
 			g_etc_machine_status=ETC_MACHINE_RUN;												//g_etc_machine_status=ETC_MACHINE_RUN하여 무창기계 동작시작
-			exeMoving(g_auto_sewing_length+160,FRQ_8KHz,ON_LEFT);								// g_moving_speed
-			exeVaccum(vaccum_on,RESET);															//정지 후, 재동작시 바큠 온....체크
+			exeMoving(g_starting_position+g_auto_sewing_length+g_auto_sewingmove_length+50-80,FRQ_8KHz,ON_LEFT);								//HOME의 80전까지
+			exeOutportSignal(vaccum_on,RESET);															//정지 후, 재동작시 바큠 온....체크
 			if(g_moving_servor_status==OFF)
-				g_autosewing_status = AUTO_LIFTUP_10MM_3;
+				g_autosewing_status = AUTO_LIFTUP_10MM_3;										//g_starting_position+g_auto_sewing_length+g_auto_sewingmove_length+50
 			else if(g_moving_servor_status==ON_RIGHT||g_moving_servor_status==ON_LEFT)
 				;
 			else
 				g_sewing_err = AUTO_MOVE_100MM_FAIL;//time check
 			break;
 		case AUTO_LIFTUP_10MM_3:
-			exeLifting(10,ON_DOWN);
+			exeLifting(50,ON_DOWN);
 			if(g_lifting_servor_status==OFF)
 				g_autosewing_status = AUTO_MOVING_HOME_CHECK2;
 			else if(g_lifting_servor_status==ON_UP ||g_lifting_servor_status==ON_DOWN)
@@ -645,7 +779,7 @@ void autoSewing(void)
 			break;
 		case AUTO_MOVING_HOME_CHECK2:
 			initMoving(FRQ_2KHz);
-			exeVaccum(vaccum_on,RESET);															//정지 후, 재동작시 바큠 온....체크
+			exeOutportSignal(vaccum_on,RESET);															//정지 후, 재동작시 바큠 온....체크
 			if(g_moving_servor_status==OFF)
 				g_autosewing_status = AUTO_BANDCLAMP_CLOSE_CHECK_2;
 			else if(g_moving_servor_status==ON)
@@ -654,15 +788,22 @@ void autoSewing(void)
 				g_sewing_err = AUTO_MOVING_HOME_CHECK2_FAIL;
 			break;
 		case AUTO_BANDCLAMP_CLOSE_CHECK_2:
-			exeClamp(band_clamp_1_on,RESET);
-			exeClamp(band_clamp_2_on,RESET);
-			if(SEN_FABRIC_CHECK1 == 1&&SEN_FABRIC_CHECK2 == 1)			
+			if( (SEN_BANDINSERT_CHECK1 == 1&&SEN_BANDINSERT_CHECK2 == 1) )	
+			{
+				//exeOutportSignal(band_clamp_3_on,RESET);
+				//exeOutportSignal(band_clamp_4_on,RESET);
 				g_autosewing_status = AUTO_VOCCUM_OFF;
+			}
 			else
-				g_sewing_err = BANDCLAMP_INIT_FAIL;
+			{
+				//g_sewing_err = BANDCLAMP_INIT_FAIL;		//???????????에러가 나더라도 일단 다음 동작 수행....
+				//exeOutportSignal(band_clamp_3_on,RESET);
+				//exeOutportSignal(band_clamp_4_on,RESET);
+				g_autosewing_status = AUTO_VOCCUM_OFF;
+			}
 			break;
 		case AUTO_VOCCUM_OFF:
-			exeVaccum(vaccum_on,SET);
+			exeOutportSignal(vaccum_on,SET);
 			//g_auto_status = AUTO_READY;
 			g_auto_status=AUTO_ETCMACHINE_PUSH;													//AUTO_MOVE_BEFOREHOME에서 AUTO_ETCMACHINE_PUSH상태이지만 AUTO_SEWING_PUSH상태를 유지해야지만 마지막동작까지 완료
 			break;
@@ -702,15 +843,15 @@ void stopManual(void)
 			g_needle_puls_target_count=(g_needle_puls_count/SEW_1CYCLE_PULSE+1)*SEW_1CYCLE_PULSE;
 			break;
 		case INIT_ETCRUN_PUSH:
-			exeEtcMachine(etc_machine_on,RESET);	
+			exeEtcMachine(etc_machine_on,RESET);		
 			break;
-		case INIT_WELDINGRUN_PUSH:
-			exeWelding(welding_cylinder_on,RESET);
-			g_welding_status=OFF;
+		case INIT_PUSHPULL_PUSH:
+			exeOutportSignal(loader_updown_on,SET);
+			exeOutportSignal(loader_pushpull_on,SET);
 			break;
 		case INIT_CUTFABLICRUN_PUSH:
-			exeHeat(fablic_heating_on,RESET);
-			exeAircylinder(cut_cylinder_on,SET);
+			exeOutportSignal(fablic_heating_on,RESET);
+			exeOutportSignal(cut_cylinder_on,SET);
 			g_fablic_cut_status=OFF;
 			break;
 		default : 
@@ -735,29 +876,24 @@ void stopAutoSewing(void)
 			printf("stop 0\n");
 			break;
 		case ETC_MACHINE_CUTING_RUN: 				//컷팅전에 중지명령이 발생하면 다시 시작시 컷팅부터 다시 수행
-			exeHeat(fablic_heating_on,SET);
-			exeAircylinder(cut_cylinder_on,RESET);
+			exeOutportSignal(fablic_heating_on,SET);
+			exeOutportSignal(cut_cylinder_on,RESET);
 			g_auto_wait=ETCMACHINE_WAIT;
 			g_fablic_cut_status=OFF;
 			printf("stop 1\n");
 			break;
 		case ETC_MACHINE_RUN1:						//달기밴드 제작시에 중지명령이 발생할경우 무창기계 스탑
 			exeEtcMachine(etc_machine_on,RESET);
-			g_etc_machine_status=ETC_MACHINE_RUN1;
-
 			g_auto_wait=ETCMACHINE_WAIT;
 			printf("stop 2\n");
-			break;
-		case ETC_MACHINE_WELDING_RUN:
-			exeWelding(welding_cylinder_on,RESET);
-			g_auto_wait=ETCMACHINE_WAIT;
-			g_welding_status=OFF;
-			printf("stop 3\n");
 			break;
 		case ETC_MACHINE_RUN2:
 			exeEtcMachine(etc_machine_on,RESET);
 			g_auto_wait=ETCMACHINE_WAIT;
 			printf("stop 4\n");
+			break;
+		default : 
+			g_auto_wait=ETCMACHINE_WAIT;
 			break;
 	}
 	switch (g_autosewing_status)
@@ -781,8 +917,8 @@ void stopAutoSewing(void)
 		case AUTO_CUTDELAY:
 		case AUTO_HEATING_OFF:
 		case AUTO_RC_HOME:
-			exeVaccum(vaccum_on,SET);
-			exeHeat(heating_on,SET);
+			exeOutportSignal(vaccum_on,SET);
+			exeOutportSignal(heating_on,SET);
 			exeRC(RC_DECREASE);
 			g_autosewing_status=AUTO_VOCCUM_ON;
 
@@ -790,7 +926,7 @@ void stopAutoSewing(void)
 			g_auto_status=AUTO_READY;
 			break;
 		case AUTO_MOVE_BEFOREHOME:
-			exeVaccum(vaccum_on,SET);
+			exeOutportSignal(vaccum_on,SET);
 			servorStop(TIM_CHANNEL_3);	
 			g_moving_servor_status=OFF;
 			
@@ -798,7 +934,7 @@ void stopAutoSewing(void)
 			g_auto_status=AUTO_READY;
 			break;
 		case AUTO_MOVING_HOME_CHECK2:
-			exeVaccum(vaccum_on,SET);
+			exeOutportSignal(vaccum_on,SET);
 			servorStop(TIM_CHANNEL_3);	
 			g_moving_servor_status=OFF;
 			
@@ -951,14 +1087,20 @@ void bandCutting(void)
 	}
 	switch (g_test_status)
 	{
+		
 		case AUTO_VOCCUM_ON:
-			//exeVaccum(vaccum_on,RESET);
-			g_test_status = AUTO_HEATING_ON;
+			exeOutportSignal(vaccum_on,RESET);
+			g_test_status = AUTO_HEATING_ON;		//g_test_status=AUTO_VOCCUM_ON;
 			break;
+		
 		case AUTO_HEATING_ON:
-			//exeHeat(heating_on,RESET);
-			 //DWT_Delay_us(5000000);
-			g_test_status = AUTO_RC_TOP;
+			exeOutportSignal(heating_on,RESET);
+			g_test_status = AUTO_SEWINGMOVDELAY;
+			break;
+		case AUTO_SEWINGMOVDELAY:
+			exeDelay(5000,TIMECHECK_DELAY);
+			if(g_timer_delay_on==OFF)
+				g_test_status = AUTO_RC_TOP;
 			break;
 		case AUTO_RC_TOP:
 			exeRC(RC_INCREASE);
@@ -970,12 +1112,12 @@ void bandCutting(void)
 				g_sewing_err = AUTO_RC_TOP_FAIL;//time check
 			break;
 		case AUTO_CUTDELAY:
-			exeDelay(1000,TIMECHECK_DELAY);
+			exeDelay(9000,TIMECHECK_DELAY);
 			if(g_timer_delay_on==OFF)
 				g_test_status = AUTO_HEATING_OFF;
 			break;
 		case AUTO_HEATING_OFF:
-			//exeHeat(heating_on,SET);
+			exeOutportSignal(heating_on,SET);
 			g_test_status = AUTO_RC_HOME;
 			break;
 		case AUTO_RC_HOME:
@@ -988,7 +1130,7 @@ void bandCutting(void)
 				g_sewing_err = AUTO_RC_HOME_FAIL;//time check
 			break;
 		case AUTO_VOCCUM_OFF:
-			//exeVaccum(vaccum_on,SET);
+			exeOutportSignal(vaccum_on,SET);
 			g_manual_status=MANUAL_READY;
 			break;
 	}
@@ -1078,6 +1220,89 @@ void exeJogSewing(unsigned int Speed)
 	}	
 }
 
+void exeLoaderPushPull(void)
+{
+	if(g_loader_status == LOADER_COMPLATE)												//[SENSOR] 1: ON, 0: OFF 
+	{
+		g_manual_status=MANUAL_READY;
+		g_loader_status=LOADER_READY;
+	}
+
+	switch (g_loader_status)
+	{
+		case LOADER_READY:
+			if(OUT_PORT_DATA[7].bit0==SET)//if(OUT_PORT_DATA[6].bit7==SET&&OUT_PORT_DATA[7].bit0==SET)
+			{
+				g_loader_direct=RESET;
+				g_loader_status = LOADER_PULL;
+			}
+			else
+			{
+				g_loader_direct=SET;
+				g_loader_status = LOADER_DOWN;
+			}
+			break;
+		case LOADER_DOWN:												//로우더머신 다운:절단할 원단 고정하기 위해
+			exeOutportSignal(loader_updown_on,g_loader_direct);
+			exeDelay(1000,TIMECHECK_DELAY);
+			if(g_timer_delay_on==OFF)
+				g_loader_status = LOADER_PUSH;
+			break;
+		case LOADER_PUSH:												//로우더머신 푸쉬:절단후 대기중인 원단 무창기계 안단까지 밀어넣기
+			exeOutportSignal(loader_pushpull_on,g_loader_direct);
+			exeDelay(1500,TIMECHECK_DELAY);
+			if(g_timer_delay_on==OFF)
+				g_loader_status = LOADER_COMPLATE;
+			break;
+		case LOADER_PULL:												//로우더머신 푸쉬:절단후 대기중인 원단 무창기계 안단까지 밀어넣기
+			exeOutportSignal(loader_pushpull_on,g_loader_direct);
+			exeDelay(3000,TIMECHECK_DELAY);
+			if(g_timer_delay_on==OFF)
+				g_loader_status = LOADER_UP;
+			break;
+		case LOADER_UP:												//로우더머신 다운:절단할 원단 고정하기 위해
+			exeOutportSignal(loader_updown_on,g_loader_direct);
+			exeDelay(1000,TIMECHECK_DELAY);
+			if(g_timer_delay_on==OFF)
+				g_loader_status = LOADER_COMPLATE;
+			break;
+	}
+
+}
+
+void exeLoaderUpdown(void)
+{
+	if(g_loader_status == LOADER_COMPLATE)												//[SENSOR] 1: ON, 0: OFF 
+	{
+		g_manual_status=MANUAL_READY;
+		g_loader_status=LOADER_READY;
+	}
+
+	switch (g_loader_status)
+	{
+		case LOADER_READY:
+			if(OUT_PORT_DATA[7].bit0==SET)
+				g_loader_status = LOADER_DOWN;
+			else
+				g_loader_status = LOADER_UP;
+			break;
+		case LOADER_DOWN:												//로우더머신 다운:절단할 원단 고정하기 위해
+			exeOutportSignal(loader_updown_on,RESET);
+			exeDelay(1000,TIMECHECK_DELAY);
+			if(g_timer_delay_on==OFF)
+				g_loader_status = LOADER_COMPLATE;
+			break;
+		case LOADER_UP:												//로우더머신 다운:절단할 원단 고정하기 위해
+			exeOutportSignal(loader_updown_on,SET);
+			exeDelay(1000,TIMECHECK_DELAY);
+			if(g_timer_delay_on==OFF)
+				g_loader_status = LOADER_COMPLATE;
+			break;
+	}
+}
+
+
+
 
 void exeCuttingFablic(void)
 {
@@ -1093,7 +1318,7 @@ void exeCuttingFablic(void)
 				g_fablic_cut_status = ETC_MACHINE_HEATING_ON;
 				break;
 			case ETC_MACHINE_HEATING_ON:										//원단 절단용 히터 온
-				exeHeat(fablic_heating_on,SET);
+				exeOutportSignal(fablic_heating_on,SET);
 				printf("ETC_MACHINE_HEATING_ON\n");
 				g_fablic_cut_status = ETC_MACHINE_HEATTINGDELAY;
 				break;
@@ -1102,27 +1327,34 @@ void exeCuttingFablic(void)
 				if(g_timer_delay_on==OFF)
 					g_fablic_cut_status = ETC_MACHINE_CUTTING_TOP;
 				break;
-			case ETC_MACHINE_CUTTING_TOP:
+			/*case ETC_MACHINE_CUTTING_TOP:
 				printf("ETC_MACHINE_CUTTING_TOP\n");
-				exeAircylinder(cut_cylinder_on,RESET);
-				if(SEN_FABLICAIRCYLINDER_CLOSE==1)
+				exeOutportSignal(cut_cylinder_on,RESET);
+				if(SEN_WELDING_CYLINDER_CLOSE==1)
 					g_fablic_cut_status = ETC_MACHINE_CUTDELAY;
 				else
 					;
+				break;*/
+			case ETC_MACHINE_CUTTING_TOP:
+				printf("ETC_MACHINE_CUTTING_TOP\n");
+				exeOutportSignal(cut_cylinder_on,RESET);
+				exeDelay(3000,TIMECHECK_DELAY);
+				if(g_timer_delay_on==OFF)
+					g_fablic_cut_status = ETC_MACHINE_CUTDELAY;
 				break;
 			case ETC_MACHINE_CUTDELAY:
-				exeDelay(2000,TIMECHECK_DELAY);
+				exeDelay(500,TIMECHECK_DELAY);
 				if(g_timer_delay_on==OFF)
 					g_fablic_cut_status = ETC_MACHINE_HEATING_OFF;
 				break;
 			case ETC_MACHINE_HEATING_OFF:
 				printf("ETC_MACHINE_HEATING_OFF\n");
-				exeHeat(fablic_heating_on,RESET);
+				exeOutportSignal(fablic_heating_on,RESET);
 				g_fablic_cut_status = ETC_MACHINE_CUTTING_HOME;
 				break;
 			case ETC_MACHINE_CUTTING_HOME:
 				printf("cut_cylinder_on\n");
-				exeAircylinder(cut_cylinder_on,SET);
+				exeOutportSignal(cut_cylinder_on,SET);
 				g_fablic_cut_status=ETC_CUT_COMPLATE;
 				if(g_manual_status==INIT_CUTFABLICRUN_PUSH)
 					g_manual_status=MANUAL_READY;
@@ -1131,42 +1363,6 @@ void exeCuttingFablic(void)
 	}
 }
 
-void exeWeldingBand(void)
-{
-	if(g_welding_status==ETC_WELDING_COMPLATE) 
-	{
-		g_welding_status = OFF;
-	}
-	else
-	{
-		switch (g_welding_status)
-		{
-			case OFF:									
-				g_welding_status = ETC_MACHINE_WELDING_DOWN;
-				break;
-			case ETC_MACHINE_WELDING_DOWN:										//접합
-				printf("ETC_MACHINE_WELDING_DOWN\n");
-				exeWelding(welding_cylinder_on,SET);
-				if(SEN_WELDINF_CYLINDER_CLOSE==0 ||SEN_WELDINF_CYLINDER_CLOSE==1)
-					g_welding_status = ETC_MACHINE_WELDINGDELAY;
-				else
-					;
-				break;
-			case ETC_MACHINE_WELDINGDELAY:
-				exeDelay(2000,TIMECHECK_DELAY);
-				if(g_timer_delay_on==OFF)
-					g_welding_status = ETC_MACHINE_WELDING_HOME;
-				break;
-			case ETC_MACHINE_WELDING_HOME:										//접합
-				printf("ETC_MACHINE_WELDING_HOME\n");//무창기계 런
-				exeWelding(welding_cylinder_on,RESET);
-				g_welding_status=ETC_WELDING_COMPLATE;
-				if(g_manual_status==INIT_WELDINGRUN_PUSH)
-					g_manual_status=MANUAL_READY;
-				break;
-		}
-	}
-}
 
 void exeRotaryEncorder(void)
 {
@@ -1204,9 +1400,11 @@ void exeRotaryEncorder(void)
 			g_prev_rotaryencorder_rorate=FORWORD;
 			if(SW_ROE_X == 0)									// [PUSH BT] 0: ON, 1: OFF
 			{
+				g_re_runtime = true;
+				g_rotaryencorder_runtime=0;
 				g_re_move_count=0;
 				g_rotaryencorder_status=RIGHTLEFT_MOVE;
-				TIM4->ARR = FRQ_15KHz;
+				TIM4->ARR = FRQ_10KHz;
 				__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_3,0); 
 				HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_3);
 			}
@@ -1227,7 +1425,7 @@ void exeRotaryEncorder(void)
 				g_rotaryencorder_count=0;	
 				g_re_move_count=0;
 			}
-			printf("[%d]:[%d]\n",g_move_count,g_rotaryencorder_count);
+			//printf("[%d]:[%d]\n",g_move_count,g_rotaryencorder_count);
 			DWT_Delay_us(10);
 			if(g_re_move_count<(((float)g_rotaryencorder_count*1)/ONE_PULSE_MV))
 			{
@@ -1248,6 +1446,45 @@ void exeRotaryEncorder(void)
 				TIM4->CCR3 = 0;	
 			}
 			break;
+			//로터리엔코더의 
+			/*if(g_prev_rotaryencorder_count!=g_rotaryencorder_count)
+			{
+				g_rotaryencorder_runtime=0;
+			}
+			else
+			{
+				if(g_rotaryencorder_runtime>10)
+				{
+					TIM4->CCR3 = 0;	
+					g_rotaryencorder_count=0;	
+					g_re_move_count=0;	
+					g_rotaryencorder_runtime=0;
+				}
+			}
+			//if(g_re_move_count<(((float)g_rotaryencorder_count*1)/ONE_PULSE_MV))
+			if(g_re_move_count<g_rotaryencorder_count*16)
+			{
+				if(g_rotaryencorder_rorate==FORWORD)
+					SV3_DIR_CCW;
+				else
+					SV3_DIR_CW;
+				if(SEN_MOVING_HOME == 0 && g_rotaryencorder_rorate==BACKWORD)
+					__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_3,(FRQ_15KHz+1)/2);
+				else if(g_rotaryencorder_rorate==FORWORD)
+					__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_3,(FRQ_15KHz+1)/2);
+				else
+					__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_3,0);
+			}
+			else
+			{
+				TIM4->CCR3 = 0;	
+				g_rotaryencorder_count=0;	
+				g_re_move_count=0;
+			}
+			g_prev_rotaryencorder_count=g_rotaryencorder_count;
+			
+
+			break;*/
 		case UPDOWN_MOVE:
 			if(g_prev_rotaryencorder_rorate!=g_rotaryencorder_rorate)
 			{
@@ -1293,7 +1530,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			g_needle_puls_count++;
 			if(g_needle_puls_count==g_needle_puls_target_count)
 			{
-				g_needle_puls_count=0;
+				//g_needle_puls_count=0;
 				g_sewing_servor_status=COMPLATE;
 
 				TIM4->CCR1 = 0;	
@@ -1326,7 +1563,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
 	if(GPIO_Pin==GPIO_PIN_2)			//moving servor 
 	{	
-		if(g_autosewing_status==AUTO_MOVE_100MM||g_autosewing_status== AUTO_MOVE_BEFOREHOME)
+		if(g_autosewing_status==AUTO_MOVE_100MM||g_autosewing_status== AUTO_MOVE_BEFOREHOME||g_autosewing_status==AUTO_MOVE_10MM)
 			g_move_count++;				
 		else if(g_sewing_servor_status == ON)		//테스트스윙이나 오토스윙의 경우
 		{
@@ -1371,19 +1608,19 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		{
 			if(HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_2) == 0) // check RotaryEncorder Rotate
 				g_lenth_encode_count++; 
-			if(g_lenth_encode_count!=0&&g_lenth_encode_count%(g_fablic_cut_position+g_attachband_length+g_auto_sewing_length)==0)	//g_auto_sewing_length까지 봉제 완료한 경우
-			{
-				g_encode_count_step=ENCODE_COUNT_STEP3;
-			}
-			else if(g_lenth_encode_count!=0&&g_lenth_encode_count%(g_fablic_cut_position+g_attachband_length)==0)					//원단절단후 달기밴드 길이까지 봉제완료 한경우
-			{
-				g_encode_count_step=ENCODE_COUNT_STEP2;
-			}
-			else if(g_lenth_encode_count!=0&&g_lenth_encode_count%g_fablic_cut_position==0)											//원단절단 포지션까지 이동했을 경우
-			{
-				g_encode_count_step=ENCODE_COUNT_STEP1;
-			}
+
+
+			if(g_lenth_encode_count>=g_fablic_cut_position+g_attachband_length+(g_auto_vertical_length-g_fablic_cut_position))		//g_auto_vertical_length까지 봉제 완료한 경우	1200+300							
+				g_encode_count_step=ENCODE_COUNT_END_POS; 																		//840+300+(1200-840)
+			else if(g_lenth_encode_count>=g_fablic_cut_position+g_attachband_length)	//원단절단후 달기밴드 길이까지 봉제완료 한경우 				840+300   870
+				g_encode_count_step=ENCODE_COUNT_INSERT_POS; 
+			else if(g_lenth_encode_count>=g_fablic_cut_position)						//원단절단 포지션까지 이동했을 경우    		        840      
+				g_encode_count_step=ENCODE_COUNT_CUT_POS; 
 		}
+
+		//g_attachband_length  		= 300;					//달기밴드 길이
+		//g_auto_vertical_length		= 1200;					//무창기계 수직봉제길이
+		//g_fablic_cut_position		= 840;					//원단절단 시작시점(길이)
 	}
 }
 
@@ -1407,6 +1644,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			g_cycle_send_flag=true;
 			
 		}
+
+		if(g_re_runtime)
+			g_rotaryencorder_runtime++;
 
 	}
 	
@@ -1597,11 +1837,6 @@ void servorStop(uint32_t Channel)
 	HAL_TIM_PWM_Stop(&htim4, Channel);	// needle servo stop
 }
 
-void exeClamp(unsigned char outportName, unsigned char Mode)
-{
-	outportSignal(outportName,Mode);
-}
-
 void exeEtcMachine(unsigned char outportName, unsigned char Mode)
 {
 	outportSignal(outportName,Mode);
@@ -1611,21 +1846,6 @@ void exeEtcMachine(unsigned char outportName, unsigned char Mode)
 		g_etc_machine_run=OFF;
 }
 
-
-void exeVaccum(unsigned char outportName, unsigned char Mode)
-{
-	outportSignal(outportName,Mode);
-}
-
-void exeHeat(unsigned char outportName, unsigned char Mode)
-{
-	outportSignal(outportName,Mode);
-}
-
-void exeAircylinder(unsigned char outportName, unsigned char Mode)
-{
-	outportSignal(outportName,Mode);
-}
 
 
 void exeLifting( int Move_length, unsigned char Rotate)
@@ -1710,6 +1930,8 @@ void exeAutoSewing(void)
 	if(g_sewing_servor_status==COMPLATE) 
 	{
 		g_sewing_servor_status = OFF;
+		g_needle_puls_count=0;
+		
 	}
 	else
 	{
@@ -1846,25 +2068,20 @@ void exeRC(unsigned char Mode)
 	if(Mode == RC_INCREASE)
 	{
 		g_rcDuty[0] = RC_DUTY_MAX-100;		//컷팅을 좀더 빨리시작==>앞쪽에서 컷팅
-		g_rcDuty[1] = RC_DUTY_MIN+100;		//컷팅을 좀더 빨리시작==>앞쪽에서 컷팅
+		//g_rcDuty[1] = RC_DUTY_MIN+100;		//컷팅을 좀더 빨리시작==>앞쪽에서 컷팅
+		g_rcDuty[1] = RC_DUTY_MAX-100;
 	}
 	else
 	{
 		g_rcDuty[0] = RC_DUTY_MIN;
-		g_rcDuty[1] = RC_DUTY_MAX;
+		g_rcDuty[1] = RC_DUTY_MIN;
+		//g_rcDuty[1] = RC_DUTY_MAX;
 	}
 	__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_1,g_rcDuty[0]);  // duty set rc servo1
     __HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_1,g_rcDuty[1]);
 	g_rc_servor_status = OFF;
 }
 
-
-
-
-void exeWelding(unsigned char outportName, unsigned char Mode)
-{
-	outportSignal(outportName,Mode);
-}
 
 
 
